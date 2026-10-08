@@ -1,0 +1,11 @@
+# Whitelist: this folder also holds unrelated files, so ignore everything
+# and only track the skin project.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/Obsidian-FHD/
+!/Meridian-FHD/
+!/tools/
+!/install.sh
+!/LICENSE

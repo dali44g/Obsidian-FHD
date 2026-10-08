@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Screens only OpenATV (and OE-Alliance images) ask for. Other images never request these
+     names, so this file is inert there. Widget names follow OpenATV's own embedded/default skins. -->
+<skin>
+	<!-- ===== Plugin browser (OpenATV): grid layout ===== -->
+	<screen name="PluginBrowserGrid" title="Plugin Browser" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<eLabel position="30,104" size="1860,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="pluginGrid" render="Listbox" position="46,118" size="1828,772" conditional="pluginGrid" listOrientation="grid" transparent="1" backgroundColorSelected="aBg" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryText(pos=(8, 8), size=(288, 176), font=0, backcolor=0x00181c23, backcolor_sel=0x00062a33),
+					MultiContentEntryPixmapAlphaBlend(pos=(54, 26), size=(196, 78), png=3, flags=BT_SCALE),
+					MultiContentEntryText(pos=(14, 112), size=(276, 64), font=0, flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP, text=1, color=0x00dfe2ed, color_sel=0x00ffffff, backcolor=0x00181c23, backcolor_sel=0x00062a33)
+				],
+				"fonts": [gFont("Regular", 24)],
+				"itemWidth": 304,
+				"itemHeight": 192
+				}
+			</convert>
+		</widget>
+		<widget source="pluginList" render="Listbox" position="46,118" size="1828,772" conditional="pluginList" listOrientation="vertical" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryPixmapAlphaBlend(pos=(24, 14), size=(140, 56), png=3, flags=BT_SCALE),
+					MultiContentEntryText(pos=(190, 8), size=(1600, 40), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=1),
+					MultiContentEntryText(pos=(190, 48), size=(1600, 30), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=2, color=0x00849495, color_sel=0x00b9cacb)
+				],
+				"fonts": [gFont("Regular", 30), gFont("Regular", 22)],
+				"itemHeight": 86
+				}
+			</convert>
+		</widget>
+		<widget name="quickselect" position="46,118" size="1828,772" font="MonoBold;120" foregroundColor="aAccent" backgroundColor="aCard" halign="center" valign="center" transparent="1" zPosition="3" />
+		<eLabel position="30,916" size="1860,94" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="description" position="54,926" size="1812,74" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="center" />
+	</screen>
+
+	<screen name="PluginBrowserList" title="Plugin Browser" position="fill" flags="wfNoBorder">
+		<panel name="PluginBrowserGrid" />
+	</screen>
+
+	<!-- ===== Information screens (OpenATV): distribution, storage, network, memory... ===== -->
+	<screen name="Information" title="Information" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget name="Image" conditional="Image" position="44,580" size="696,420" alphatest="blend" scale="1" transparent="1" />
+		<widget name="information" position="796,112" size="1080,888" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" splitPosition="520" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" borderWidth="0" />
+	</screen>
+
+	<!-- ===== Locale / language selection (OpenATV) ===== -->
+	<screen name="LocaleSelection" title="Locale/Language Selection" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget name="icons" position="0,0" size="40,36" pixmaps="icons/lock_off.png,icons/lock_on.png,icons/lock_error.png" alphatest="blend" />
+		<eLabel position="30,104" size="1860,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="locales" render="Listbox" position="46,118" size="1828,772" enableWrapAround="1" transparent="1" selectionPixmap="window/sel_channel.png" foregroundColorSelected="aWhite" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<templates>
+				<template name="Default" fonts="Regular;30,Mono;24" itemHeight="64">
+					<mode name="default">
+						<pixmap index="Flag" position="32,12" size="80,40" alpha="blend" scale="centerScaled" />
+						<text index="Native" position="140,0" size="760,64" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<text index="Name" position="920,0" size="560,64" font="0" horizontalAlignment="left" verticalAlignment="center" foregroundColor="aVariant" />
+						<text index="Package" position="1500,0" size="200,64" font="1" horizontalAlignment="left" verticalAlignment="center" foregroundColor="aAccent" />
+						<pixmap index="Status" position="1740,14" size="40,36" alpha="blend" scale="centerScaled" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<eLabel position="30,916" size="1860,94" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="description" render="Label" position="54,926" size="1812,74" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="center" />
+	</screen>
+
+	<!-- ===== Quick launch menu, blue key (OpenATV) ===== -->
+	<screen name="QuickMenu" title="Quick Launch Menu" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="600,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="mainlist" render="Listbox" position="42,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<templates>
+				<template name="Default" fonts="Regular;30,Regular;22" itemWidth="576" itemHeight="98">
+					<mode name="default">
+						<pixmap index="2" position="24,19" size="60,60" alpha="blend" scale="centerScaled" />
+						<text index="0" position="104,10" size="456,46" font="0" verticalAlignment="center" />
+						<text index="1" position="104,56" size="456,32" font="1" verticalAlignment="center" foregroundColor="aMuted" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<eLabel position="646,104" size="600,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="sublist" render="Listbox" position="658,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<templates>
+				<template name="Default" fonts="Regular;30,Regular;22" itemWidth="576" itemHeight="98">
+					<mode name="default">
+						<text index="0" position="32,10" size="528,46" font="0" verticalAlignment="center" />
+						<text index="1" position="32,56" size="528,32" font="1" verticalAlignment="center" foregroundColor="aMuted" wrap="ellipsis" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<eLabel position="1262,104" size="628,355" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="session.VideoPicture" render="Pig" position="1263,105" size="626,353" backgroundColor="transparent" zPosition="1" />
+		<eLabel position="1262,475" size="628,535" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="description" position="1286,495" size="580,495" font="Regular;28" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" halign="center" valign="center" />
+	</screen>
+
+	<!-- ===== OSD calibration (OpenATV): the four coloured frames must stay at the screen edges ===== -->
+	<screen name="OSDCalibration" title="OSD Calibration Settings" position="fill" flags="wfNoBorder" backgroundColor="#00000000">
+		<eLabel position="0,0" size="1920,1080" backgroundColor="#00FF0000" zPosition="-4" />
+		<eLabel position="1,1" size="1918,1078" backgroundColor="#00000000" zPosition="-4" />
+		<eLabel position="25,25" size="1870,1030" backgroundColor="#0000FF00" zPosition="-3" />
+		<eLabel position="26,26" size="1868,1028" backgroundColor="#00000000" zPosition="-3" />
+		<eLabel position="50,50" size="1820,980" backgroundColor="#00FFFF00" zPosition="-2" />
+		<eLabel position="51,51" size="1818,978" backgroundColor="#00000000" zPosition="-2" />
+		<eLabel position="75,75" size="1770,930" backgroundColor="#000000FF" zPosition="-1" />
+		<eLabel position="76,76" size="1768,928" backgroundColor="aBg" zPosition="-1" />
+		<!-- card -->
+		<eLabel position="100,100" size="1720,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="0" />
+		<widget name="text" position="130,116" size="1660,130" font="Regular;28" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" valign="center" zPosition="1" />
+		<eLabel position="130,256" size="1660,1" backgroundColor="aLine" zPosition="1" />
+		<widget name="config" position="124,270" size="1672,448" itemHeight="64" font="Regular;30" secondfont="Regular;28" foregroundColor="aText" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" backgroundColor="aCard" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="1" />
+		<eLabel position="130,728" size="1660,1" backgroundColor="aLine" zPosition="1" />
+		<widget name="description" position="130,740" size="1660,146" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="1" />
+		<widget name="footnote" conditional="footnote" position="130,886" size="1660,1" font="Regular;20" backgroundColor="aCard" transparent="1" zPosition="1" />
+		<!-- keys, kept inside the blue frame -->
+		<widget source="key_red" render="Pixmap" pixmap="buttons/pill_red.png" position="100,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_red" render="Label" position="200,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_green" render="Pixmap" pixmap="buttons/pill_green.png" position="520,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_green" render="Label" position="620,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_yellow" render="Pixmap" pixmap="buttons/pill_yellow.png" position="940,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_yellow" render="Label" position="1040,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_menu" conditional="key_menu" render="Pixmap" pixmap="buttons/key_menu.png" position="1700,933" size="52,38" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" position="1760,933" size="52,38" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+	</screen>
+
+	<!-- ===== History zap list (popup over live TV) ===== -->
+	<screen name="HistoryZapSelector" title="History Zap" position="center,center" size="1120,660" flags="wfNoBorder" backgroundColor="transparent">
+		<eLabel position="0,0" size="1120,660" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<eLabel text="HISTORY ZAP" position="28,16" size="500,36" font="MonoBold;20" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<eLabel position="28,60" size="1064,1" backgroundColor="aLine" />
+		<widget source="menu" render="Listbox" position="14,72" size="1092,510" transparent="1" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryPixmapAlphaBlend(pos = (20, 17), size = (110, 66), png = 6, flags = BT_SCALE),
+					MultiContentEntryText(pos = (140, 0), size = (24, 100), font = 0, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER, text = 1, color = 0x0000f0ff, color_sel = 0x0000f0ff),
+					MultiContentEntryText(pos = (170, 8), size = (440, 38), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2, color = 0x00dfe2ed, color_sel = 0x00ffffff),
+					MultiContentEntryText(pos = (170, 46), size = (440, 28), font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3, color = 0x0000f0ff, color_sel = 0x0000f0ff),
+					MultiContentEntryText(pos = (170, 74), size = (440, 22), font = 2, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 5, color = 0x00849495, color_sel = 0x00b9cacb),
+					MultiContentEntryText(pos = (630, 12), size = (430, 76), font = 3, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP, text = 4, color = 0x00849495, color_sel = 0x00b9cacb)
+				],
+				"fonts": [gFont("SemiBold", 28), gFont("Regular", 22), gFont("Mono", 18), gFont("Regular", 19)],
+				"itemHeight": 102
+				}
+			</convert>
+		</widget>
+		<eLabel position="28,594" size="1064,1" backgroundColor="aLine" />
+		<ePixmap pixmap="buttons/red30.png" position="28,612" size="30,30" alphatest="blend" />
+		<widget source="key_red" render="Label" position="66,606" size="300,42" font="Regular;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" />
+		<ePixmap pixmap="buttons/green30.png" position="380,612" size="30,30" alphatest="blend" />
+		<widget source="key_green" render="Label" position="418,606" size="300,42" font="Regular;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" />
+	</screen>
+
+	<!-- ===== Processing popup (OpenATV); the screen resizes itself to the message, keep it a small window ===== -->
+	<screen name="Processing" title="Processing" position="center,center" size="900,96" zPosition="99" backgroundColor="aCard">
+		<eLabel position="30,26" size="840,8" backgroundColor="aLine" cornerRadius="4" />
+		<widget name="progress" position="30,26" size="840,8" pixmap="window/progress.png" backgroundColor="aLine" borderWidth="0" transparent="1" zPosition="1" />
+		<widget name="description" position="30,48" size="840,36" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" halign="center" valign="top" />
+	</screen>
+
+	<!-- ===== Skin settings (OpenATV SkinSelection): our Setup layout + the selected skin's preview over the live picture ===== -->
+	<screen name="SkinSelection" title="Skin Settings" position="fill" flags="wfNoBorder">
+		<panel name="Setup" />
+		<widget name="preview" position="31,113" size="718,403" alphatest="blend" scale="1" zPosition="3" />
+	</screen>
+
+	<!-- ===== Graphical EPG grid (OpenATV) ===== -->
+	<screen name="GraphicalEPG" title="Electronic Program Guide" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<!-- selected event -->
+		<eLabel position="30,104" size="1860,300" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="Event" render="Label" position="54,118" size="110,40" font="MonoBold;28" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="Event" render="Label" position="164,118" size="140,40" font="Mono;26" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget source="Event" render="Label" position="320,114" size="1546,48" font="SemiBold;34" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" noWrap="1" valign="center">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="Event" render="Label" position="54,172" size="1812,220" font="Regular;24" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top">
+			<convert type="EventName">ExtendedDescription</convert>
+		</widget>
+		<!-- grid -->
+		<widget name="timeline_text" position="30,414" size="1860,38" font="MonoBold;22" foregroundColor="aMuted" backgroundColor="aBg" transparent="1" />
+		<widget name="list" position="30,452" size="1860,556" scrollbarMode="showNever" transparent="1"
+			EntryBackgroundColor="aCard" EntryBackgroundColorSelected="aSelBg" EntryForegroundColor="aVariant" EntryForegroundColorSelected="aWhite"
+			EntryBackgroundColorNow="aCard2" EntryForegroundColorNow="aText" EntryBackgroundColorNowSelected="aSelBg" EntryForegroundColorNowSelected="aWhite"
+			EntryBackgroundColorPast="aBg" EntryForegroundColorPast="aSlate" EntryBackgroundColorPastSelected="aSelBg" EntryForegroundColorPastSelected="aWhite"
+			EntryBorderColor="aBg" EventBorderWidth="2" EventNamePadding="10"
+			ServiceBackgroundColor="aCard2" ServiceForegroundColor="aText" ServiceBackgroundColorNow="aSelBg" ServiceForegroundColorNow="aAccent"
+			ServiceBorderColor="aBg" ServiceBorderWidth="2" ServiceNamePadding="12"
+			RecordBackgroundColor="aRecBg" RecordForegroundColor="aRec" RecordBackgroundColorSelected="aRecBg" RecordForegroundColorSelected="aWhite"
+			ZapBackgroundColor="aAmberBg" ZapForegroundColor="aAmber" ZapBackgroundColorSelected="aSelBg" ZapForegroundColorSelected="aWhite"
+			PrimeTimeBackgroundColor="aCard2" PrimeTimeForegroundColor="aAmber"
+			ServiceFontGraphical="SemiBold;26" EntryFontGraphical="Regular;24" TimelineFont="MonoBold;22" />
+		<widget name="lab1" position="30,452" size="1860,556" font="Regular;30" foregroundColor="aMuted" backgroundColor="aBg" halign="center" valign="center" transparent="0" zPosition="2" />
+		<widget name="timeline_now" position="30,452" size="28,556" pixmap="window/timeline-now.png" alphatest="blend" zPosition="2" />
+	</screen>
+	<!-- AUTO:BEGIN generated by tools/convert-atv.py, do not edit by hand -->
+	<screen name="DeviceManager" title="Device Manager" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="devicelist" render="Listbox" position="46,118" size="1828,714" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+			<templates>
+				<template name="Default" fonts="Regular;30,Regular;36" itemHeight="45">
+					<mode name="default">
+						<text index="Device" position="57,0" size="372,45" font="0" />
+						<text index="DeviceIndent" position="88,0" size="372,45" font="0" />
+						<text index="Description" position="761,0" size="677,45" font="0" verticalAlignment="top" horizontalAlignment="left" />
+						<text index="Size" position="1523,0" size="304,45" font="0" verticalAlignment="top" horizontalAlignment="right" />
+						<text index="PartitionSeparator" position="10,9" size="50,45" font="1" verticalAlignment="center" />
+						<pixmap index="Image" position="0,0" size="45,45" alpha="blend" scale="centerScaled" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<widget name="description" position="46,840" size="1828,150" font="Regular;30" verticalAlignment="top" horizontalAlignment="left" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" />
+	</screen>
+	<screen name="Swap" title="Swap File Manager" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="lab1" position="263,193" size="1566,45" font="Regular;30" valign="center" transparent="1" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="lab2" position="89,268" size="652,45" font="Regular;30" valign="center" transparent="1" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="lab3" position="89,343" size="652,45" font="Regular;30" valign="center" transparent="1" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="lab4" position="89,418" size="652,45" font="Regular;30" valign="center" transparent="1" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="labplace" position="742,268" size="957,45" font="Regular;30" valign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+		<widget name="labsize" position="742,343" size="957,45" font="Regular;30" valign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+		<widget name="inactive" position="742,418" size="435,45" font="Regular;30" valign="center" halign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+		<widget name="active" position="742,418" size="435,45" font="Regular;30" valign="center" halign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+	</screen>
+	<screen name="ScriptRunner" title="Script Runner" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="lab1" position="46,193" size="1827,75" font="Regular; 20" zPosition="2" transparent="1" halign="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="list" position="78,275" size="1762,714" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+	</screen>
+	<screen name="SoftwareUpdate" title="Software Update" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="feedstatus_off" position="167,172" size="609,45" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="feedstatus_red" position="167,124" size="609,45" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="feedstatus_yellow" position="167,172" size="609,45" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="feedstatus_green" position="167,220" size="609,45" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="package_text" position="850,118" size="779,45" font="Regular;38" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="package_count" position="1654,118" size="219,45" font="Regular;38" horizontalAlignment="right" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="feedmessage" position="850,178" size="1023,60" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="activity" position="850,256" size="1023,7" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+		<widget source="list" render="Listbox" position="46,283" size="1828,707" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+			<templates>
+				<template name="Default" fonts="Regular;33,Regular;22" itemHeight="75" itemWidth="1125">
+					<mode name="default">
+						<text index="Package" position="24,0" size="1608,45" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<text index="Versions" position="73,45" size="1559,30" font="1" horizontalAlignment="left" verticalAlignment="center" />
+						<pixmap index="UpgradeIcon" position="1657,0" size="72,72" alpha="blend" scale="centerScaled" />
+						<pixmap index="Divider" position="0,72" size="1125,3" alpha="blend" scale="centerScaled" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+	</screen>
+	<screen name="RunSoftwareUpdate" title="" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="update" position="71,133" size="1777,600" font="Regular;30" halign="center" transparent="1" valign="center" foregroundColor="aText" backgroundColor="aCard" />
+	</screen>
+	<screen name="FlashManager" title="Flash Manager" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="list" position="46,118" size="1827,819" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+		<widget source="description" render="Label" position="66,952" size="1767,37" font="Regular;30" conditional="description" halign="center" transparent="1" valign="center" foregroundColor="aVariant" backgroundColor="aCard" />
+	</screen>
+	<screen name="FlashImage" title="Flash Image" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="header" position="46,118" size="1828,75" font="Regular;52" valign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+		<widget name="info" position="46,208" size="1828,195" font="Regular;38" valign="center" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
+	</screen>
+	<screen name="ImageBackup" title="Image Backup" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="description" render="Label" position="46,118" size="1828,75" font="Regular;30" verticalAlignment="center" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" />
+		<widget name="config" position="46,208" size="1828,782" font="Regular;38" itemHeight="35" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+	</screen>
+	<screen name="PackageActionLog" title="Plugin Action Log" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="log" position="46,118" size="1828,872" font="Regular;30" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+	</screen>
+	<!-- AUTO:END -->
+	<!-- Install plugins list: converted from OpenATV, then the row template rescaled by hand (keep out of AUTO) -->
+	<screen name="PackageAction" title="Plugin Browser Action" position="fill" flags="wfNoBorder">
+		<panel name="BasicTemplate" />
+		<panel name="KeyMenuAutoTemplate" />
+		<panel name="KeyInfoAutoTemplate" />
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="30,104" size="1860,812" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget source="plugins" render="Listbox" position="46,118" size="1827,784" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+			<convert type="TemplatedMultiContent">
+				{
+				"template":
+					[
+					MultiContentEntryPixmapAlphaBlend(pos=(20, 10), size=(66, 56), png=6, flags=BT_SCALE),
+					MultiContentEntryText(pos=(110, 0), size=(1580, 76), font=0, flags=RT_VALIGN_CENTER, text=2, color=0x00ffffff, color_sel=0x00ffffff),
+					MultiContentEntryText(pos=(110, 6), size=(1180, 36), font=1, flags=RT_VALIGN_CENTER, text=3, color=0x00dfe2ed, color_sel=0x00ffffff),
+					MultiContentEntryText(pos=(1300, 6), size=(400, 36), font=2, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=5, color=0x00849495, color_sel=0x00b9cacb),
+					MultiContentEntryText(pos=(110, 42), size=(1590, 30), font=3, flags=RT_VALIGN_CENTER, text=4, color=0x00849495, color_sel=0x00b9cacb),
+					MultiContentEntryPixmapAlphaBlend(pos=(1730, 12), size=(52, 52), png=7, flags=BT_SCALE)
+					],
+				"fonts": [parseFont("SemiBold;30"), parseFont("Regular;28"), parseFont("Mono;22"), parseFont("Regular;22")],
+				"itemHeight": 76
+				}
+			</convert>
+		</widget>
+		<widget name="quickselect" position="46,118" size="1827,784" font="MonoBold;150" halign="center" transparent="1" valign="center" zPosition="+1" foregroundColor="aAccent" backgroundColor="aCard" />
+		<eLabel position="30,928" size="1860,82" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<widget name="description" position="54,936" size="1812,66" font="Regular;26" valign="center" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" />
+	</screen>
+</skin>

@@ -1,0 +1,16 @@
+Obsidian FHD - skin for enigma2
+Copyright (c) 2026 dali44g
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+International License (CC BY-NC-SA 4.0): https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+You may share and adapt it, as long as you give appropriate credit, do not use it for
+commercial purposes, and distribute your contributions under the same licence.
+
+Credits
+- Skin structure derived from PLi-FullNightHD (littlesat / OpenPLi), itself based on
+  Magic_HD_Shadow_MiniTV by Vali and derived work from VU+NL, Milo, IMS and others.
+  The original authors released it as freeware; their credit lines are kept in skin.xml.
+- Fonts: Inter (Rasmus Andersson) and JetBrains Mono (JetBrains), SIL Open Font License 1.1,
+  see Obsidian-FHD/fonts/*-OFL.txt.
+- Developed with the help of Claude (Anthropic).
