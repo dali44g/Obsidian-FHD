@@ -10,6 +10,20 @@ plugin definitions use widget names that the OpenPLi code expects.
 - **Fonts:** Inter and JetBrains Mono ship inside the skin (`Obsidian-FHD/fonts`, SIL OFL licence).
 - **Tested statically:** `tools/validate-skin.ps1` checks XML, colours, fonts, panels and images.
 
+## Screenshots
+
+Captured on a Vu+ Solo2 with OpenATV 7.6 (on-screen layer only, over a neutral background).
+
+| Infobar | Channel list |
+|---|---|
+| ![Infobar](docs/screenshots/infobar.png) | ![Channel list](docs/screenshots/channel-list.png) |
+| **Main menu** | **Setup menu** |
+| ![Main menu](docs/screenshots/main-menu.png) | ![Setup menu](docs/screenshots/setup-menu.png) |
+| **Settings** | **EPG grid** |
+| ![Settings](docs/screenshots/settings.png) | ![EPG grid](docs/screenshots/epg-grid.png) |
+| **Event view** | **Message box** |
+| ![Event view](docs/screenshots/event-view.png) | ![Message box](docs/screenshots/message-box.png) |
+
 ## Install
 
 ### Option A: one command on the receiver (recommended)

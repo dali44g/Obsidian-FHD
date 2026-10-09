@@ -7,7 +7,7 @@
 		<panel name="BasicTemplate" />
 		<panel name="KeyMenuAutoTemplate" />
 		<eLabel position="30,104" size="1860,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="pluginGrid" render="Listbox" position="46,118" size="1828,772" conditional="pluginGrid" listOrientation="grid" transparent="1" backgroundColorSelected="aBg" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="pluginGrid" render="Listbox" position="46,118" size="1828,772" conditional="pluginGrid" listOrientation="grid" transparent="1" backgroundColorSelected="aBg" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 					MultiContentEntryText(pos=(8, 8), size=(288, 176), font=0, backcolor=0x00181c23, backcolor_sel=0x00062a33),
@@ -20,7 +20,7 @@
 				}
 			</convert>
 		</widget>
-		<widget source="pluginList" render="Listbox" position="46,118" size="1828,772" conditional="pluginList" listOrientation="vertical" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="pluginList" render="Listbox" position="46,118" size="1828,772" conditional="pluginList" listOrientation="vertical" transparent="1" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 					MultiContentEntryPixmapAlphaBlend(pos=(24, 14), size=(140, 56), png=3, flags=BT_SCALE),
@@ -50,7 +50,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget name="Image" conditional="Image" position="44,580" size="696,420" alphatest="blend" scale="1" transparent="1" />
-		<widget name="information" position="796,112" size="1080,888" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" splitPosition="520" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" borderWidth="0" />
+		<widget name="information" position="796,112" size="1080,888" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" splitPosition="520" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" borderWidth="0" />
 	</screen>
 
 	<!-- ===== Locale / language selection (OpenATV) ===== -->
@@ -63,7 +63,7 @@
 		</widget>
 		<widget name="icons" position="0,0" size="40,36" pixmaps="icons/lock_off.png,icons/lock_on.png,icons/lock_error.png" alphatest="blend" />
 		<eLabel position="30,104" size="1860,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="locales" render="Listbox" position="46,118" size="1828,772" enableWrapAround="1" transparent="1" selectionPixmap="window/sel_channel.png" foregroundColorSelected="aWhite" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="locales" render="Listbox" position="46,118" size="1828,772" enableWrapAround="1" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<templates>
 				<template name="Default" fonts="Regular;30,Mono;24" itemHeight="64">
 					<mode name="default">
@@ -87,7 +87,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<eLabel position="30,104" size="600,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="mainlist" render="Listbox" position="42,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="mainlist" render="Listbox" position="42,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<templates>
 				<template name="Default" fonts="Regular;30,Regular;22" itemWidth="576" itemHeight="98">
 					<mode name="default">
@@ -99,7 +99,7 @@
 			</templates>
 		</widget>
 		<eLabel position="646,104" size="600,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="sublist" render="Listbox" position="658,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="sublist" render="Listbox" position="658,116" size="576,882" transparent="1" foregroundColor="aText" backgroundColor="aCard" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<templates>
 				<template name="Default" fonts="Regular;30,Regular;22" itemWidth="576" itemHeight="98">
 					<mode name="default">
@@ -129,7 +129,7 @@
 		<eLabel position="100,100" size="1720,800" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="0" />
 		<widget name="text" position="130,116" size="1660,130" font="Regular;28" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" valign="center" zPosition="1" />
 		<eLabel position="130,256" size="1660,1" backgroundColor="aLine" zPosition="1" />
-		<widget name="config" position="124,270" size="1672,448" itemHeight="64" font="Regular;30" secondfont="Regular;28" foregroundColor="aText" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" backgroundColor="aCard" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="1" />
+		<widget name="config" position="124,270" size="1672,448" itemHeight="64" font="Regular;30" secondfont="Regular;28" foregroundColor="aText" foregroundColorSelected="aAccent" backgroundColor="aCard" transparent="1" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="1" />
 		<eLabel position="130,728" size="1660,1" backgroundColor="aLine" zPosition="1" />
 		<widget name="description" position="130,740" size="1660,146" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="1" />
 		<widget name="footnote" conditional="footnote" position="130,886" size="1660,1" font="Regular;20" backgroundColor="aCard" transparent="1" zPosition="1" />
@@ -149,7 +149,7 @@
 		<eLabel position="0,0" size="1120,660" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
 		<eLabel text="HISTORY ZAP" position="28,16" size="500,36" font="MonoBold;20" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
 		<eLabel position="28,60" size="1064,1" backgroundColor="aLine" />
-		<widget source="menu" render="Listbox" position="14,72" size="1092,510" transparent="1" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="menu" render="Listbox" position="14,72" size="1092,510" transparent="1" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 					MultiContentEntryPixmapAlphaBlend(pos = (20, 17), size = (110, 66), png = 6, flags = BT_SCALE),
@@ -205,7 +205,7 @@
 		</widget>
 		<!-- grid -->
 		<widget name="timeline_text" position="30,414" size="1860,38" font="MonoBold;22" foregroundColor="aMuted" backgroundColor="aBg" transparent="1" />
-		<widget name="list" position="30,452" size="1860,556" scrollbarMode="showNever" transparent="1"
+		<widget name="list" position="30,452" size="1860,556" itemCornerRadiusSelected="12" scrollbarMode="showNever" transparent="1"
 			EntryBackgroundColor="aCard" EntryBackgroundColorSelected="aSelBg" EntryForegroundColor="aVariant" EntryForegroundColorSelected="aWhite"
 			EntryBackgroundColorNow="aCard2" EntryForegroundColorNow="aText" EntryBackgroundColorNowSelected="aSelBg" EntryForegroundColorNowSelected="aWhite"
 			EntryBackgroundColorPast="aBg" EntryForegroundColorPast="aSlate" EntryBackgroundColorPastSelected="aSelBg" EntryForegroundColorPastSelected="aWhite"
@@ -228,7 +228,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="devicelist" render="Listbox" position="46,118" size="1828,714" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+		<widget source="devicelist" render="Listbox" position="46,118" size="1828,714" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
 			<templates>
 				<template name="Default" fonts="Regular;30,Regular;36" itemHeight="45">
 					<mode name="default">
@@ -270,7 +270,7 @@
 		</widget>
 		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
 		<widget name="lab1" position="46,193" size="1827,75" font="Regular; 20" zPosition="2" transparent="1" halign="center" foregroundColor="aText" backgroundColor="aCard" />
-		<widget name="list" position="78,275" size="1762,714" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="list" position="78,275" size="1762,714" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aAccent" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
 	</screen>
 	<screen name="SoftwareUpdate" title="Software Update" position="fill" flags="wfNoBorder">
 		<panel name="BasicTemplate" />
@@ -288,7 +288,7 @@
 		<widget name="package_count" position="1654,118" size="219,45" font="Regular;38" horizontalAlignment="right" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
 		<widget name="feedmessage" position="850,178" size="1023,60" font="Regular;30" transparent="1" verticalAlignment="center" foregroundColor="aText" backgroundColor="aCard" />
 		<widget name="activity" position="850,256" size="1023,7" foregroundColor="aText" backgroundColor="aCard" transparent="1" />
-		<widget source="list" render="Listbox" position="46,283" size="1828,707" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+		<widget source="list" render="Listbox" position="46,283" size="1828,707" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aAccent" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
 			<templates>
 				<template name="Default" fonts="Regular;33,Regular;22" itemHeight="75" itemWidth="1125">
 					<mode name="default">
@@ -319,7 +319,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget name="list" position="46,118" size="1827,819" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="list" position="46,118" size="1827,819" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aAccent" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
 		<widget source="description" render="Label" position="66,952" size="1767,37" font="Regular;30" conditional="description" halign="center" transparent="1" valign="center" foregroundColor="aVariant" backgroundColor="aCard" />
 	</screen>
 	<screen name="FlashImage" title="Flash Image" position="fill" flags="wfNoBorder">
@@ -342,7 +342,7 @@
 		</widget>
 		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
 		<widget source="description" render="Label" position="46,118" size="1828,75" font="Regular;30" verticalAlignment="center" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" />
-		<widget name="config" position="46,208" size="1828,782" font="Regular;38" itemHeight="35" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="config" position="46,208" size="1828,782" font="Regular;38" itemHeight="35" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
 	</screen>
 	<screen name="PackageActionLog" title="Plugin Action Log" position="fill" flags="wfNoBorder">
 		<panel name="BasicTemplate" />
@@ -352,7 +352,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<eLabel position="30,104" size="1860,900" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget name="log" position="46,118" size="1828,872" font="Regular;30" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
+		<widget name="log" position="46,118" size="1828,872" font="Regular;30" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard" />
 	</screen>
 	<!-- AUTO:END -->
 	<!-- Install plugins list: converted from OpenATV, then the row template rescaled by hand (keep out of AUTO) -->
@@ -364,7 +364,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<eLabel position="30,104" size="1860,812" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget source="plugins" render="Listbox" position="46,118" size="1827,784" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aWhite" selectionPixmap="window/sel_channel.png" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
+		<widget source="plugins" render="Listbox" position="46,118" size="1827,784" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="aAccent" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" foregroundColor="aText" backgroundColor="aCard">
 			<convert type="TemplatedMultiContent">
 				{
 				"template":

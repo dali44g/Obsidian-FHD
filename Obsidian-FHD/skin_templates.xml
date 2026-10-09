@@ -210,7 +210,7 @@
 			<convert type="EventName">Name</convert>
 		</widget>
 		<eLabel position="44,914" size="696,1" backgroundColor="aLine" zPosition="-1" />
-		<widget source="menu" render="Listbox" position="780,112" size="1110,864" font="Regular;32" transparent="1" selectionPixmap="window/sel_channel.png" foregroundColorSelected="aWhite" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+		<widget source="menu" render="Listbox" position="780,112" size="1110,864" font="Regular;32" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
 			<convert type="TemplatedMultiContent">
 				{"template": [ MultiContentEntryText(pos = (100,0),size = (980,72),flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER,text = 0) ],
 		"fonts": [gFont("Regular",32)],
@@ -221,15 +221,20 @@
 		<!-- menu entry icons: a narrow column over the left of the list, same source so it scrolls in step.
 		     OpenATV puts the image at index 1 (and has 'menuimage'), OpenPLi at index 5 (and has 'key_previous');
 		     other images have neither, so they keep the plain text list. -->
-		<widget source="menu" render="Listbox" conditional="menuimage" position="780,112" size="96,864" transparent="1" selectionPixmap="window/sel_channel.png" scrollbarMode="showNever" zPosition="2">
+		<!-- OpenATV: full menu list (icon + text + rounded "pill" selection) drawn over the shared list.
+		     itemCornerRadiusSelected is OpenATV-only, so it lives only in this conditional widget. -->
+		<widget source="menu" render="Listbox" conditional="menuimage" position="780,112" size="1110,864" backgroundColor="aCard" foregroundColor="aText" backgroundColorSelected="#000c3542" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="2">
 			<convert type="TemplatedMultiContent">
-				{"template": [ MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 1, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO) ],
+				{"template": [
+					MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 1, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO),
+					MultiContentEntryText(pos = (100,0), size = (980,72), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0)
+				],
 		"fonts": [gFont("Regular",32)],
 		"itemHeight": 72
 	}
 			</convert>
 		</widget>
-		<widget source="menu" render="Listbox" conditional="key_previous" position="780,112" size="96,864" transparent="1" selectionPixmap="window/sel_channel.png" scrollbarMode="showNever" zPosition="2">
+		<widget source="menu" render="Listbox" conditional="key_previous" position="780,112" size="96,864" transparent="1" itemCornerRadiusSelected="12" scrollbarMode="showNever" zPosition="2">
 			<convert type="TemplatedMultiContent">
 				{"template": [ MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 5) ],
 		"fonts": [gFont("Regular",32)],
@@ -419,8 +424,8 @@
 
 	<!-- Config and list template. Some people use "config" and others use "list" -->
 	<screen name="ConfigTemplate">
-		<widget name="config" conditional="config" position="780,112" size="1110,888" itemHeight="52" transparent="1" font="Regular;28" secondfont="Regular;26" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
-		<widget name="list" conditional="list" position="780,112" size="1110,888" itemHeight="52" transparent="1" font="Regular;28" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
+		<widget name="config" conditional="config" position="780,112" size="1110,888" itemHeight="52" transparent="1" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
+		<widget name="list" conditional="list" position="780,112" size="1110,888" itemHeight="52" transparent="1" font="Regular;28" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
 	</screen>
 
 	<screen name="DescriptionTemplate">
@@ -507,12 +512,27 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
-		<eLabel position="290,934" size="1090,8" backgroundColor="aLine" cornerRadius="2" zPosition="1" />
-		<widget source="session.Event_Now" render="Progress" pixmap="infobar/pbar.png" position="290,934" size="1090,8" backgroundColor="aLine" transparent="1" cornerRadius="2" zPosition="2" borderWidth="0">
+		<widget source="session.Event_Now" render="FixedLabel" text="" position="290,934" size="1090,8" backgroundColor="aLine" cornerRadius="2" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- no EPG for this channel: a calm placeholder instead of empty lines -->
+		<widget source="session.Event_Now" render="FixedLabel" text="● LIVE" position="290,880" size="120,44" backgroundColor="aCard" foregroundColor="aRec" transparent="1" font="MonoBold;24" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.Event_Now" render="FixedLabel" text="No programme guide for this channel" position="420,880" size="960,44" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="Regular;30" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" pixmap="infobar/pbar.png" position="290,934" size="1090,8" backgroundColor="aCard" transparent="1" cornerRadius="2" zPosition="2" borderWidth="0">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 		<!-- next -->
-		<eLabel text="NEXT" position="390,952" size="100,36" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1" />
+		<widget source="session.Event_Next" render="FixedLabel" text="NEXT" position="390,952" size="100,36" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="session.Event_Next" render="Label" position="290,952" size="90,36" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAccent" font="MonoBold;22" valign="center" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
@@ -621,7 +641,7 @@
 		<panel name="BasicTemplate" />
 		<!-- list card -->
 		<eLabel position="30,104" size="1120,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="8" zPosition="-1" />
-		<widget name="list" position="38,112" size="1104,888" itemHeight="63" transparent="1" selectionPixmap="window/sel_channel.png" foregroundColorSelected="aText" serviceNumberFont="MonoBold;26" serviceNameFont="SemiBold;28" serviceInfoFont="Regular;24" serviceItemHeight="63" itemHeightTwoLine="92" sidesMargin="32" itemsDistances="8" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="6" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aVariant" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
+		<widget name="list" position="38,112" size="1104,888" itemHeight="63" transparent="1" foregroundColorSelected="aAccent" serviceNumberFont="MonoBold;26" serviceNameFont="SemiBold;28" serviceInfoFont="Regular;24" serviceItemHeight="63" itemHeightTwoLine="92" sidesMargin="32" itemsDistances="8" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="6" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aAccent" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
 
 		<!-- live feed card -->
 		<eLabel position="1180,104" size="710,401" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
@@ -814,6 +834,6 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.1" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.2" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
 </skin>
