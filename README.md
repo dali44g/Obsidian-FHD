@@ -23,6 +23,8 @@ Captured on a Vu+ Solo2 with OpenATV 7.6 (on-screen layer only, over a neutral b
 | ![Settings](docs/screenshots/settings.png) | ![EPG grid](docs/screenshots/epg-grid.png) |
 | **Event view** | **Message box** |
 | ![Event view](docs/screenshots/event-view.png) | ![Message box](docs/screenshots/message-box.png) |
+| **Install plugins** | **Volume** |
+| ![Install plugins](docs/screenshots/install-plugins.png) | ![Volume](docs/screenshots/volume.png) |
 
 ## Install
 
