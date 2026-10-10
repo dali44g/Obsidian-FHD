@@ -2594,6 +2594,14 @@
 	</screen>
 
 	<!-- ===== EnhancedMovieCenter (EMC) movie list ===== -->
+	<!-- EMC settings: same layout as Setup (live feed + help on the left, settings list on the right) -->
+	<screen name="EnhancedMovieCenterMenu" title="EMC Setup" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="ButtonTemplate" />
+		<widget name="config" position="780,112" size="1110,888" itemHeight="48" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" enableWrapAround="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
+		<eLabel text="HELP" position="44,580" size="300,30" font="MonoBold;17" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget source="help" render="Label" position="44,616" size="696,384" font="Regular;28" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" />
+	</screen>
 	<screen name="EMCSelection" title="Movie Center" position="fill" flags="wfNoBorder">
 		<panel name="BasicTemplate" />
 		<!-- left: live feed / cover + recording details -->

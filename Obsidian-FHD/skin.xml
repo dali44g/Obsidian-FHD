@@ -24,6 +24,7 @@
 		<font name="Console" filename="tuxtxt.ttf" scale="100" />
 		<font name="Fixed" filename="andale.ttf" scale="100" />
 		<font name="DejaVuSans" filename="DejaVuSans.ttf" scale="100" />
+		<font name="Kufi" filename="NotoKufiArabic-Regular.ttf" scale="95" replacement="1" />
 		<alias name="ChoiceList" font="Regular" size="30" height="54" />
 		<alias name="TextNormal" font="Regular" size="30" height="54" />
 		<alias name="ChoiceBoxDescription" font="Regular" size="24" height="30" />
@@ -356,6 +357,8 @@
 	<include filename="skin_templates.xml" />
 	<include filename="skin_plugins.xml" />
 	<include filename="skin_openatv.xml" />
+	<!-- weather (OAWeather plugin): only loaded when its converter exists -->
+	<include filename="skin_weather.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')" />
 
 	<!-- Volume -->
 
@@ -2386,7 +2389,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth) // 2, orgpos.y() + 
 		<ePixmap pixmap="buttons/key_help.png" alphatest="blend" position="135,1031" size="52,38" />
 		<widget name="prompt" position="868,180" size="954,35" font="Regular;30" noWrap="1" transparent="1" backgroundColor="aCard" />
 		<ePixmap pixmap="buttons/vkey_text.png" position="856,228" size="974,70" alphatest="blend" zPosition="0" />
-		<widget name="text" position="868,240" size="954,47" font="Regular;40" halign="right" noWrap="1" transparent="1" backgroundColor="aCard" />
+		<widget name="text" position="874,238" size="942,52" font="Regular;40" halign="left" valign="center" noWrap="1" transparent="1" foregroundColor="aWhite" backgroundColor="aCard" zPosition="2" />
 		<widget name="list" position="868,305" size="952,340" backgroundColor="aCard" foregroundColor="window-fg" selectionDisabled="1" transparent="1" />
 		<widget name="locale" position="868,660" size="800,25" font="Regular;20" transparent="1" backgroundColor="aCard" />
 		<widget name="mode" position="1746,660" size="60,25" font="Regular;20" halign="right" transparent="1" valign="center" backgroundColor="aCard" />

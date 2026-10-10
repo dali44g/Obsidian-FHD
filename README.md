@@ -7,8 +7,11 @@ PLi-FullNightHD, the reference Full HD skin maintained by OpenPLi, so all of its
 plugin definitions use widget names that the OpenPLi code expects.
 
 - **Resolution:** 1920×1080 (the box must support Full HD skins)
-- **Fonts:** Inter and JetBrains Mono ship inside the skin (`Obsidian-FHD/fonts`, SIL OFL licence).
+- **Fonts:** Inter, JetBrains Mono and Noto Kufi Arabic (for Arabic text) ship inside the skin (`Obsidian-FHD/fonts`, SIL OFL licence).
 - **Tested statically:** `tools/validate-skin.ps1` checks XML, colours, fonts, panels and images.
+- **Weather (optional):** with the OAWeather plugin installed, the infobar shows the current
+  weather in the top-left corner and the OAWeather screens use the Obsidian style. Without the
+  plugin, nothing changes.
 
 ## Screenshots
 
@@ -100,7 +103,7 @@ which is freeware. The original credit line is kept in `skin.xml` as its licence
 | Graphical multi-EPG | `GraphMultiEPG` colours and fonts |
 | OSD main menu (cyan active row) | `MenuTemplate` |
 
-Not reproducible in enigma2 (no data source in OpenPLi): weather, IP address, CPU temp/RAM,
+Not reproducible in enigma2 (no data source in OpenPLi): IP address, CPU temp/RAM,
 control words, constellation plot, LNB spectrum, device model badge. These were left out.
 Fonts are © their authors under the SIL Open Font License (see `Obsidian-FHD/fonts/*-OFL.txt`).
 

@@ -454,7 +454,7 @@
 	<!-- Infobar: telemetry HUD (top) + glass panel (bottom) -->
 	<screen name="InfoBarTemplate">
 		<!-- top-left: recording state -->
-		<widget source="session.RecordState" render="FixedLabel" text="  REC" position="40,40" size="130,44" backgroundColor="aRecBg" borderWidth="1" borderColor="aRec" cornerRadius="6" foregroundColor="aRec" font="MonoBold;22" valign="center" halign="center" zPosition="2">
+		<widget source="session.RecordState" render="FixedLabel" text="  REC" position="60,140" size="130,44" backgroundColor="aRecBg" borderWidth="1" borderColor="aRec" cornerRadius="6" foregroundColor="aRec" font="MonoBold;22" valign="center" halign="center" zPosition="2">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<!-- top-right HUD: lock, BER, clock -->
@@ -473,6 +473,7 @@
 			<convert type="FrontendInfo">BER</convert>
 		<convert type="ConditionalShowHide" /></widget>
 		<eLabel position="1690,54" size="1,36" backgroundColor="aLine" zPosition="2" />
+		<panel name="WeatherBadge" />
 		<widget source="global.CurrentTime" render="Label" position="1700,48" size="168,48" backgroundColor="aCard" transparent="1" noWrap="1" zPosition="2" foregroundColor="foreground" font="MonoBold;40" valign="center" halign="right">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
@@ -505,7 +506,7 @@
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="500,880" size="700,44" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="foreground" noWrap="1" font="Bold;34" valign="center" halign="left">
+		<widget source="session.Event_Now" render="Label" position="500,880" size="700,44" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAccent" noWrap="1" font="Bold;34" valign="center" halign="left">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="1200,882" size="180,40" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAmber" font="MonoBold;22" valign="center" halign="right">
@@ -605,25 +606,26 @@
 			<convert type="PliExtraInfo">CryptoBar</convert>
 		</widget>
 		<!-- right block: SNR / AGC meters -->
-		<widget source="session.FrontendStatus" render="FixedLabel" text="SNR" position="1424,910" size="60,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1"><convert type="FrontendInfo">SNR</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" text="SNR" position="1424,910" size="60,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendStatus" render="Label" position="1484,910" size="80,26" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;20" valign="center" zPosition="1">
 			<convert type="FrontendInfo">SNR</convert>
-		<convert type="ConditionalShowHide" /></widget>
+		</widget>
 		<widget source="session.FrontendStatus" render="Label" position="1564,910" size="120,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="Mono;18" valign="center" zPosition="1">
 			<convert type="FrontendInfo">SNRdB</convert>
-		<convert type="ConditionalShowHide" /></widget>
-		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track.png" position="1424,940" size="260,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">SNR</convert><convert type="ConditionalShowHide" /></widget>
+		</widget>
+		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track.png" position="1424,940" size="260,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_snr.png" position="1424,940" size="260,10" transparent="1" zPosition="2">
 			<convert type="FrontendInfo">SNR</convert>
 		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="AGC" position="1424,958" size="60,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1"><convert type="FrontendInfo">AGC</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" text="AGC" position="1424,958" size="60,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendStatus" render="Label" position="1484,958" size="80,26" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="MonoBold;20" valign="center" zPosition="1">
 			<convert type="FrontendInfo">AGC</convert>
-		<convert type="ConditionalShowHide" /></widget>
-		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track.png" position="1424,988" size="260,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">AGC</convert><convert type="ConditionalShowHide" /></widget>
+		</widget>
+		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track.png" position="1424,988" size="260,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_agc.png" position="1424,988" size="260,10" transparent="1" zPosition="2">
 			<convert type="FrontendInfo">AGC</convert>
 		</widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1480,906" size="210,84" backgroundColor="aGlass" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
 		<!-- right block: tuners + video size -->
 		<widget source="session.FrontendStatus" render="FixedLabel" text="TUNERS" position="1700,910" size="156,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" halign="right" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendInfo" render="Label" position="1700,936" size="156,30" backgroundColor="aCard" foregroundColor="aSlate" transparent="1" font="MonoBold;22" noWrap="1" valign="center" halign="right" zPosition="1">
@@ -834,6 +836,8 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.2" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.3" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
+	<!-- Weather chip in the infobar. Empty here; skin_weather.xml (loaded only when OAWeather is installed) fills it. -->
+	<screen name="WeatherBadge" />
 </skin>

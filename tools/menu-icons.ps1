@@ -1,11 +1,11 @@
-# Meridian menu artwork: one 160x160 icon per OpenATV menu key (mainmenu/<key>.png), loaded by
+# Menu artwork: one 160x160 icon per OpenATV menu key (mainmenu/<key>.png), loaded by
 # Screens/Menu.py for list rows and for the large "menuimage" of the focused entry.
-# Dot-sourced from the Meridian profile's AfterHook (generator functions available).
-# Style: dark round badge (readable on dark rows and on the chalk focus tile), chalk line glyph, sun accent.
+# Dot-sourced from gen-graphics.ps1 (generator functions available).
+# Style: light line glyph with an accent detail, optionally on a dark round badge.
 
 function MenuGlyph([string]$rel, [string]$kind) {
 	$cv = New-Canvas 160 160; $g = $cv[1]
-	if ($MenuBadge -ne $false) {  # round badge behind the glyph (Meridian); Obsidian draws the glyph alone
+	if ($MenuBadge -ne $false) {  # optional round badge behind the glyph ($MenuBadge = $false draws the glyph alone)
 		$g.FillEllipse((Brush $C.card2), 4, 4, 152, 152)
 		$g.DrawEllipse((PenOf $C.line2 2), 5, 5, 150, 150)
 	}

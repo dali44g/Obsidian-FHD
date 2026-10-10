@@ -1,6 +1,6 @@
 # Obsidian-FHD graphics generator - "Obsidian Telemetry" design system (from the Stitch prototype).
 # Regenerates every themed PNG of the skin from the palette below.
-# Usage (Windows PowerShell):  powershell -ExecutionPolicy Bypass -File tools\gen-graphics.ps1 [-Skin Meridian-FHD]
+# Usage (Windows PowerShell):  powershell -ExecutionPolicy Bypass -File tools\gen-graphics.ps1 [-Skin <SkinFolder>]
 # Change the palette, run again, copy the skin to the box, restart the GUI.
 # Other skins: tools\skins\<Skin>.ps1 (if present) overrides the palette and font files after the defaults below.
 param([string]$Skin = "Obsidian-FHD")
@@ -213,12 +213,6 @@ foreach ($f in @("infobar/hd.png", "infobar/bl80.png")) {
 	$cv[1].FillRectangle($br, $rect)
 	Save-Canvas $cv $f
 }
-$cv = New-Canvas 1920 330
-$rect = New-Object System.Drawing.Rectangle(0, 0, 1920, 330)
-$br = New-Object System.Drawing.Drawing2D.LinearGradientBrush($rect, (Col $C.bg 235), (Col $C.bg 0), 90.0)
-$cv[1].FillRectangle($br, $rect)
-Save-Canvas $cv "infobar/topfade.png"
-
 # ---- Status dots ----
 foreach ($k in @("red", "green", "yellow", "blue")) {
 	GlowDot "buttons/$k.png" 34 $C[$k] 12
@@ -235,7 +229,7 @@ GlowDot "icons/dot_red.png" 20 $C.rec 10
 foreach ($k in @("red", "green", "yellow", "blue")) {
 	$cv = New-Canvas 400 44
 	$g = $cv[1]
-	if ($PillStyle -eq "dot") {  # Meridian: no box, a coloured dot just before the key text
+	if ($PillStyle -eq "dot") {  # dot style: no box, a coloured dot just before the key text
 		$g.FillEllipse((Brush $C[$k]), 74, 15, 14, 14)
 		Save-Canvas $cv "buttons/pill_$k.png"; continue
 	}
@@ -273,17 +267,6 @@ foreach ($k in @("red", "green", "yellow", "blue")) {
 	Save-Canvas $cv "buttons/key_$k.png"
 }
 
-# ---- List selection highlights ----
-# Menu (design: solid electric-cyan row, dark text). Exact list width x item height.
-$cv = New-Canvas 1110 72
-$cv[1].FillPath((Brush $C.accent), (RoundRect 0 4 1109 63 6))
-Save-Canvas $cv "window/sel_menu.png"
-# Channel list (design: 3px cyan left bar + cyan tint). Tall, so it fits any item height;
-# enigma2 clips it to the row.
-$cv = New-Canvas 1120 200
-$cv[1].Clear((Col $C.selTint))
-$cv[1].FillRectangle((Brush $C.accent), 0, 0, 4, 200)
-Save-Canvas $cv "window/sel_channel.png"
 
 # ---- EPG NOW/NEXT/MORE tabs ----
 foreach ($t in @(@{ f = "border/epg_off.png"; fill = $C.card2; edge = $C.line }, @{ f = "border/epg_now_on.png"; fill = $C.selTint; edge = $C.accent }, @{ f = "border/epg_next_on.png"; fill = $C.selTint; edge = $C.accent })) {
@@ -748,8 +731,6 @@ foreach ($k in "red", "green", "yellow", "blue") {
 $cv = New-Canvas 20 20; $cv[1].FillPolygon((Brush $C.accent), [System.Drawing.PointF[]]@((PF 5 3), (PF 17 10), (PF 5 17))); Save-Canvas $cv "buttons/play.png"
 Chip "buttons/repeat-on.png" 70 30 "REPEAT" $C.accent $C.accent $C.selTint
 Chip "buttons/repeat-off.png" 70 30 "REPEAT" $C.slate $C.line $C.bg
-Solid "buttons/sel.png" 1000 75 $C.selTint
-Solid "buttons/sel2.png" 1200 150 $C.selTint
 Solid "epg_now.png" 318 25 $C.selTint
 Solid "epg_next.png" 318 25 $C.card2
 Solid "epg_more.png" 318 25 $C.card
@@ -875,6 +856,6 @@ $g.FillEllipse((Brush $C.accent), 140, 22, 18, 18)
 Save-Canvas $cv "picon_default.png"
 
 # Menu entry icons (mainmenu/<key>.png), shared generator; OpenATV loads them by key, OpenPLi via <menuicons> in skin.xml
-if ($Skin -eq "Obsidian-FHD") { $MenuBadge = $false; . (Join-Path $PSScriptRoot "skins/Meridian-menu-icons.ps1") }
+if ($Skin -eq "Obsidian-FHD") { $MenuBadge = $false; . (Join-Path $PSScriptRoot "menu-icons.ps1") }
 
 if ($AfterHook) { . $AfterHook }

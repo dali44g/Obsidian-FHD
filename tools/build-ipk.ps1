@@ -134,7 +134,7 @@ Manual install with this zip
 
 Picons in the channel list are an image setting: enable them in the channel selection settings.
 
-Fonts: Inter and JetBrains Mono, SIL Open Font License (see Obsidian-FHD/fonts/*-OFL.txt).
+Fonts: Inter, JetBrains Mono and Noto Kufi Arabic, SIL Open Font License (see Obsidian-FHD/fonts/*-OFL.txt).
 
 "@
 # Built with tar (forward-slash paths): Compress-Archive on Windows PowerShell 5 writes backslashes,
