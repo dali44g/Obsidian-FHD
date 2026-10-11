@@ -210,14 +210,6 @@
 			<convert type="EventName">Name</convert>
 		</widget>
 		<eLabel position="44,914" size="696,1" backgroundColor="aLine" zPosition="-1" />
-		<widget source="menu" render="Listbox" position="780,112" size="1110,864" font="Regular;32" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
-			<convert type="TemplatedMultiContent">
-				{"template": [ MultiContentEntryText(pos = (100,0),size = (980,72),flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER,text = 0) ],
-		"fonts": [gFont("Regular",32)],
-		"itemHeight": 72
-	}
-			</convert>
-		</widget>
 		<!-- menu entry icons: a narrow column over the left of the list, same source so it scrolls in step.
 		     OpenATV puts the image at index 1 (and has 'menuimage'), OpenPLi at index 5 (and has 'key_previous');
 		     other images have neither, so they keep the plain text list. -->
@@ -229,6 +221,14 @@
 					MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 1, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO),
 					MultiContentEntryText(pos = (100,0), size = (980,72), flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0)
 				],
+		"fonts": [gFont("Regular",32)],
+		"itemHeight": 72
+	}
+			</convert>
+		</widget>
+		<widget source="menu" render="Listbox" position="780,112" size="1110,864" font="Regular;32" transparent="1" foregroundColorSelected="aAccent" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent">
+			<convert type="TemplatedMultiContent">
+				{"template": [ MultiContentEntryText(pos = (100,0),size = (980,72),flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER,text = 0) ],
 		"fonts": [gFont("Regular",32)],
 		"itemHeight": 72
 	}
@@ -454,29 +454,12 @@
 	<!-- Infobar: telemetry HUD (top) + glass panel (bottom) -->
 	<screen name="InfoBarTemplate">
 		<!-- top-left: recording state -->
-		<widget source="session.RecordState" render="FixedLabel" text="  REC" position="60,140" size="130,44" backgroundColor="aRecBg" borderWidth="1" borderColor="aRec" cornerRadius="6" foregroundColor="aRec" font="MonoBold;22" valign="center" halign="center" zPosition="2">
+		<widget source="session.RecordState" render="FixedLabel" text="  REC" position="40,40" size="130,44" backgroundColor="aRecBg" borderWidth="1" borderColor="aRec" cornerRadius="6" foregroundColor="aRec" font="MonoBold;22" valign="center" halign="center" zPosition="2">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<!-- top-right HUD: lock, BER, clock -->
-		<eLabel position="1430,40" size="450,64" backgroundColor="aGlass" borderWidth="1" borderColor="aLine" cornerRadius="8" zPosition="1" />
-		<!-- IPTV: same STREAM badge as the header, in place of LOCK / BER -->
-		<widget source="session.CurrentService" render="FixedLabel" text="STREAM" position="1448,52" size="130,40" backgroundColor="aCard2" borderWidth="1" borderColor="aAccentD" cornerRadius="4" foregroundColor="aAccent" font="MonoBold;20" valign="center" halign="center" zPosition="2">
-			<convert type="ServiceInfo">IsStream</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="LOCK" position="1448,52" size="90,40" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;22" valign="center" zPosition="2">
-			<convert type="FrontendInfo">LOCK</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="BER" position="1545,52" size="50,40" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;18" valign="center" zPosition="2"><convert type="FrontendInfo">BER</convert><convert type="ConditionalShowHide" /></widget>
-		<widget source="session.FrontendStatus" render="Label" position="1595,52" size="90,40" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="MonoBold;22" noWrap="1" valign="center" zPosition="2">
-			<convert type="FrontendInfo">BER</convert>
-		<convert type="ConditionalShowHide" /></widget>
-		<eLabel position="1690,54" size="1,36" backgroundColor="aLine" zPosition="2" />
+		<!-- top-right: weather bar (skin_weather.xml) or a floating clock card -->
 		<panel name="WeatherBadge" />
-		<widget source="global.CurrentTime" render="Label" position="1700,48" size="168,48" backgroundColor="aCard" transparent="1" noWrap="1" zPosition="2" foregroundColor="foreground" font="MonoBold;40" valign="center" halign="right">
-			<convert type="ClockToText">Format:%H:%M</convert>
-		</widget>
+		<panel name="ClockCard" />
 
 		<!-- bottom glass panel -->
 		<eLabel position="40,770" size="1840,280" backgroundColor="aGlass" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
@@ -632,9 +615,7 @@
 			<convert type="FrontendInfo">STRING</convert>
 		</widget>
 		<widget source="session.CurrentService" render="VideoSize" position="1700,970" size="156,28" backgroundColor="aCard" foregroundColor="aVariant" transparent="1" font="Mono;18" halign="right" valign="center" zPosition="1" />
-		<widget source="session.CurrentService" render="Label" position="1424,1006" size="432,32" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;18" noWrap="1" valign="center" halign="right">
-			<convert type="RotorPosition" />
-		</widget>
+		<panel name="RotorPositionLine" />
 	</screen>
 
 <!-- ChannelSelection Template: bouquet list + live feed + RF transponder card -->
@@ -643,7 +624,7 @@
 		<panel name="BasicTemplate" />
 		<!-- list card -->
 		<eLabel position="30,104" size="1120,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="8" zPosition="-1" />
-		<widget name="list" position="38,112" size="1104,888" itemHeight="63" transparent="1" foregroundColorSelected="aAccent" serviceNumberFont="MonoBold;26" serviceNameFont="SemiBold;28" serviceInfoFont="Regular;24" serviceItemHeight="63" itemHeightTwoLine="92" sidesMargin="32" itemsDistances="8" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="6" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aAccent" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
+		<widget name="list" position="38,112" size="1104,888" itemHeight="63" transparent="1" foregroundColorSelected="aAccent" serviceNumberFont="MonoBold;26" serviceNameFont="SemiBold;28" serviceInfoFont="Regular;24" serviceItemHeight="63" itemHeightTwoLine="92" sidesMargin="32" itemsDistances="8" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="6" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aGreen" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
 
 		<!-- live feed card -->
 		<eLabel position="1180,104" size="710,401" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
@@ -836,8 +817,27 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.3" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.3.1" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
 	<!-- Weather chip in the infobar. Empty here; skin_weather.xml (loaded only when OAWeather is installed) fills it. -->
 	<screen name="WeatherBadge" />
+	<!-- Clock card without OAWeather: floating, same margins and corners as the infobar. skin_weather.xml redefines it inside the top bar. -->
+	<screen name="ClockCard">
+		<eLabel position="1600,40" size="280,116" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="2" />
+		<widget source="global.CurrentTime" render="Label" position="1620,46" size="236,74" backgroundColor="aCard" transparent="1" noWrap="1" zPosition="3" foregroundColor="aWhite" font="Regular;62" valign="center" halign="right">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="1620,116" size="150,30" backgroundColor="aCard" transparent="1" noWrap="1" zPosition="3" foregroundColor="aMuted" font="MonoBold;17" valign="center" halign="right">
+			<convert type="ClockToText">Format:%a %d %b</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="STREAM" position="1772,116" size="84,30" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;17" valign="center" halign="right" zPosition="3">
+			<convert type="ServiceInfo">IsStream</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" text="LOCK" position="1772,116" size="84,30" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;17" valign="center" halign="right" zPosition="3">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="RotorPositionLine" />
 </skin>

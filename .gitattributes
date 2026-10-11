@@ -11,3 +11,5 @@
 *.json text eol=lf
 *.sh text eol=lf
 LICENSE text eol=lf
+*.py text eol=lf
+*.po text eol=lf

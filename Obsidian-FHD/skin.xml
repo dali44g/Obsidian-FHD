@@ -359,6 +359,7 @@
 	<include filename="skin_openatv.xml" />
 	<!-- weather (OAWeather plugin): only loaded when its converter exists -->
 	<include filename="skin_weather.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')" />
+	<include filename="skin_rotor.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.py')" />
 
 	<!-- Volume -->
 
@@ -385,16 +386,30 @@
 
 	<!-- JobView -->
 
+	<!-- Background job (copy, download, flash...). OpenPLi sources: job_*; OpenATV: name/task/progress/status.
+	     Each widget is created only when its source exists in the running image. -->
 	<screen name="JobView" position="fill" title="Job View" flags="wfNoBorder">
 		<panel name="PigTemplate" />
-		<widget source="job_name" render="Label" position="780,105" size="1110,52" font="Regular;37" backgroundColor="aCard" transparent="1" />
-		<widget source="job_task" render="Label" position="780,282" size="1110,45" font="Regular;36" backgroundColor="aCard" transparent="1" />
-		<widget source="job_progress" render="Progress" position="780,390" size="1110,54" borderWidth="2" backgroundColor="aAccent" transparent="1" />
-		<widget source="job_progress" render="Label" position="780,393" size="1110,48" font="Regular;42" foregroundColor="aCard" zPosition="2" halign="center" transparent="1" backgroundColor="aCard">
-	<convert type="ProgressToText" />
+		<panel name="ButtonTemplate" />
+		<eLabel text="JOB" position="800,124" size="400,26" font="MonoBold;17" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget source="job_name" conditional="job_name" render="Label" position="800,152" size="1070,56" font="SemiBold;38" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="name" conditional="name" render="Label" position="800,152" size="1070,56" font="SemiBold;38" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<eLabel text="TASK" position="800,236" size="400,26" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget source="job_task" conditional="job_task" render="Label" position="800,264" size="1070,46" font="Regular;30" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="task" conditional="task" render="Label" position="800,264" size="1070,46" font="Regular;30" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<eLabel position="800,344" size="1070,14" backgroundColor="aCard2" cornerRadius="7" zPosition="1" />
+		<widget source="job_progress" conditional="job_progress" render="Progress" position="800,344" size="1070,14" foregroundColor="aAccent" backgroundColor="aCard2" cornerRadius="7" transparent="1" zPosition="2" />
+		<widget source="progress" conditional="progress" render="Progress" position="800,344" size="1070,14" foregroundColor="aAccent" backgroundColor="aCard2" cornerRadius="7" transparent="1" zPosition="2" />
+		<widget source="job_progress" conditional="job_progress" render="Label" position="800,370" size="300,48" font="MonoBold;36" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center">
+			<convert type="ProgressToText" />
 		</widget>
-		<widget source="job_status" render="Label" position="780,465" size="1110,39" font="Regular;34" backgroundColor="aCard" transparent="1" />
-		<widget name="config" position="780,528" size="1110,36" itemHeight="52" font="Regular;28" secondfont="Regular;26" backgroundColor="aCard" transparent="1" />
+		<widget source="progress" conditional="progress" render="Label" position="800,370" size="300,48" font="MonoBold;36" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center">
+			<convert type="ProgressToText" />
+		</widget>
+		<widget source="job_status" conditional="job_status" render="Label" position="1120,370" size="750,48" font="Regular;28" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
+		<widget source="status" conditional="status" render="Label" position="1120,370" size="750,48" font="Regular;28" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
+		<eLabel position="800,446" size="1070,1" backgroundColor="aLine" zPosition="1" />
+		<widget name="config" position="780,462" size="1110,520" itemHeight="52" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" backgroundColor="aCard" transparent="1" />
 	</screen>
 
 	<!-- InfoBars -->
@@ -1030,7 +1045,7 @@
 		<panel name="KeyMenuTemplate" />
 		<panel name="KeyInfoTemplate" />
 		<eLabel position="30,104" size="1120,906" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
-		<widget name="list" position="38,112" size="1104,888" itemHeight="74" transparent="1" foregroundColorSelected="aAccent" serviceNumberFont="MonoBold;30" serviceNameFont="SemiBold;32" serviceInfoFont="Regular;26" serviceItemHeight="74" itemHeightTwoLine="104" sidesMargin="32" itemsDistances="18" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="4" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aAccent" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
+		<widget name="list" position="38,112" size="1104,888" itemHeight="74" transparent="1" foregroundColorSelected="aAccent" serviceNumberFont="MonoBold;30" serviceNameFont="SemiBold;32" serviceInfoFont="Regular;26" serviceItemHeight="74" itemHeightTwoLine="104" sidesMargin="32" itemsDistances="18" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="4" progressBarWidth="80" progressPercentWidth="80" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aMuted" colorServiceDescriptionSelected="aGreen" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="un40a0aa0" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
 		<!-- now playing (radio) -->
 		<eLabel position="1180,104" size="710,520" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
 		<eLabel text="ON AIR" position="1200,116" size="300,28" backgroundColor="aCard" foregroundColor="aRec" transparent="1" font="MonoBold;18" valign="center" zPosition="1" />

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Satellite / rotor position line in the infobar technical block.
+     Loaded only on images that have the RotorPosition converter (OpenPLi); elsewhere the empty
+     RotorPositionLine panel from skin_templates.xml is used. -->
+<skin>
+	<screen name="RotorPositionLine">
+		<widget source="session.CurrentService" render="Label" position="1424,1006" size="432,32" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;18" noWrap="1" valign="center" halign="right">
+			<convert type="RotorPosition" />
+		</widget>
+	</screen>
+</skin>
