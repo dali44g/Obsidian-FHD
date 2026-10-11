@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Arabic: OAWeather short day names are a single letter, so the forecast uses full day names. Loaded after skin_weather.xml, only with OAWeather and an Arabic GUI language. -->
+<skin>
+	<screen name="WeatherDays">
+		<widget source="session.OAWeather" render="Label" position="700,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekday,day1</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="872,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekday,day2</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1044,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekday,day3</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1216,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekday,day4</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1388,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekday,day5</convert>
+		</widget>
+	</screen>
+</skin>

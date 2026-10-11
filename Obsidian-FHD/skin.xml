@@ -359,6 +359,7 @@
 	<include filename="skin_openatv.xml" />
 	<!-- weather (OAWeather plugin): only loaded when its converter exists -->
 	<include filename="skin_weather.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')" />
+	<include filename="skin_weather_ar.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and isfile('/etc/enigma2/settings') and 'language=ar' in open('/etc/enigma2/settings').read()" />
 	<include filename="skin_rotor.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.py')" />
 
 	<!-- Volume -->
@@ -445,19 +446,23 @@
 		<eLabel position="1390,556" size="1,184" backgroundColor="aLine" zPosition="1" />
 		<eLabel text="CAID" position="1412,552" size="440,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;17" valign="center" zPosition="1" />
 		<widget source="session.CurrentService" render="Label" position="1412,586" size="444,32" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;22" noWrap="1" valign="center" zPosition="1">
-			<convert type="PliExtraInfo">CurrentCrypto</convert>
+			<convert type="PliExtraInfo">CryptoSpecial</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="1412,622" size="444,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
 			<convert type="PliExtraInfo">VideoCodec</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="1412,658" size="444,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
-			<convert type="PliExtraInfo">Resolution</convert>
+			<convert type="PliExtraInfo">ResolutionString</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="1412,694" size="444,32" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
 			<convert type="PliExtraInfo">Gamma</convert>
 		</widget>
 		<widget source="session.CurrentService" render="CiModuleControl" allVisible="0" position="1412,726" size="444,26" transparent="1" zPosition="1" font="Mono;18" />
 		<panel name="InfoBarTemplate" />
+	</screen>
+	<!-- OpenATV "2nd InfoBar ECM" option asks for this name: same screen (it already carries the ECM / CAID card). -->
+	<screen name="SecondInfoBarECM" title="Second InfoBar" position="fill" backgroundColor="transparent" flags="wfNoBorder">
+		<panel name="SecondInfoBar" />
 	</screen>
 
 	<!-- Movie Player Infobar -->

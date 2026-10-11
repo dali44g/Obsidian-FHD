@@ -11,7 +11,7 @@
 
 param([string]$Skin = "Obsidian-FHD")
 $SkinDir = Join-Path $PSScriptRoot "..\$Skin" | Resolve-Path
-$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_rotor.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
+$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_weather_ar.xml","skin_rotor.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
 $errors = New-Object System.Collections.Generic.List[string]
 $warnings = New-Object System.Collections.Generic.List[string]
 

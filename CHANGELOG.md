@@ -2,6 +2,19 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.3.2
+
+**Fixes for OpenATV 8**
+- Main menu: the highlight is stuck on "Information" and does not move with UP/DOWN. Fixed; it also works on OpenATV 7.x and OpenPLi as before.
+- Second infobar: the CAID line on the right is empty on OpenATV. It now shows the CA system, CAID, provider and SID (for example `Conax:0B00:…`, or `FTA` on free channels).
+- "2nd InfoBar ECM" setting: it showed OpenATV's default screen instead of the Obsidian one. Fixed.
+- Menu header on satellite: the SNR / AGC / BER box stayed empty. It now shows the values whenever a tuner is locked.
+
+**Weather bar**
+- Forecast days use short names (Sun, Mon / dim., lun.) with bigger weather icons. Arabic keeps the full day names, because the short Arabic form is a single letter.
+
+**Tip:** to see the CAID and ECM details, set Menu → Setup → System → OSD settings → Second InfoBar to "2nd InfoBar ECM", then press OK twice.
+
 ## 1.3.1
 
 **Top of the screen**

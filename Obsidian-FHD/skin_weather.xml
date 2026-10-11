@@ -24,54 +24,58 @@
 			<convert type="OAWeather">feelslikefull</convert>
 		</widget>
 		<eLabel position="680,22" size="1,72" backgroundColor="aLine2" zPosition="3" />
-		<widget source="session.OAWeather" render="Label" position="700,12" size="90,34" font="SemiBold;20" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
-			<convert type="OAWeather">weekday,day1</convert>
-		</widget>
-		<widget source="session.OAWeather" render="OAWeatherPixmap" position="794,12" size="40,40" alphatest="blend" scale="1" transparent="1" zPosition="3">
+		<panel name="WeatherDays" />
+		<widget source="session.OAWeather" render="OAWeatherPixmap" position="798,4" size="54,54" alphatest="blend" scale="1" transparent="1" zPosition="3">
 			<convert type="OAWeather">weathericon,day1</convert>
 		</widget>
 		<widget source="session.OAWeather" render="Label" position="700,60" size="150,36" font="Mono;20" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
 			<convert type="OAWeather">temperature_high_low,day1</convert>
 		</widget>
 		<eLabel position="858,30" size="1,56" backgroundColor="aLine" zPosition="3" />
-		<widget source="session.OAWeather" render="Label" position="872,12" size="90,34" font="SemiBold;20" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
-			<convert type="OAWeather">weekday,day2</convert>
-		</widget>
-		<widget source="session.OAWeather" render="OAWeatherPixmap" position="966,12" size="40,40" alphatest="blend" scale="1" transparent="1" zPosition="3">
+		<widget source="session.OAWeather" render="OAWeatherPixmap" position="970,4" size="54,54" alphatest="blend" scale="1" transparent="1" zPosition="3">
 			<convert type="OAWeather">weathericon,day2</convert>
 		</widget>
 		<widget source="session.OAWeather" render="Label" position="872,60" size="150,36" font="Mono;20" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
 			<convert type="OAWeather">temperature_high_low,day2</convert>
 		</widget>
 		<eLabel position="1030,30" size="1,56" backgroundColor="aLine" zPosition="3" />
-		<widget source="session.OAWeather" render="Label" position="1044,12" size="90,34" font="SemiBold;20" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
-			<convert type="OAWeather">weekday,day3</convert>
-		</widget>
-		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1138,12" size="40,40" alphatest="blend" scale="1" transparent="1" zPosition="3">
+		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1142,4" size="54,54" alphatest="blend" scale="1" transparent="1" zPosition="3">
 			<convert type="OAWeather">weathericon,day3</convert>
 		</widget>
 		<widget source="session.OAWeather" render="Label" position="1044,60" size="150,36" font="Mono;20" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
 			<convert type="OAWeather">temperature_high_low,day3</convert>
 		</widget>
 		<eLabel position="1202,30" size="1,56" backgroundColor="aLine" zPosition="3" />
-		<widget source="session.OAWeather" render="Label" position="1216,12" size="90,34" font="SemiBold;20" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
-			<convert type="OAWeather">weekday,day4</convert>
-		</widget>
-		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1310,12" size="40,40" alphatest="blend" scale="1" transparent="1" zPosition="3">
+		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1314,4" size="54,54" alphatest="blend" scale="1" transparent="1" zPosition="3">
 			<convert type="OAWeather">weathericon,day4</convert>
 		</widget>
 		<widget source="session.OAWeather" render="Label" position="1216,60" size="150,36" font="Mono;20" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
 			<convert type="OAWeather">temperature_high_low,day4</convert>
 		</widget>
 		<eLabel position="1374,30" size="1,56" backgroundColor="aLine" zPosition="3" />
-		<widget source="session.OAWeather" render="Label" position="1388,12" size="90,34" font="SemiBold;20" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
-			<convert type="OAWeather">weekday,day5</convert>
-		</widget>
-		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1482,12" size="40,40" alphatest="blend" scale="1" transparent="1" zPosition="3">
+		<widget source="session.OAWeather" render="OAWeatherPixmap" position="1486,4" size="54,54" alphatest="blend" scale="1" transparent="1" zPosition="3">
 			<convert type="OAWeather">weathericon,day5</convert>
 		</widget>
 		<widget source="session.OAWeather" render="Label" position="1388,60" size="150,36" font="Mono;20" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
 			<convert type="OAWeather">temperature_high_low,day5</convert>
+		</widget>
+	</screen>
+	<!-- Forecast day names: short (Sun, lun.). skin_weather_ar.xml switches to full names in Arabic, where the short form is one letter. -->
+	<screen name="WeatherDays">
+		<widget source="session.OAWeather" render="Label" position="700,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekshortday,day1</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="872,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekshortday,day2</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1044,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekshortday,day3</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1216,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekshortday,day4</convert>
+		</widget>
+		<widget source="session.OAWeather" render="Label" position="1388,12" size="96,34" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="left" zPosition="3">
+			<convert type="OAWeather">weekshortday,day5</convert>
 		</widget>
 	</screen>
 	<!-- Clock at the right end of the top bar. -->
