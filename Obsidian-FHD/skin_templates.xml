@@ -815,7 +815,7 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.3.2" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.4.0" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
 	<!-- Weather chip in the infobar. Empty here; skin_weather.xml (loaded only when OAWeather is installed) fills it. -->
 	<screen name="WeatherBadge" />
@@ -838,4 +838,5 @@
 		</widget>
 	</screen>
 	<screen name="RotorPositionLine" />
+	<screen name="GammaLine" />
 </skin>

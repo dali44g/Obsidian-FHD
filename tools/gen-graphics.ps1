@@ -168,10 +168,18 @@ Bar "progress_medium.png" 840 18
 Bar "progress_small.png" 840 12
 Bar "infobar/pbar_amber.png" 600 12 $C.amber
 
-# ---- Segmented telemetry meters ----
-Segments "infobar/seg_snr.png" 300 10 $C.accent
-Segments "infobar/seg_agc.png" 300 10 $C.amber
-Segments "infobar/seg_track.png" 300 10 $C.line
+# ---- Signal meters (SNR / AGC): solid rounded bars ----
+# Sized to the widget width: Pixmap/Progress crop instead of scaling, so a wider image would lose its right end.
+function Pill([string]$rel, [int]$w, [int]$h, [string]$hex) {
+	$cv = New-Canvas $w $h
+	$cv[1].FillPath((Brush $hex), (RoundRect 0 0 $w $h ($h / 2)))
+	Save-Canvas $cv $rel
+}
+Pill "infobar/seg_snr.png" 260 10 $C.accent
+Pill "infobar/seg_agc.png" 260 10 $C.amber
+Pill "infobar/seg_track.png" 260 10 $C.line
+Pill "infobar/seg_snr280.png" 280 10 $C.accent
+Pill "infobar/seg_track280.png" 280 10 $C.line
 Segments "infobar/pbar_grey.png" 300 30 $C.accent
 
 # Volume
@@ -324,6 +332,17 @@ if (Test-Path $logoSrc) {
 		$cv[1].DrawImage($src, 0, 0, $s.n, $s.n)
 		Save-Canvas $cv $s.f
 	}
+	# Floating menu footer (44 px on the card): the logo's own dark square repainted in the card colour, opaque.
+	$cv = New-Canvas 44 44
+	$cv[1].Clear((Col $C.card))
+	$cv[1].InterpolationMode = [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+	$cv[1].DrawImage($src, 0, 0, 44, 44)
+	$bmp = $cv[0]; $card = Col $C.card
+	for ($y = 0; $y -lt 44; $y++) { for ($x = 0; $x -lt 44; $x++) {
+		$p = $bmp.GetPixel($x, $y)
+		if ([math]::Max([math]::Max($p.R, $p.G), $p.B) -lt 34) { $bmp.SetPixel($x, $y, $card) }
+	} }
+	Save-Canvas $cv "icons/logo_card.png"
 	$src.Dispose()
 }
 

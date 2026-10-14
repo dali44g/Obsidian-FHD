@@ -22,7 +22,17 @@ function WriteLf([string]$path, [string]$text) { [IO.File]::WriteAllText($path, 
 
 # ---- data: the skin folder under /usr/share/enigma2 ----
 Copy-Item -Recurse $skin (Join-Path $work "data\usr\share\enigma2\Obsidian-FHD")
-$sizeKb = [math]::Ceiling(((Get-ChildItem -Recurse -File $skin | Measure-Object Length -Sum).Sum) / 1024)
+# ---- data: the small settings plugin (Menu > Setup > Usage & GUI > Obsidian FHD Settings) ----
+$plugin = Join-Path $root "ObsidianFHD-plugin"
+$pluginDest = Join-Path $work "data\usr\lib\enigma2\python\Plugins\SystemPlugins\ObsidianFHD"
+New-Item -ItemType Directory -Force $pluginDest | Out-Null
+Get-ChildItem $plugin -File -Filter *.py | ForEach-Object { WriteLf (Join-Path $pluginDest $_.Name) (Get-Content $_.FullName -Raw -Encoding UTF8) }
+# ---- data: the ObsidianSysInfo converter (menu dashboard values) ----
+$converter = Join-Path $root "ObsidianFHD-converter"
+$converterDest = Join-Path $work "data\usr\lib\enigma2\python\Components\Converter"
+New-Item -ItemType Directory -Force $converterDest | Out-Null
+Get-ChildItem $converter -File -Filter *.py | ForEach-Object { WriteLf (Join-Path $converterDest $_.Name) (Get-Content $_.FullName -Raw -Encoding UTF8) }
+$sizeKb = [math]::Ceiling(((Get-ChildItem -Recurse -File $skin, $plugin, $converter | Measure-Object Length -Sum).Sum) / 1024)
 
 # ---- control files ----
 WriteLf (Join-Path $work "control\control") @"
@@ -30,7 +40,8 @@ Package: $pkg
 Version: $version
 Description: Obsidian FHD skin for enigma2
  Dark 1080p skin with telemetry-style infobar, cards and cyan/amber accents.
- Works on OpenPLi, OpenATV and other enigma2 images. No Python components.
+ Works on OpenPLi, OpenATV and other enigma2 images. Includes a small settings plugin
+ and two converters for the optional Floating menu dashboard.
 Section: skin
 Priority: optional
 Maintainer: $Maintainer
@@ -43,19 +54,34 @@ Source: Obsidian-FHD
 WriteLf (Join-Path $work "control\postinst") @"
 #!/bin/sh
 echo ""
+# Windows tar cannot store Unix permissions: make the installed files read-only for other users.
+chmod -R go-w /usr/share/enigma2/Obsidian-FHD /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD 2>/dev/null
+chmod go-w /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py 2>/dev/null
 echo "Obsidian FHD $version installed."
 echo "Select it in Menu > Setup > System > User interface > Skin setup, then restart the GUI."
+echo ""
+echo "New in 1.4: Floating menu with a live dashboard (temperature, CPU, disks, network)."
+echo "Turn it on in Menu > Setup > Usage & GUI > Obsidian FHD Settings > Menu style."
 echo ""
 exit 0
 
 "@
 WriteLf (Join-Path $work "control\postrm") @"
 #!/bin/sh
+# Runs also when the package is upgraded or reinstalled (install.sh uses --force-reinstall): act only on a
+# real removal, after which the skin folder is gone. User choices (/etc/enigma2/obsidian_*) are always kept.
+case "`$1" in
+	upgrade|failed-upgrade|abort-install|abort-upgrade) exit 0 ;;
+esac
+[ -f /usr/share/enigma2/Obsidian-FHD/skin.xml ] && exit 0
 # Fall back to the image default if the removed skin was active.
 if grep -q '^config.skin.primary_skin=Obsidian-FHD/' /etc/enigma2/settings 2>/dev/null; then
 	sed -i '/^config.skin.primary_skin=Obsidian-FHD\//d' /etc/enigma2/settings
 	echo "Obsidian FHD removed; the default skin will be used after the next GUI restart."
 fi
+# Compiled leftovers of the settings plugin and of the converter.
+rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD
+rm -f /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py[co]
 exit 0
 
 "@
@@ -146,5 +172,7 @@ Pop-Location
 Remove-Item -Recurse -Force $work
 # Stable name for the one-command installer (release/ in the public repo)
 Copy-Item $ipk (Join-Path $dist ("{0}_all.ipk" -f $pkg)) -Force
+# Latest version for the update check of the skin (release/version.txt in the public repo, one line)
+WriteLf (Join-Path $dist "version.txt") "$version`n"
 Write-Host ("Built version {0}:" -f $version)
 Get-ChildItem $dist -File | ForEach-Object { Write-Host ("  {0,-55} {1,8:N0} KB" -f $_.Name, ($_.Length / 1KB)) }

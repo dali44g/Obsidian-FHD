@@ -29,6 +29,31 @@ Captured on a Vu+ Solo2 with OpenATV 7.6 (on-screen layer only, over a neutral b
 | **Install plugins** | **Volume** |
 | ![Install plugins](docs/screenshots/install-plugins.png) | ![Volume](docs/screenshots/volume.png) |
 
+## Floating menu (new in 1.4, optional)
+
+A second menu style: floating cards over live TV, with a live dashboard next to the main menu
+(temperature, CPU load, fan, uptime, RAM, flash and disks with their model, network speed and an
+online badge). Texts follow the receiver language (English, French, Arabic).
+
+**Turn it on:** Menu → Setup → Usage & GUI (OpenPLi: Menu → Setup → System) → **Obsidian FHD Settings** → Menu style → **Floating**,
+then save and restart the GUI. Choose **Classic** there to go back. The classic menus stay the default.
+
+| Main menu | Submenu |
+|---|---|
+| ![Floating main menu](docs/screenshots/floating-menu.png) | ![Floating submenu](docs/screenshots/floating-submenu.png) |
+
+- The dashboard values come from two small converters installed with the package
+  (`ObsidianSysInfo`, `ObsidianMenuTitle`). They read local system files every 10 seconds, only
+  while the menu is open.
+- **Online badge:** to check the internet connection, the receiver opens a short connection to a
+  public DNS server (1.1.1.1 or 8.8.8.8, port 53) at most once a minute, only while the menu is
+  open. Nothing is sent and no data is collected.
+- The same settings screen can also hide the weather bar in the infobar.
+- **Update check:** while the Floating main menu or Obsidian FHD Settings is open, the receiver reads
+  one small file from this repository (`release/version.txt`) at most every 6 hours. When a newer
+  version exists, the menu footer says so and **YELLOW (Update now)** in Obsidian FHD Settings
+  installs it with the same command as Option A below.
+
 ## Install
 
 ### Option A: one command on the receiver (recommended)

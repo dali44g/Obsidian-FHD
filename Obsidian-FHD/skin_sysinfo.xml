@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Floating main menu dashboard: four stat tiles in a row and a system card under them (RAM ring on the left,
+     flash / SSD / USB bars on the right, IP in the header). Values from the ObsidianSysInfo converter shipped with
+     the skin package; this file loads only when that converter exists, otherwise the empty FloatingDashboard
+     panel of skin_menu_floating.xml is used. The RAM ring uses the Pixmap renderer "pixmaps" list (OpenATV). -->
+<skin>
+	<screen name="FloatingDashboard">
+		<!-- main menu card footer: skin brand and version (version read from the skin header text) -->
+		<eLabel position="116,756" size="448,1" backgroundColor="aLine" zPosition="2" />
+		<ePixmap pixmap="icons/logo_card.png" position="116,782" size="44,44" zPosition="2" />
+		<eLabel text="Obsidian FHD" position="172,774" size="280,32" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="172,804" size="300,28" font="MonoBold;15" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">ImageInfo</convert>
+		</widget>
+		<!-- newer release on GitHub: replaces the image line (checked in the background, at most every 6 hours) -->
+		<widget source="session.CurrentService" render="Label" position="172,804" size="300,28" font="MonoBold;15" foregroundColor="aAmber" backgroundColor="aCard" noWrap="1" valign="center" zPosition="4">
+			<convert type="ObsidianSysInfo">UpdateText</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<eLabel position="474,786" size="90,34" backgroundColor="aCard2" cornerRadius="17" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="474,786" size="90,34" font="MonoBold;16" foregroundColor="aAccent" backgroundColor="aCard2" transparent="1" halign="center" valign="center" zPosition="3">
+			<convert type="ObsidianSysInfo">SkinVersion</convert>
+		</widget>
+		<!-- stat tiles -->
+		<eLabel position="620,100" size="180,120" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="642,114" size="150,26" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:TEMP</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="640,140" size="150,52" font="SemiBold;38" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Temp</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="642,188" size="150,24" font="Regular;17" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:Board sensor</convert>
+		</widget>
+		<eLabel position="816,100" size="180,120" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="838,114" size="150,26" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:CPU</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="836,140" size="150,52" font="SemiBold;38" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">CpuLoad</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="838,188" size="150,24" font="Regular;17" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:Load, 1 min</convert>
+		</widget>
+		<eLabel position="1012,100" size="180,120" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="1034,114" size="150,26" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:FAN</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1032,140" size="150,52" font="SemiBold;38" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Fan</convert>
+		</widget>
+		<eLabel text="rpm" position="1034,188" size="150,24" font="Regular;17" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<eLabel position="1208,100" size="180,120" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="1230,114" size="150,26" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:UPTIME</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1228,140" size="150,52" font="SemiBold;38" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Uptime</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1230,188" size="150,24" font="Regular;17" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:Since boot</convert>
+		</widget>
+		<!-- system card -->
+		<eLabel position="620,236" size="768,300" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="656,254" size="200,30" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:SYSTEM</convert>
+		</widget>
+		<!-- RAM ring -->
+		<widget source="session.CurrentService" render="Pixmap" conditional="menuimage" pixmaps="icons/ring/ram_00.png,icons/ring/ram_01.png,icons/ring/ram_02.png,icons/ring/ram_03.png,icons/ring/ram_04.png,icons/ring/ram_05.png,icons/ring/ram_06.png,icons/ring/ram_07.png,icons/ring/ram_08.png,icons/ring/ram_09.png,icons/ring/ram_10.png,icons/ring/ram_11.png,icons/ring/ram_12.png,icons/ring/ram_13.png,icons/ring/ram_14.png,icons/ring/ram_15.png,icons/ring/ram_16.png,icons/ring/ram_17.png,icons/ring/ram_18.png,icons/ring/ram_19.png,icons/ring/ram_20.png" position="656,296" size="168,168" alphatest="off" zPosition="2">
+			<convert type="ObsidianSysInfo">RamStep</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="676,344" size="128,48" font="SemiBold;36" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" halign="center" valign="center" zPosition="3">
+			<convert type="ObsidianSysInfo">RamPercent</convert>
+		</widget>
+		<eLabel text="RAM" position="676,390" size="128,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="center" valign="center" zPosition="3" />
+		<widget source="session.CurrentService" render="Label" position="636,474" size="208,30" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="center" valign="center" noWrap="1" zPosition="2">
+			<convert type="ObsidianSysInfo">RamText</convert>
+		</widget>
+		<eLabel position="844,296" size="1,208" backgroundColor="aLine" zPosition="2" />
+		<!-- storage rows: flash, then up to 3 local disks found automatically (internal disk first; "+N more" beyond) -->
+		<eLabel text="Flash" position="864,300" size="230,28" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="1100,300" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
+			<convert type="ObsidianSysInfo">FlashText</convert>
+		</widget>
+		<eLabel position="864,332" size="488,8" backgroundColor="aLine" cornerRadius="4" zPosition="2" />
+		<widget source="session.CurrentService" render="Progress" position="864,332" size="488,8" foregroundColor="aAmber" backgroundColor="aLine" cornerRadius="4" transparent="1" zPosition="3">
+			<convert type="ObsidianSysInfo">FlashUsed</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="950,300" size="60,28" font="MonoBold;17" foregroundColor="aRec" backgroundColor="aCard" transparent="1" valign="center" zPosition="3">
+			<convert type="ObsidianSysInfo">Label:LOW</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="864,354" size="80,28" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskName1</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="948,354" size="260,28" font="Regular;18" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskModel1</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1100,354" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskText1</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,386" size="488,8" backgroundColor="aCard" zPosition="4">
+			<convert type="ObsidianSysInfo">Disk1</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="864,386" size="488,8" foregroundColor="aGreen" backgroundColor="aLine" cornerRadius="4" transparent="1" zPosition="3">
+			<convert type="ObsidianSysInfo">DiskUsed1</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="864,408" size="80,28" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskName2</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="948,408" size="260,28" font="Regular;18" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskModel2</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1100,408" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskText2</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,440" size="488,8" backgroundColor="aCard" zPosition="4">
+			<convert type="ObsidianSysInfo">Disk2</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="864,440" size="488,8" foregroundColor="aVariant" backgroundColor="aLine" cornerRadius="4" transparent="1" zPosition="3">
+			<convert type="ObsidianSysInfo">DiskUsed2</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="864,462" size="80,28" font="SemiBold;22" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskName3</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="948,462" size="260,28" font="Regular;18" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskModel3</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1100,462" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
+			<convert type="ObsidianSysInfo">DiskText3</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,494" size="488,8" backgroundColor="aCard" zPosition="4">
+			<convert type="ObsidianSysInfo">Disk3</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="864,494" size="488,8" foregroundColor="aVariant" backgroundColor="aLine" cornerRadius="4" transparent="1" zPosition="3">
+			<convert type="ObsidianSysInfo">DiskUsed3</convert>
+		</widget>
+		<!-- network card -->
+		<eLabel position="620,552" size="768,156" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="656,570" size="200,30" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:NETWORK</convert>
+		</widget>
+		<!-- internet status badge (checked at most once a minute, in the background) -->
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
+			<convert type="ObsidianSysInfo">Online</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="820,581" size="10,10" backgroundColor="aGreen" cornerRadius="5" zPosition="3">
+			<convert type="ObsidianSysInfo">Online</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="838,570" size="140,32" font="MonoBold;15" foregroundColor="aGreen" backgroundColor="aCard2" transparent="1" valign="center" zPosition="3">
+			<convert type="ObsidianSysInfo">Label:ONLINE</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
+			<convert type="ObsidianSysInfo">Offline</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="" position="820,581" size="10,10" backgroundColor="aRec" cornerRadius="5" zPosition="3">
+			<convert type="ObsidianSysInfo">Offline</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="838,570" size="140,32" font="MonoBold;15" foregroundColor="aRec" backgroundColor="aCard2" transparent="1" valign="center" zPosition="3">
+			<convert type="ObsidianSysInfo">Label:OFFLINE</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="656,604" size="330,50" font="SemiBold;34" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Ip</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="656,656" size="330,30" font="Regular;20" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">NetIface</convert>
+		</widget>
+		<eLabel position="1004,572" size="1,116" backgroundColor="aLine" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="1028,572" size="160,28" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:DOWNLOAD</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1028,602" size="170,46" font="SemiBold;28" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">NetDown</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1210,572" size="150,28" font="MonoBold;16" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:UPLOAD</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1210,602" size="160,46" font="SemiBold;28" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">NetUp</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1028,652" size="330,30" font="Regular;17" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:Average, 10 s</convert>
+		</widget>
+	</screen>
+	<!-- Floating submenu card header: name of the current menu (last part of the title) -->
+	<screen name="FloatingSubHeader">
+		<widget source="Title" render="Label" position="656,122" size="568,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianMenuTitle"></convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
+		<eLabel position="656,180" size="568,1" backgroundColor="aLine" zPosition="2" />
+	</screen>
+	<!-- translated header title and key hints of the Floating menus -->
+	<screen name="FloatingMainTitle">
+		<widget source="session.CurrentService" render="Label" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:MAIN MENU</convert>
+		</widget>
+	</screen>
+	<screen name="FloatingHints868">
+		<widget source="session.CurrentService" render="Label" position="108,868" size="480,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Hints</convert>
+		</widget>
+	</screen>
+	<screen name="FloatingHints964">
+		<widget source="session.CurrentService" render="Label" position="108,964" size="560,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Hints</convert>
+		</widget>
+	</screen>
+</skin>

@@ -330,6 +330,8 @@
 
 	<windowstyle id="0" type="skinned">
 		<title offset="40,4" font="SemiBold;26" />
+		<!-- OpenATV: default fonts of settings lists that set none themselves (plugins such as E2iPlayer). OpenATV default value font is Regular;18. -->
+		<configList valueFont="Regular;26" />
 		<color name="Background" color="background" />
 		<color name="LabelForeground" color="foreground" />
 		<color name="ListboxBackground" color="aCard" />
@@ -355,11 +357,14 @@
 	</windowstyle>
 
 	<include filename="skin_templates.xml" />
+	<include filename="skin_menus.xml" />
+	<include filename="skin_menu_floating.xml" conditional="isfile('/etc/enigma2/obsidian_menu_floating')" />
+	<include filename="skin_sysinfo.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.pyc')) and (isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.pyc'))" />
 	<include filename="skin_plugins.xml" />
 	<include filename="skin_openatv.xml" />
 	<!-- weather (OAWeather plugin): only loaded when its converter exists -->
-	<include filename="skin_weather.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')" />
-	<include filename="skin_weather_ar.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and isfile('/etc/enigma2/settings') and 'language=ar' in open('/etc/enigma2/settings').read()" />
+	<include filename="skin_weather.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and not isfile('/etc/enigma2/obsidian_noweather')" />
+	<include filename="skin_weather_ar.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and isfile('/etc/enigma2/settings') and 'language=ar' in open('/etc/enigma2/settings').read() and not isfile('/etc/enigma2/obsidian_noweather')" />
 	<include filename="skin_rotor.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.py')" />
 
 	<!-- Volume -->
@@ -454,9 +459,7 @@
 		<widget source="session.CurrentService" render="Label" position="1412,658" size="444,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
 			<convert type="PliExtraInfo">ResolutionString</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="1412,694" size="444,32" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
-			<convert type="PliExtraInfo">Gamma</convert>
-		</widget>
+		<panel name="GammaLine" />
 		<widget source="session.CurrentService" render="CiModuleControl" allVisible="0" position="1412,726" size="444,26" transparent="1" zPosition="1" font="Mono;18" />
 		<panel name="InfoBarTemplate" />
 	</screen>
@@ -766,37 +769,6 @@
 		<widget name="menu" position="780,100" size="1110,912" itemHeight="45" font="Regular;36" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
 	</screen>
 
-	<!-- Menus -->
-
-	<screen flags="wfNoBorder" name="Menu" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="menu_mainmenu" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="MenuSort" position="fill">
-		<panel name="MenuTemplate" />
-		<ePixmap pixmap="buttons/key_prev.png" alphatest="blend" position="30,1031" size="52,38" />
-		<ePixmap pixmap="buttons/key_next.png" alphatest="blend" position="82,1031" size="52,38" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="menu_setup" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="menu_system" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="menu_information" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
-
-	<screen flags="wfNoBorder" name="menu_scan" position="fill">
-		<panel name="MenuTemplate" />
-	</screen>
 
 	<!--Setup Configs -->
 
@@ -809,6 +781,25 @@
 		<widget name="description" position="44,580" size="696,350" font="Regular;28" foregroundColor="aVariant" valign="top" backgroundColor="aCard" transparent="1" />
 		<!-- OpenATV: mandatory footnote ("* = restart required"); skipped on images without it -->
 		<widget name="footnote" conditional="footnote" position="44,944" size="696,56" font="Regular;22" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
+	</screen>
+	<!-- Obsidian FHD Settings (skin package plugin): Setup layout with an About card -->
+	<screen name="ObsidianFHDSettings" title="Obsidian FHD Settings" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="SkinBadge" />
+		<panel name="VKeyIconPanel" />
+		<!--widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="75,615" zPosition="1" size="1,1" transparent="1" alphatest="on" /-->
+		<widget name="config" position="780,112" size="1110,888" itemHeight="48" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
+		<widget name="description" position="44,580" size="696,170" font="Regular;28" foregroundColor="aVariant" valign="top" backgroundColor="aCard" transparent="1" />
+		<!-- OpenATV: mandatory footnote ("* = restart required"); skipped on images without it -->
+		<widget name="footnote" conditional="footnote" position="44,964" size="696,34" font="Regular;20" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
+		<eLabel position="44,770" size="696,1" backgroundColor="aLine" zPosition="1" />
+		<eLabel text="ABOUT" position="44,786" size="300,30" font="MonoBold;17" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget source="about_update" render="Label" conditional="about_update" position="344,786" size="396,30" font="MonoBold;17" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
+		<widget source="about_title" render="Label" position="44,818" size="696,46" font="SemiBold;34" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="about_text" render="Label" position="44,866" size="696,32" font="Regular;24" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="about_image" render="Label" position="44,900" size="696,30" font="MonoBold;18" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="about_link" render="Label" position="44,930" size="440,30" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
+		<widget source="about_licence" render="Label" position="484,930" size="256,30" font="MonoBold;16" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
 	</screen>
 
 	<!-- Scan setup -->
@@ -1098,8 +1089,8 @@
 			<convert type="TransponderInfo" />
 		</widget>
 		<widget source="session.FrontendStatus" render="FixedLabel" text="SNR" position="1200,960" size="60,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" zPosition="1"><convert type="FrontendInfo">SNR</convert><convert type="ConditionalShowHide" /></widget>
-		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track.png" position="1262,968" size="280,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">SNR</convert><convert type="ConditionalShowHide" /></widget>
-		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_snr.png" position="1262,968" size="280,10" transparent="1" zPosition="2">
+		<widget source="session.FrontendStatus" render="Pixmap" pixmap="infobar/seg_track280.png" position="1262,968" size="280,10" alphatest="blend" zPosition="1"><convert type="FrontendInfo">SNR</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_snr280.png" position="1262,968" size="280,10" transparent="1" zPosition="2">
 			<convert type="FrontendInfo">SNR</convert>
 		</widget>
 		<widget source="session.FrontendStatus" render="Label" position="1560,960" size="310,26" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;20" valign="center" halign="right" zPosition="1">

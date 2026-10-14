@@ -2,6 +2,35 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.4.0
+
+**New: Floating menu (optional, Classic stays the default)**
+- Menu cards floating over live TV, with a header (menu icon, menu name, clock) and a clear selected row.
+- Submenus open in their own card beside a small card showing where you are (for example "Main Menu > Setup").
+- Live dashboard beside the main menu:
+  - temperature, CPU load, fan speed and uptime
+  - RAM ring, flash space (with a LOW warning) and up to 3 disks found automatically (SSD / HDD / USB / SD, with the drive model)
+  - network card: IP address, interface, download and upload speed, ONLINE / OFFLINE badge
+- Footer with the skin version, your image and your receiver.
+- Texts follow the receiver language: English, French and Arabic.
+- Turn it on: Menu → Setup → Usage & GUI (OpenPLi: Setup → System) → Obsidian FHD Settings → Menu style → Floating.
+
+**Obsidian FHD Settings**
+- New "Menu style" option (Classic / Floating) next to "Show weather in infobar".
+- The weather bar can now be hidden here without disabling the OAWeather plugin.
+- About card with the skin version and links.
+- Update check: when a newer version is published, the Floating menu footer and the About card say so, and YELLOW (Update now) installs it.
+
+**Infobar**
+- SNR / AGC signal meters are now solid rounded bars instead of segments.
+- Second infobar on OpenATV: removed the "Invalid type" text (the HDR/SDR line now shows only on OpenPLi).
+
+**Other**
+- Settings lists from plugins that set no font of their own (E2iPlayer and others) now use a readable value font.
+- Updating or reinstalling the skin no longer resets your Obsidian FHD settings.
+
+**Privacy note:** the ONLINE badge checks the connection by briefly connecting to a public DNS server (1.1.1.1 or 8.8.8.8) at most once a minute, only while the Floating menu is open. Nothing is sent.
+
 ## 1.3.2
 
 **Fixes for OpenATV 8**

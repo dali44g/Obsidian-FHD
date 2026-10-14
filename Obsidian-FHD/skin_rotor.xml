@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Satellite / rotor position line in the infobar technical block.
-     Loaded only on images that have the RotorPosition converter (OpenPLi); elsewhere the empty
-     RotorPositionLine panel from skin_templates.xml is used. -->
+     OpenPLi-only lines (loaded only when the RotorPosition converter exists); elsewhere the empty
+     RotorPositionLine / GammaLine panels from skin_templates.xml are used. -->
 <skin>
 	<screen name="RotorPositionLine">
 		<widget source="session.CurrentService" render="Label" position="1424,1006" size="432,32" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;18" noWrap="1" valign="center" halign="right">
 			<convert type="RotorPosition" />
+		</widget>
+	</screen>
+	<!-- HDR / SDR line of the second infobar (PliExtraInfo "Gamma" exists only on OpenPLi; OpenATV would print "Invalid type"). -->
+	<screen name="GammaLine">
+		<widget source="session.CurrentService" render="Label" position="1412,694" size="444,32" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
+			<convert type="PliExtraInfo">Gamma</convert>
 		</widget>
 	</screen>
 </skin>
