@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bitrate card position when the weather bar is shown (loaded after skin_bitrate.xml and skin_weather.xml). -->
+<skin>
+	<!-- under the full-width weather bar, right edge aligned with it -->
+	<screen name="InfoBarBitrate">
+		<widget source="session.CurrentService" render="FixedLabel" position="1600,128" size="280,96" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="2">
+			<convert type="ObsidianBitrate">Video</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="BITRATE" position="1620,136" size="240,28" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;15" valign="center" zPosition="3">
+			<convert type="ObsidianBitrate">Video</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="VIDEO" position="1620,164" size="100,28" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="Mono;15" valign="center" zPosition="3">
+			<convert type="ObsidianBitrate">Video</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1700,164" size="160,28" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="MonoBold;20" halign="right" valign="center" noWrap="1" zPosition="3">
+			<convert type="ObsidianBitrate">Video</convert>
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="AUDIO" position="1620,190" size="100,28" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="Mono;15" valign="center" zPosition="3">
+			<convert type="ObsidianBitrate">Audio</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="1700,190" size="160,28" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="MonoBold;20" halign="right" valign="center" noWrap="1" zPosition="3">
+			<convert type="ObsidianBitrate">Audio</convert>
+		</widget>
+	</screen>
+</skin>

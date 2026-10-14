@@ -11,7 +11,7 @@
 
 param([string]$Skin = "Obsidian-FHD")
 $SkinDir = Join-Path $PSScriptRoot "..\$Skin" | Resolve-Path
-$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_weather_ar.xml","skin_rotor.xml","skin_menus.xml","skin_menu_floating.xml","skin_sysinfo.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
+$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_weather_ar.xml","skin_rotor.xml","skin_menus.xml","skin_menu_floating.xml","skin_sysinfo.xml","skin_bitrate.xml","skin_bitrate_weather.xml","skin_font_fb_liberation.xml","skin_font_fb_lcd.xml","skin_font_fb_tuxtxt.xml","skin_font_fb_andale.xml","skin_font_fb_dejavu.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
 $errors = New-Object System.Collections.Generic.List[string]
 $warnings = New-Object System.Collections.Generic.List[string]
 
@@ -49,14 +49,12 @@ foreach ($f in $docs.Keys) {
 $screenNames = @{}
 foreach ($k in $screens.Keys) { $screenNames[$k.Split("|")[0]] = $true }
 
-# Fonts shipped by OpenPLi in /usr/share/fonts.
-$systemFonts = @("ae_AlMateen.ttf", "andale.ttf", "DejaVuSans.ttf", "lcd.ttf", "md_khmurabi_10.ttf", "nmsbd.ttf",
-	"LiberationSans-Bold.ttf", "LiberationSans-BoldItalic.ttf", "LiberationSans-Italic.ttf", "LiberationSans-Regular.ttf",
-	"wqy-microhei.ttc", "tuxtxt.ttf")
+# Every font file must ship in the skin: system fonts differ per image (DejaVuSans missing on OpenBH,
+# LiberationSans on OpenViX) and one missing file stops the whole skin from loading.
 foreach ($k in $fonts.Keys) {
 	$fn = $fonts[$k]
-	if (-not ($systemFonts -contains $fn) -and -not (Test-Path (Join-Path $SkinDir $fn)) -and -not (Test-Path (Join-Path $SkinDir "fonts/$fn"))) {  # enigma2 also searches <skin>/fonts
-		$errors.Add("Font '$k' uses '$fn' which is neither in the skin folder nor shipped by OpenPLi.")
+	if (-not (Test-Path (Join-Path $SkinDir $fn)) -and -not (Test-Path (Join-Path $SkinDir "fonts/$fn"))) {  # enigma2 also searches <skin>/fonts
+		$errors.Add("Font '$k' uses '$fn', which is not bundled in the skin (system fonts are not on every image).")
 	}
 }
 

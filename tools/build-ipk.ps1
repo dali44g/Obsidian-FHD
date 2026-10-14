@@ -56,7 +56,7 @@ WriteLf (Join-Path $work "control\postinst") @"
 echo ""
 # Windows tar cannot store Unix permissions: make the installed files read-only for other users.
 chmod -R go-w /usr/share/enigma2/Obsidian-FHD /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD 2>/dev/null
-chmod go-w /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py 2>/dev/null
+chmod go-w /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py 2>/dev/null
 echo "Obsidian FHD $version installed."
 echo "Select it in Menu > Setup > System > User interface > Skin setup, then restart the GUI."
 echo ""
@@ -81,7 +81,7 @@ if grep -q '^config.skin.primary_skin=Obsidian-FHD/' /etc/enigma2/settings 2>/de
 fi
 # Compiled leftovers of the settings plugin and of the converter.
 rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD
-rm -f /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py[co]
+rm -f /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py[co]
 exit 0
 
 "@

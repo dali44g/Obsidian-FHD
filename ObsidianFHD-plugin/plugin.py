@@ -9,6 +9,7 @@ from Plugins.Plugin import PluginDescriptor
 INSTALL_CMD = "wget -qO- https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/install.sh | sh"
 NO_WEATHER = "/etc/enigma2/obsidian_noweather"
 MENU_FLOATING = "/etc/enigma2/obsidian_menu_floating"
+NO_BITRATE = "/etc/enigma2/obsidian_nobitrate"
 
 
 def _(text):
@@ -47,11 +48,14 @@ def openSettings(session, **kwargs):
 				self.skinName = ["ObsidianFHDSettings", "Setup"]
 				self.setTitle(_("Obsidian FHD Settings"))
 				self.weather = ConfigYesNo(default=not exists(NO_WEATHER))
+				self.bitrate = ConfigYesNo(default=not exists(NO_BITRATE))
 				self.menuStyle = ConfigSelection(default="floating" if exists(MENU_FLOATING) else "classic", choices=[("classic", _("Classic")), ("floating", _("Floating"))])
 				# (entry, flag file, flag file wanted when..., help text)
 				self.options = [
 					(getConfigListEntry(_("Show weather in infobar") + "*", self.weather), NO_WEATHER, lambda: not self.weather.value,
 						_("Show today's weather and the forecast at the top of the infobar (needs the OAWeather plugin). Hiding it keeps OAWeather itself working.")),
+					(getConfigListEntry(_("Show bitrate in infobar") + "*", self.bitrate), NO_BITRATE, lambda: not self.bitrate.value,
+						_("Video and audio bitrate under the clock and in the second infobar, on satellite, cable and terrestrial channels (needs the BitrateViewer plugin). Not shown on IPTV.")),
 					(getConfigListEntry(_("Menu style") + "*", self.menuStyle), MENU_FLOATING, lambda: self.menuStyle.value == "floating",
 						_("Classic: full-screen menus with live preview and programme cards. Floating: menu cards floating over live TV.")),
 				]
@@ -148,7 +152,18 @@ def openSettings(session, **kwargs):
 
 		session.open(ObsidianFHDSettings)
 	except Exception as e:
+		# Never fail silently: full traceback in the log, short reason on screen.
 		print("[ObsidianFHD] open: %s" % e)
+		try:
+			import traceback
+			traceback.print_exc()
+		except Exception:
+			pass
+		try:
+			from Screens.MessageBox import MessageBox
+			session.open(MessageBox, _("Obsidian FHD Settings could not open.") + "\n\n%s\n\n" % e + _("Restart the GUI and try again. If it persists, send the log (search for ObsidianFHD)."), MessageBox.TYPE_ERROR)
+		except Exception as e2:
+			print("[ObsidianFHD] message: %s" % e2)
 
 
 def obsidianActive():

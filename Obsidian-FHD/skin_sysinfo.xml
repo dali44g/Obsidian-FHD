@@ -99,7 +99,7 @@
 		<widget source="session.CurrentService" render="Label" position="1100,354" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
 			<convert type="ObsidianSysInfo">DiskText1</convert>
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,386" size="488,8" backgroundColor="aCard" zPosition="4">
+		<widget source="session.CurrentService" render="FixedLabel" position="864,386" size="488,8" backgroundColor="aCard" zPosition="4">
 			<convert type="ObsidianSysInfo">Disk1</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
@@ -115,7 +115,7 @@
 		<widget source="session.CurrentService" render="Label" position="1100,408" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
 			<convert type="ObsidianSysInfo">DiskText2</convert>
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,440" size="488,8" backgroundColor="aCard" zPosition="4">
+		<widget source="session.CurrentService" render="FixedLabel" position="864,440" size="488,8" backgroundColor="aCard" zPosition="4">
 			<convert type="ObsidianSysInfo">Disk2</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
@@ -131,7 +131,7 @@
 		<widget source="session.CurrentService" render="Label" position="1100,462" size="252,28" font="MonoBold;17" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" halign="right" valign="center" noWrap="1" zPosition="2">
 			<convert type="ObsidianSysInfo">DiskText3</convert>
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="864,494" size="488,8" backgroundColor="aCard" zPosition="4">
+		<widget source="session.CurrentService" render="FixedLabel" position="864,494" size="488,8" backgroundColor="aCard" zPosition="4">
 			<convert type="ObsidianSysInfo">Disk3</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
@@ -144,11 +144,11 @@
 			<convert type="ObsidianSysInfo">Label:NETWORK</convert>
 		</widget>
 		<!-- internet status badge (checked at most once a minute, in the background) -->
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
+		<widget source="session.CurrentService" render="FixedLabel" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
 			<convert type="ObsidianSysInfo">Online</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="820,581" size="10,10" backgroundColor="aGreen" cornerRadius="5" zPosition="3">
+		<widget source="session.CurrentService" render="FixedLabel" position="820,581" size="10,10" backgroundColor="aGreen" cornerRadius="5" zPosition="3">
 			<convert type="ObsidianSysInfo">Online</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -156,11 +156,11 @@
 			<convert type="ObsidianSysInfo">Label:ONLINE</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
+		<widget source="session.CurrentService" render="FixedLabel" position="804,570" size="180,32" backgroundColor="aCard2" cornerRadius="16" zPosition="2">
 			<convert type="ObsidianSysInfo">Offline</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="" position="820,581" size="10,10" backgroundColor="aRec" cornerRadius="5" zPosition="3">
+		<widget source="session.CurrentService" render="FixedLabel" position="820,581" size="10,10" backgroundColor="aRec" cornerRadius="5" zPosition="3">
 			<convert type="ObsidianSysInfo">Offline</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -213,6 +213,31 @@
 	<screen name="FloatingHints964">
 		<widget source="session.CurrentService" render="Label" position="108,964" size="560,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
 			<convert type="ObsidianSysInfo">Hints</convert>
+		</widget>
+	</screen>
+	<!-- Transponder text: frequency / symbol rate shortened on images whose PliExtraInfo prints raw values -->
+	<screen name="TpHeaderFrequency">
+		<widget source="session.CurrentService" render="Label" position="882,21" size="130,24" backgroundColor="aCard2" foregroundColor="aText" transparent="1" zPosition="1" font="MonoBold;18" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderFrequency</convert>
+			<convert type="ObsidianSysInfo">Short</convert>
+		</widget>
+	</screen>
+	<screen name="TpHeaderSymbolRate">
+		<widget source="session.CurrentService" render="Label" position="882,45" size="180,24" backgroundColor="aCard2" foregroundColor="aMuted" transparent="1" zPosition="1" font="Mono;18" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderSymbolRate</convert>
+			<convert type="ObsidianSysInfo">Short</convert>
+		</widget>
+	</screen>
+	<screen name="TpInfoBarLine">
+		<widget source="session.CurrentService" render="Label" position="430,844" size="950,28" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;20" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderInfo</convert>
+			<convert type="ObsidianSysInfo">Short</convert>
+		</widget>
+	</screen>
+	<screen name="TpSecondInfoBarLine">
+		<widget source="session.CurrentService" render="Label" position="64,658" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
+			<convert type="PliExtraInfo">TransponderInfo</convert>
+			<convert type="ObsidianSysInfo">Short</convert>
 		</widget>
 	</screen>
 </skin>

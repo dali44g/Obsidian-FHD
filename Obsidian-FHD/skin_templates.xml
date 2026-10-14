@@ -4,6 +4,33 @@
 	<!-- Fonts: Regular/SemiBold/Bold = Inter (human text), Mono/MonoBold = JetBrains Mono (telemetry). -->
 
 	<!-- Player OSD (MoviePlayer / DVDPlayer), drawn inside a 1620 wide box -->
+	<!-- Video / audio bitrate line of the second infobar: filled by skin_bitrate.xml when the BitrateViewer plugin and
+	     the ObsidianBitrate converter are installed -->
+	<screen name="BitrateLine" />
+	<!-- Bitrate card of the infobar (under the clock): filled by skin_bitrate.xml / skin_bitrate_weather.xml -->
+	<screen name="InfoBarBitrate" />
+	<!-- Transponder text panels (PliExtraInfo). skin_sysinfo.xml redefines them with ObsidianSysInfo "Short"
+	     when the converter is installed: OpenATV prints raw values (12558000 / 27500000), OpenPLi 12558 / 27500. -->
+	<screen name="TpHeaderFrequency">
+		<widget source="session.CurrentService" render="Label" position="882,21" size="130,24" backgroundColor="aCard2" foregroundColor="aText" transparent="1" zPosition="1" font="MonoBold;18" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderFrequency</convert>
+		</widget>
+	</screen>
+	<screen name="TpHeaderSymbolRate">
+		<widget source="session.CurrentService" render="Label" position="882,45" size="180,24" backgroundColor="aCard2" foregroundColor="aMuted" transparent="1" zPosition="1" font="Mono;18" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderSymbolRate</convert>
+		</widget>
+	</screen>
+	<screen name="TpInfoBarLine">
+		<widget source="session.CurrentService" render="Label" position="430,844" size="950,28" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;20" noWrap="1" valign="center">
+			<convert type="PliExtraInfo">TransponderInfo</convert>
+		</widget>
+	</screen>
+	<screen name="TpSecondInfoBarLine">
+		<widget source="session.CurrentService" render="Label" position="64,658" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
+			<convert type="PliExtraInfo">TransponderInfo</convert>
+		</widget>
+	</screen>
 	<screen name="PlayerTemplate">
 		<eLabel position="0,0" size="1620,150" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="8" zPosition="-1" />
 		<eLabel text="Playback" position="42,14" size="140,22" backgroundColor="aCard" foregroundColor="aMuted" font="MonoBold;16" valign="center" transparent="1" zPosition="1" />
@@ -41,7 +68,7 @@
 		</widget>
 		<widget source="Title" render="Label" position="96,32" size="1190,48" backgroundColor="aSurface" transparent="1" zPosition="0" font="SemiBold;32" noWrap="1" valign="center" halign="left" />
 		<!-- Telemetry chips: shown only while a tuner is locked (hidden for IPTV / no signal) -->
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="672,18" size="190,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="672,18" size="190,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -51,20 +78,16 @@
 		<widget source="session.CurrentService" render="Label" position="684,45" size="170,24" backgroundColor="aCard2" foregroundColor="aAccent" transparent="1" zPosition="1" font="MonoBold;18" noWrap="1" valign="center">
 			<convert type="ServiceOrbitalPosition" />
 		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="870,18" size="200,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="870,18" size="200,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="882,21" size="130,24" backgroundColor="aCard2" foregroundColor="aText" transparent="1" zPosition="1" font="MonoBold;18" noWrap="1" valign="center">
-			<convert type="PliExtraInfo">TransponderFrequency</convert>
-		</widget>
+		<panel name="TpHeaderFrequency" />
 		<widget source="session.CurrentService" render="Label" position="1012,21" size="50,24" backgroundColor="aCard2" foregroundColor="aText" transparent="1" zPosition="1" font="MonoBold;18" noWrap="1" valign="center" halign="right">
 			<convert type="PliExtraInfo">TransponderPolarization</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="882,45" size="180,24" backgroundColor="aCard2" foregroundColor="aMuted" transparent="1" zPosition="1" font="Mono;18" noWrap="1" valign="center">
-			<convert type="PliExtraInfo">TransponderSymbolRate</convert>
-		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1078,18" size="214,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
+		<panel name="TpHeaderSymbolRate" />
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1078,18" size="214,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -75,7 +98,7 @@
 		<widget source="session.FrontendInfo" render="Label" position="1090,43" size="190,26" backgroundColor="aCard2" foregroundColor="aSlate" transparent="1" zPosition="1" font="MonoBold;22" noWrap="1" valign="center">
 			<convert type="FrontendInfo">STRING</convert>
 		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1300,18" size="300,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1300,18" size="300,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -101,7 +124,7 @@
 			<convert type="FrontendInfo">BER</convert>
 		</widget>
 		<!-- IPTV / stream: one chip instead of the tuner telemetry -->
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1300,18" size="300,54" backgroundColor="aSurface" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1300,18" size="300,54" backgroundColor="aSurface" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
 		<widget source="session.CurrentService" render="FixedLabel" text="STREAM" position="1300,18" size="140,54" backgroundColor="aCard2" borderWidth="1" borderColor="aAccentD" cornerRadius="4" foregroundColor="aAccent" font="MonoBold;20" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">IsStream</convert>
 			<convert type="ConditionalShowHide" />
@@ -234,7 +257,7 @@
 		</widget>
 		<widget source="menu" render="Listbox" conditional="key_previous" position="780,112" size="96,864" transparent="1" itemCornerRadiusSelected="12" scrollbarMode="showNever" zPosition="2">
 			<convert type="TemplatedMultiContent">
-				{"template": [ MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 5) ],
+				{"template": [ MultiContentEntryPixmapAlphaBlend(pos = (32,10), size = (52,52), png = 5, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO) ],
 		"fonts": [gFont("Regular",32)],
 		"itemHeight": 72
 	}
@@ -475,9 +498,7 @@
 		<widget source="session.CurrentService" render="Label" position="290,844" size="140,28" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAccent" font="MonoBold;20" noWrap="1" valign="center">
 			<convert type="ServiceOrbitalPosition" />
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="430,844" size="950,28" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aMuted" font="Mono;20" noWrap="1" valign="center">
-			<convert type="PliExtraInfo">TransponderInfo</convert>
-		</widget>
+		<panel name="TpInfoBarLine" />
 		<!-- now -->
 		<widget source="session.Event_Now" render="Label" position="290,882" size="90,40" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aText" font="MonoBold;24" valign="center" halign="left">
 			<convert type="EventTime">StartTime</convert>
@@ -494,7 +515,7 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">InMinutes</convert>
 		</widget>
-		<widget source="session.Event_Now" render="FixedLabel" text="" position="290,934" size="1090,8" backgroundColor="aLine" cornerRadius="2" zPosition="1">
+		<widget source="session.Event_Now" render="FixedLabel" position="290,934" size="1090,8" backgroundColor="aLine" cornerRadius="2" zPosition="1">
 			<convert type="EventName">Name</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -606,7 +627,7 @@
 		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_agc.png" position="1424,988" size="260,10" transparent="1" zPosition="2">
 			<convert type="FrontendInfo">AGC</convert>
 		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1480,906" size="210,84" backgroundColor="aGlass" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1480,906" size="210,84" backgroundColor="aGlass" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
 		<!-- right block: tuners + video size -->
 		<widget source="session.FrontendStatus" render="FixedLabel" text="TUNERS" position="1700,910" size="156,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" halign="right" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendInfo" render="Label" position="1700,936" size="156,30" backgroundColor="aCard" foregroundColor="aSlate" transparent="1" font="MonoBold;22" noWrap="1" valign="center" halign="right" zPosition="1">
@@ -699,7 +720,7 @@
 			<convert type="TransponderInfo" />
 		</widget>
 		<!-- RF card: only while a tuner is locked (satellite/cable/terrestrial); hidden on IPTV -->
-		<widget source="session.FrontendStatus" render="FixedLabel" text="" position="1180,862" size="710,104" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="10" zPosition="3">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1180,862" size="710,104" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="10" zPosition="3">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -815,7 +836,7 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.4.0" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.4.1" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
 	<!-- Weather chip in the infobar. Empty here; skin_weather.xml (loaded only when OAWeather is installed) fills it. -->
 	<screen name="WeatherBadge" />

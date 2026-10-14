@@ -18,12 +18,6 @@
 		<font name="Bold" filename="Inter-Bold.ttf" scale="95" />
 		<font name="Mono" filename="JetBrainsMono-Regular.ttf" scale="95" />
 		<font name="MonoBold" filename="JetBrainsMono-Bold.ttf" scale="95" />
-		<font name="Liberation" filename="LiberationSans-Regular.ttf" scale="100" />
-		<font name="LCD" filename="lcd.ttf" scale="100" />
-		<font name="FdLcD" filename="lcd.ttf" scale="100" />
-		<font name="Console" filename="tuxtxt.ttf" scale="100" />
-		<font name="Fixed" filename="andale.ttf" scale="100" />
-		<font name="DejaVuSans" filename="DejaVuSans.ttf" scale="100" />
 		<font name="Kufi" filename="NotoKufiArabic-Regular.ttf" scale="95" replacement="1" />
 		<alias name="ChoiceList" font="Regular" size="30" height="54" />
 		<alias name="TextNormal" font="Regular" size="30" height="54" />
@@ -356,15 +350,29 @@
 		</borderset>
 	</windowstyle>
 
+	<!-- System fonts other skins and plugins expect: the image's own file when it exists (unchanged on OpenATV / OpenPLi),
+	     otherwise a bundled font (DejaVuSans is missing on OpenBH, LiberationSans on OpenViX; a missing file stops the skin). -->
+	<include filename="skin_font_sys_liberation.xml" conditional="isfile('/usr/share/fonts/LiberationSans-Regular.ttf')" />
+	<include filename="skin_font_fb_liberation.xml" conditional="not isfile('/usr/share/fonts/LiberationSans-Regular.ttf')" />
+	<include filename="skin_font_sys_lcd.xml" conditional="isfile('/usr/share/fonts/lcd.ttf')" />
+	<include filename="skin_font_fb_lcd.xml" conditional="not isfile('/usr/share/fonts/lcd.ttf')" />
+	<include filename="skin_font_sys_tuxtxt.xml" conditional="isfile('/usr/share/fonts/tuxtxt.ttf')" />
+	<include filename="skin_font_fb_tuxtxt.xml" conditional="not isfile('/usr/share/fonts/tuxtxt.ttf')" />
+	<include filename="skin_font_sys_andale.xml" conditional="isfile('/usr/share/fonts/andale.ttf')" />
+	<include filename="skin_font_fb_andale.xml" conditional="not isfile('/usr/share/fonts/andale.ttf')" />
+	<include filename="skin_font_sys_dejavu.xml" conditional="isfile('/usr/share/fonts/DejaVuSans.ttf')" />
+	<include filename="skin_font_fb_dejavu.xml" conditional="not isfile('/usr/share/fonts/DejaVuSans.ttf')" />
 	<include filename="skin_templates.xml" />
 	<include filename="skin_menus.xml" />
 	<include filename="skin_menu_floating.xml" conditional="isfile('/etc/enigma2/obsidian_menu_floating')" />
 	<include filename="skin_sysinfo.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.pyc')) and (isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.pyc'))" />
+	<include filename="skin_bitrate.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.pyc')) and isfile('/usr/lib/enigma2/python/Plugins/Extensions/BitrateViewer/bitratecalc.so') and not isfile('/etc/enigma2/obsidian_nobitrate')" />
 	<include filename="skin_plugins.xml" />
 	<include filename="skin_openatv.xml" />
 	<!-- weather (OAWeather plugin): only loaded when its converter exists -->
 	<include filename="skin_weather.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and not isfile('/etc/enigma2/obsidian_noweather')" />
 	<include filename="skin_weather_ar.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and isfile('/etc/enigma2/settings') and 'language=ar' in open('/etc/enigma2/settings').read() and not isfile('/etc/enigma2/obsidian_noweather')" />
+	<include filename="skin_bitrate_weather.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.pyc')) and isfile('/usr/lib/enigma2/python/Plugins/Extensions/BitrateViewer/bitratecalc.so') and not isfile('/etc/enigma2/obsidian_nobitrate') and (isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and not isfile('/etc/enigma2/obsidian_noweather')" />
 	<include filename="skin_rotor.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.py')" />
 
 	<!-- Volume -->
@@ -422,6 +430,7 @@
 
 	<screen name="InfoBar" title="InfoBar" position="fill" backgroundColor="transparent" flags="wfNoBorder">
 		<panel name="InfoBarTemplate" />
+		<panel name="InfoBarBitrate" />
 	</screen>
 
 	<!-- Second infobar: event synopsis cards (simple) -->
@@ -442,9 +451,8 @@
 		<widget source="session.CurrentService" render="Label" position="64,622" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
 			<convert type="PliExtraInfo">PIDInfo</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="64,658" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
-			<convert type="PliExtraInfo">TransponderInfo</convert>
-		</widget>
+		<panel name="TpSecondInfoBarLine" />
+		<panel name="BitrateLine" />
 		<widget source="session.CurrentService" render="Label" position="64,694" size="1300,50" backgroundColor="aCard" foregroundColor="aSlate" transparent="1" font="MonoBold;22" valign="top" zPosition="1">
 			<convert type="PliExtraInfo">CryptoBar</convert>
 		</widget>

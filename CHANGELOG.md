@@ -2,6 +2,18 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.4.1
+
+**Fixes**
+- OpenViX and OpenBH: the skin did not load ("Tag 'font' needs an existing filename"). System fonts missing on an image are now replaced by fonts bundled in the skin; images that have them (OpenATV, OpenPLi) keep exactly the same fonts.
+- OpenATV: frequency and symbol rate in the infobar, second infobar and menu header show 12558 / 27500 instead of 12558000 / 27500000.
+- OpenPLi: the header boxes and the signal card no longer show "Project-Id-Version: enigma2 ..." text, and the main menu shows its icons instead of small white marks.
+- Obsidian FHD Settings: if the screen cannot open, a message now shows the reason instead of nothing happening.
+
+**New**
+- Bitrate: video and audio bitrate in a small card under the clock (or under the weather bar) and in the second infobar, on satellite, cable and terrestrial channels. Needs the BitrateViewer plugin; on/off in Obsidian FHD Settings ("Show bitrate in infobar").
+- AutoTimer overview: every AutoTimer shows all its lines (name and time, days, channels), with a legend card for the icons.
+
 ## 1.4.0
 
 **New: Floating menu (optional, Classic stays the default)**

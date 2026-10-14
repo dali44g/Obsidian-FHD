@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- bundled fallback when DejaVuSans.ttf is missing on the image -->
+<skin>
+	<fonts>
+		<font name="DejaVuSans" filename="Inter-Regular.ttf" scale="95" />
+	</fonts>
+</skin>

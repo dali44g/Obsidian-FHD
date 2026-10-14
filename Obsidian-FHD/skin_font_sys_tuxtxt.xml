@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- image font, used when it exists -->
+<skin>
+	<fonts>
+		<font name="Console" filename="tuxtxt.ttf" scale="100" />
+	</fonts>
+</skin>

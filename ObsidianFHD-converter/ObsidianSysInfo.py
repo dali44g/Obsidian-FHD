@@ -15,6 +15,7 @@
 #   SkinVersion"v1.4", ImageInfo "OpenATV 8.0.1 - Vu+ Solo2"  text
 #   Online, Offline                                      boolean (internet reachable / not; both False until checked)
 #   Update (boolean, newer release on GitHub), UpdateText "Update v1.4.1 available"
+#   Short (chained after PliExtraInfo): raw tuner numbers shortened, "12558000" -> "12558"
 #   FlashLow                                              boolean (free flash < 15 MB) for ConditionalShowHide
 from os import statvfs
 from os.path import exists, ismount
@@ -207,6 +208,21 @@ class UpdateCheck(object):
 		cls.checked = time()
 		cls.wait = 21600 if ok else 1800
 		cls.running = False
+
+
+def shortNumbers(text):
+	# PliExtraInfo on OpenATV prints raw tuner values ("12558000", "27500000"); OpenPLi prints "12558", "27500".
+	# Stand-alone numbers of 6+ digits (not inside URLs) become MHz / ksym/s (Hz -> MHz on DVB-T); PLS / MIS codes are left as they are.
+	import re
+	dvbt = "DVB-T" in text
+
+	def short(m):
+		before = text[max(0, m.start() - 8):m.start()].lower()
+		if "gold" in before or "root" in before or "combo" in before or "pls" in before or "mis" in before:
+			return m.group(0)
+		n = int(m.group(0))
+		return str(n // 1000000 if dvbt or n >= 100000000 else n // 1000)
+	return re.sub(r"(?<!\S)\d{6,}(?!\S)", short, text)
 
 
 def versionTuple(text):
@@ -419,7 +435,8 @@ class ObsidianSysInfo(Poll, Converter):
 		Poll.__init__(self)
 		self.type = type
 		self.poll_interval = 10000
-		self.poll_enabled = True
+		# "Short" is chained after another converter and follows its updates, no polling needed.
+		self.poll_enabled = type != "Short"
 
 	def ssdMounted(self):
 		return ismount(SSD)
@@ -428,6 +445,8 @@ class ObsidianSysInfo(Poll, Converter):
 	def getText(self):
 		try:
 			t = self.type
+			if t == "Short":
+				return shortNumbers(self.source.text or "")
 			if t.startswith("Label:"):
 				return tr(t[6:])
 			if t == "Hints":
