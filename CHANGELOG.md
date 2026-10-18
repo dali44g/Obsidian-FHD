@@ -10,7 +10,7 @@ All notable changes to Obsidian FHD. To update, run the install command from the
 - Floating channel list (optional, off by default): the channel list as floating cards over live TV, with a programme card for the selected channel and colour keys; MENU opens the channel options in the same style.
 - With the Floating menu, settings pages and option lists are floating too: a help card with the description of the selected setting, the settings card, and a key card.
 - New key bar: short coloured pills and the action text instead of boxes, and key chips (OK / EXIT / MENU) on Obsidian's own screens.
-- Install extensions (OpenATV) and MultiBoot Manager (Chkroot / Kexec setup, slot list) in the Obsidian layout.
+- Install extensions (OpenATV) in the Obsidian layout.
 - Infobar styles in Obsidian Apps: Halo (new default: solid dark bars with a soft teal light), Glass (the see-through bars of earlier versions) and Nova (one floating indigo capsule with a progress ring, clock and today's weather, no top bar).
 - Install plugin from Obsidian Apps: the Weather and Bitrate pages can install OAWeather / BitrateViewer without leaving the screen.
 - Signal finder in the Obsidian design: coloured SNR / AGC bars, measurements card with a LOCK badge, tuning card.
