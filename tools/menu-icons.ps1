@@ -29,6 +29,7 @@ function MenuGlyph([string]$rel, [string]$kind) {
 		"guide" { foreach ($y in 56, 80, 104) { $g.DrawLine($p, 44, $y, 116, $y) }; $g.DrawLine($a, 44, 56, 76, 56); $g.DrawLine($a, 92, 80, 116, 80) }
 		"dish" { $g.DrawArc($p, 40, 40, 72, 72, 45, 180); $g.DrawLine($p, 54, 54, 104, 104); $g.DrawLine($p, 78, 78, 108, 56); $g.FillEllipse($sun, 102, 48, 14, 14); $g.DrawLine($p, 80, 112, 80, 124) }
 		"key" { $g.DrawEllipse($p, 40, 58, 40, 40); $g.DrawLine($p, 80, 78, 122, 78); $g.DrawLine($a, 108, 78, 108, 94); $g.DrawLine($a, 120, 78, 120, 90) }
+		"apps" { $g.DrawPath($p, (RoundRect 44 44 30 30 7)); $g.DrawPath($p, (RoundRect 86 44 30 30 7)); $g.DrawPath($p, (RoundRect 44 86 30 30 7)); $g.FillPath($sun, (RoundRect 86 86 30 30 7)) }
 		"lock" { $g.DrawArc($p, 58, 40, 44, 50, 180, 180); $g.DrawLine($p, 58, 66, 58, 74); $g.DrawLine($p, 102, 66, 102, 74); $g.DrawPath($p, (RoundRect 48 74 64 46 6)); $g.FillEllipse($sun, 74, 90, 12, 12) }
 		"box" { $g.DrawPolygon($p, [System.Drawing.PointF[]]@((PF 80 40), (PF 118 58), (PF 118 102), (PF 80 120), (PF 42 102), (PF 42 58))); $g.DrawLines($p, [System.Drawing.PointF[]]@((PF 42 58), (PF 80 76), (PF 118 58))); $g.DrawLine($a, 80, 76, 80, 120) }
 		"update" { $g.DrawArc($p, 44, 44, 72, 72, 200, 270); $g.DrawLines($a, [System.Drawing.PointF[]]@((PF 56 46), (PF 48 62), (PF 64 66))); $g.DrawLine($p, 80, 66, 80, 94); $g.DrawLines($p, [System.Drawing.PointF[]]@((PF 70 76), (PF 80 66), (PF 90 76))) }
@@ -75,6 +76,7 @@ $menuKinds = [ordered]@{
 	cec = "hdmicec"
 	plugin = "plugin_selection"
 	palette = "skin_setup"
+	apps = "obsidian_apps"
 }
 foreach ($kind in $menuKinds.Keys) { foreach ($key in ($menuKinds[$kind] -split " ")) { MenuGlyph "mainmenu/$key.png" $kind } }
 MenuGlyph "mainmenu/missing.png" "plugin"

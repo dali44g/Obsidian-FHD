@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Classic settings page (Setup) and option list (ChoiceBox). Kept in their own file so skin_setup_floating.xml can
+     replace them when the Floating menu style is on. -->
+<skin>
+	<screen name="Setup" title="Setup" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="SkinBadge" />
+		<panel name="VKeyIconPanel" />
+		<!--widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="75,615" zPosition="1" size="1,1" transparent="1" alphatest="on" /-->
+		<widget name="config" position="780,112" size="1110,888" itemHeight="48" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
+		<widget name="description" position="44,580" size="696,350" font="Regular;28" foregroundColor="aVariant" valign="top" backgroundColor="aCard" transparent="1" />
+		<!-- OpenATV: mandatory footnote ("* = restart required"); skipped on images without it -->
+		<widget name="footnote" conditional="footnote" position="44,944" size="696,56" font="Regular;22" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
+	</screen>
+	<screen name="ChoiceBox" title="" position="fill" flags="wfNoBorder">
+		<panel name="ChoiceBoxClassic" />
+	</screen>
+</skin>

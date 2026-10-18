@@ -200,19 +200,67 @@
 		<eLabel position="656,180" size="568,1" backgroundColor="aLine" zPosition="2" />
 	</screen>
 	<!-- translated header title and key hints of the Floating menus -->
+	<screen name="FloatingSetupTitle">
+		<widget source="Title" render="Label" position="712,122" size="872,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianMenuTitle"></convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
+	</screen>
+	<screen name="FloatingHelpTitle">
+		<widget source="session.CurrentService" render="Label" position="168,352" size="396,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HELP</convert>
+		</widget>
+	</screen>
+	<screen name="FloatingChoiceTitles">
+		<widget source="session.CurrentService" render="Label" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:OPTIONS</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="656,122" size="568,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:SELECT</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="171,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_SELECT</convert>
+		</widget>
+	</screen>
+	<screen name="FloatingContextTitles">
+		<widget source="session.CurrentService" render="Label" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:CHANNEL</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="656,122" size="568,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:OPTIONS</convert>
+		</widget>
+	</screen>
 	<screen name="FloatingMainTitle">
 		<widget source="session.CurrentService" render="Label" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
 			<convert type="ObsidianSysInfo">Label:MAIN MENU</convert>
 		</widget>
 	</screen>
 	<screen name="FloatingHints868">
-		<widget source="session.CurrentService" render="Label" position="108,868" size="480,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
-			<convert type="ObsidianSysInfo">Hints</convert>
+		<ePixmap pixmap="buttons/key_ok.png" position="108,875" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="171,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_OK</convert>
+		</widget>
+		<ePixmap pixmap="buttons/key_exit.png" position="268,875" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="331,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_EXIT</convert>
+		</widget>
+		<ePixmap pixmap="buttons/key_menu.png" position="428,875" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="491,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_MENU</convert>
 		</widget>
 	</screen>
 	<screen name="FloatingHints964">
-		<widget source="session.CurrentService" render="Label" position="108,964" size="560,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
-			<convert type="ObsidianSysInfo">Hints</convert>
+		<ePixmap pixmap="buttons/key_ok.png" position="108,971" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="171,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_OK</convert>
+		</widget>
+		<ePixmap pixmap="buttons/key_exit.png" position="268,971" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="331,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_EXIT</convert>
+		</widget>
+		<ePixmap pixmap="buttons/key_menu.png" position="428,971" size="53,38" alphatest="blend" zPosition="2" />
+		<widget source="session.CurrentService" render="Label" position="491,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2">
+			<convert type="ObsidianSysInfo">Label:HINTS_MENU</convert>
 		</widget>
 	</screen>
 	<!-- Transponder text: frequency / symbol rate shortened on images whose PliExtraInfo prints raw values -->
@@ -238,6 +286,23 @@
 		<widget source="session.CurrentService" render="Label" position="64,658" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
 			<convert type="PliExtraInfo">TransponderInfo</convert>
 			<convert type="ObsidianSysInfo">Short</convert>
+		</widget>
+	</screen>
+	<!-- Floating channel list: bouquet name only in the header, channel name on the programme card -->
+	<screen name="ChlistTitle">
+		<widget source="Title" render="Label" position="166,74" size="520,40" font="MonoBold;19" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1">
+			<convert type="ObsidianMenuTitle"></convert>
+		</widget>
+	</screen>
+	<screen name="ChlistChannelName">
+		<widget source="ServiceEvent" render="Label" position="1190,80" size="274,30" font="Regular;20" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" halign="right" valign="center" zPosition="1">
+			<convert type="ObsidianSysInfo">EventServiceName</convert>
+		</widget>
+	</screen>
+	<screen name="ChlistTransponder">
+		<widget source="ServiceEvent" render="Label" position="896,372" size="568,50" font="Mono;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1">
+			<convert type="TransponderInfo" />
+			<convert type="ObsidianSysInfo">IfEvent</convert>
 		</widget>
 	</screen>
 </skin>

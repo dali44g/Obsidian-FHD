@@ -35,8 +35,9 @@ A second menu style: floating cards over live TV, with a live dashboard next to 
 (temperature, CPU load, fan, uptime, RAM, flash and disks with their model, network speed and an
 online badge). Texts follow the receiver language (English, French, Arabic).
 
-**Turn it on:** Menu → Setup → Usage & GUI (OpenPLi: Menu → Setup → System) → **Obsidian FHD Settings** → Menu style → **Floating**,
-then save and restart the GUI. Choose **Classic** there to go back. The classic menus stay the default.
+**Turn it on:** Menu → **Obsidian Apps** → **Floating menu** → GREEN (Turn on), then restart the GUI when asked.
+Turn it off there to go back. The classic menus stay the default. The **Floating channel list** is switched on the
+same way, and **Weather** and **Bitrate** can be hidden there too.
 
 | Main menu | Submenu |
 |---|---|
@@ -48,10 +49,9 @@ then save and restart the GUI. Choose **Classic** there to go back. The classic 
 - **Online badge:** to check the internet connection, the receiver opens a short connection to a
   public DNS server (1.1.1.1 or 8.8.8.8, port 53) at most once a minute, only while the menu is
   open. Nothing is sent and no data is collected.
-- The same settings screen can also hide the weather bar in the infobar.
-- **Update check:** while the Floating main menu or Obsidian FHD Settings is open, the receiver reads
+- **Update check:** while the Floating main menu or Obsidian Apps is open, the receiver reads
   one small file from this repository (`release/version.txt`) at most every 6 hours. When a newer
-  version exists, the menu footer says so and **YELLOW (Update now)** in Obsidian FHD Settings
+  version exists, the menu footer says so and **About & update** in Obsidian Apps
   installs it with the same command as Option A below.
 
 ## Install

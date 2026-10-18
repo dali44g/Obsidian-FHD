@@ -3,9 +3,14 @@
      so images without the plugin never reference these converters. -->
 <skin>
 	<!-- Weather part of the top status bar (InfoBarTemplate): a full-width bar mirroring the infobar, the clock pill sits at its right end. -->
+	<!-- weather bar background, "Halo" style (skin_infobar_glass.xml has the "Glass" one) -->
+	<screen name="WeatherBarBg">
+		<eLabel position="40,0" size="1840,116" backgroundColor="aInfoBg" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="2" />
+		<eLabel position="40,0" size="1840,20" backgroundColor="aInfoBg" zPosition="2" />
+		<ePixmap pixmap="icons/infobar_light_top.png" position="54,1" size="1812,100" alphatest="off" zPosition="2" />
+	</screen>
 	<screen name="WeatherBadge">
-		<eLabel position="40,0" size="1840,116" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="2" />
-		<eLabel position="40,0" size="1840,20" backgroundColor="aCard" zPosition="2" />
+		<panel name="WeatherBarBg" />
 		<eLabel position="40,0" size="1,20" backgroundColor="aLine" zPosition="2" />
 		<eLabel position="1879,0" size="1,20" backgroundColor="aLine" zPosition="2" />
 		<widget source="session.OAWeather" render="OAWeatherPixmap" position="66,18" size="80,80" alphatest="blend" scale="1" transparent="1" zPosition="3">

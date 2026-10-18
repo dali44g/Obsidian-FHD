@@ -11,7 +11,7 @@
 
 param([string]$Skin = "Obsidian-FHD")
 $SkinDir = Join-Path $PSScriptRoot "..\$Skin" | Resolve-Path
-$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_weather_ar.xml","skin_rotor.xml","skin_menus.xml","skin_menu_floating.xml","skin_sysinfo.xml","skin_bitrate.xml","skin_bitrate_weather.xml","skin_font_fb_liberation.xml","skin_font_fb_lcd.xml","skin_font_fb_tuxtxt.xml","skin_font_fb_andale.xml","skin_font_fb_dejavu.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
+$files = @("skin.xml", "skin_templates.xml", "skin_plugins.xml", "skin_openatv.xml", "skin_weather.xml","skin_weather_ar.xml","skin_rotor.xml","skin_menus.xml","skin_menu_floating.xml","skin_sysinfo.xml","skin_bitrate.xml","skin_bitrate_weather.xml","skin_font_fb_liberation.xml","skin_font_fb_lcd.xml","skin_font_fb_tuxtxt.xml","skin_font_fb_andale.xml","skin_font_fb_dejavu.xml","skin_chlist.xml","skin_chlist_floating.xml","skin_apps.xml","skin_setup.xml","skin_setup_floating.xml","skin_infobar_glass.xml","skin_infobar_nova.xml","skin_infobar_nova_weather.xml","skin_infobar_nova_sysinfo.xml") | Where-Object { Test-Path (Join-Path $SkinDir $_) }
 $errors = New-Object System.Collections.Generic.List[string]
 $warnings = New-Object System.Collections.Generic.List[string]
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Floating settings page (Setup) and option list (ChoiceBox), loaded with the Floating menu style (/etc/enigma2/obsidian_menu_floating); it replaces
+     the classic screens of skin_setup.xml. Same widget names as the classic screens, solid cards over live TV:
+     breadcrumb card, help card (item description and footnote), settings card and a key card.
+     Icons and selected row: tools/floating-graphics.ps1. -->
+<skin>
+	<!-- settings card title: plain here, shortened to the last part of the path by skin_sysinfo.xml when the Obsidian converters are installed -->
+	<screen name="FloatingSetupTitle">
+		<widget source="Title" render="Label" position="712,122" size="872,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+	</screen>
+	<!-- help card title: translated by enigma2 here; uppercase (French / Arabic too) in skin_sysinfo.xml -->
+	<screen name="FloatingHelpTitle">
+		<eLabel text="Help" position="168,352" size="396,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+	</screen>
+	<screen name="Setup" title="Setup" position="fill" flags="wfNoBorder" backgroundColor="transparent">
+		<!-- breadcrumb card -->
+		<eLabel position="80,100" size="520,214" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<ePixmap pixmap="icons/menu_header.png" position="116,122" size="40,40" alphatest="off" zPosition="2" />
+		<panel name="FloatingMainTitle" />
+		<widget source="global.CurrentTime" render="Label" position="420,122" size="144,40" font="SemiBold;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" halign="right" valign="center" zPosition="2">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<eLabel position="116,180" size="448,1" backgroundColor="aLine" zPosition="2" />
+		<widget source="Title" render="Label" position="116,196" size="448,100" font="SemiBold;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<!-- help card: description of the selected item, footnote (OpenATV "* = restart required") -->
+		<eLabel position="80,330" size="520,602" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<ePixmap pixmap="icons/help_header.png" position="116,352" size="40,40" alphatest="off" zPosition="2" />
+		<panel name="FloatingHelpTitle" />
+		<eLabel position="116,410" size="448,1" backgroundColor="aLine" zPosition="2" />
+		<widget name="description" position="116,426" size="448,420" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<widget name="footnote" conditional="footnote" position="116,856" size="448,56" font="Regular;22" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<!-- settings card -->
+		<eLabel position="620,100" size="1000,832" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<ePixmap pixmap="icons/setup_header.png" position="656,122" size="40,40" alphatest="off" zPosition="2" />
+		<panel name="FloatingSetupTitle" />
+		<eLabel position="656,180" size="928,1" backgroundColor="aLine" zPosition="2" />
+		<widget name="config" position="641,196" size="958,720" itemHeight="60" font="Regular;28" secondfont="Regular;26" selectionPixmap="window/sel_setup_floating.png" foregroundColor="aText" foregroundColorSelected="aWhite" backgroundColor="aCard" backgroundColorSelected="aCard" transparent="1" borderWidth="0" enableWrapAround="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="2" />
+		<!-- key card -->
+		<eLabel position="80,964" size="1540,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="116,982" size="36,16" backgroundColor="aRed" cornerRadius="8" zPosition="2" />
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="164,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_red,Label,Button" name="key_red" position="164,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<eLabel position="416,982" size="36,16" backgroundColor="aGreen" cornerRadius="8" zPosition="2" />
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="464,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_green,Label,Button" name="key_green" position="464,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Pixmap" pixmap="buttons/mark_yellow.png" position="708,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="764,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="buttons/mark_blue.png" position="1008,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1064,964" size="240,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="VKeyIcon" conditional="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="1540,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<!-- option list card titles and OK hint: translated by enigma2 here; uppercase (French / Arabic too) in skin_sysinfo.xml -->
+	<screen name="FloatingChoiceTitles">
+		<eLabel text="Options" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<eLabel text="Select" position="656,122" size="568,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<eLabel text="Select" position="171,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+	</screen>
+	<!-- option list: question card on the left (title, text, description of the selected choice), choices on the right.
+	     Row layout (key icon, name) comes from the Choicelist parameters of skin.xml. -->
+	<screen name="ChoiceBox" title="" position="fill" flags="wfNoBorder" backgroundColor="transparent">
+		<eLabel position="80,100" size="520,832" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<ePixmap pixmap="icons/menu_header.png" position="116,122" size="40,40" alphatest="off" zPosition="2" />
+		<widget source="global.CurrentTime" render="Label" position="420,122" size="144,40" font="SemiBold;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" halign="right" valign="center" zPosition="2">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<eLabel position="116,180" size="448,1" backgroundColor="aLine" zPosition="2" />
+		<widget source="Title" render="Label" position="116,196" size="448,136" font="SemiBold;26" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<widget name="text" position="116,344" size="448,290" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<widget name="description" position="116,644" size="448,270" font="Regular;24" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<eLabel position="620,100" size="640,832" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<eLabel position="656,180" size="568,1" backgroundColor="aLine" zPosition="2" />
+		<widget name="list" position="641,196" size="598,702" selectionPixmap="window/sel_choice_floating.png" foregroundColor="aText" foregroundColorSelected="aWhite" backgroundColor="aCard" backgroundColorSelected="aCard" transparent="1" borderWidth="0" enableWrapAround="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="2" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<ePixmap pixmap="buttons/key_ok.png" position="108,971" size="53,38" alphatest="blend" zPosition="2" />
+		<ePixmap pixmap="buttons/key_exit.png" position="268,971" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Back" position="331,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<panel name="FloatingChoiceTitles" />
+	</screen>
+</skin>

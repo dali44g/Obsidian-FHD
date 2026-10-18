@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- "Glass" infobar (the style before 1.5): slightly see-through bottom panel and the card-coloured weather bar.
+     Loaded only when /etc/enigma2/obsidian_infobar_glass exists (Obsidian Apps > Halo infobar turned off); it replaces
+     the "Halo" backgrounds of skin_templates.xml and skin_weather.xml. -->
+<skin>
+	<colors>
+		<color name="aChipOn" value="#0005080e" />
+		<color name="aChipOff" value="#000f131b" />
+	</colors>
+	<screen name="InfoBarPanelBg">
+		<eLabel position="40,770" size="1840,280" backgroundColor="aGlass" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+	</screen>
+	<screen name="InfoBarNoLockCover">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1480,906" size="210,84" backgroundColor="aGlass" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
+	</screen>
+	<screen name="WeatherBarBg">
+		<eLabel position="40,0" size="1840,116" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="2" />
+		<eLabel position="40,0" size="1840,20" backgroundColor="aCard" zPosition="2" />
+	</screen>
+</skin>

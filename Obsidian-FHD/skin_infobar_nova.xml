@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- "Nova" infobar (Obsidian Apps > Infobar style > Nova, flag /etc/enigma2/obsidian_infobar_nova). One floating indigo
+     capsule at the bottom, no top bar: picon medallion with the channel number, programme (or the channel name when
+     there is no programme guide), a progress ring, clock, date and today's weather (skin_infobar_nova_weather.xml,
+     only with OAWeather). Replaces InfoBarTemplate, so the first and second infobars both use it.
+     Gradients are inside opaque images or eLabels (nothing see-through over video). Graphics: tools/nova-graphics.ps1. -->
+<skin>
+	<colors>
+		<color name="nIndigo" value="#00281652" />
+		<color name="nNavy" value="#000e1634" />
+		<color name="nMedal" value="#00181034" />
+		<color name="nChip" value="#0024184a" />
+		<color name="nChipLine" value="#00584296" />
+		<color name="nNext" value="#00342464" />
+		<color name="nCoral" value="#00ff6b6b" />
+		<color name="nPeach" value="#00ffb86b" />
+		<color name="nLav" value="#00c4bce6" />
+		<color name="nDim" value="#008c82b9" />
+		<color name="nInk" value="#001e0a1e" />
+		<color name="nChipOff" value="#001a1234" />
+		<color name="nChipOffText" value="#0054487a" />
+	</colors>
+	<!-- no top bar, no bitrate card with Nova -->
+	<screen name="InfoBarBitrate" />
+	<!-- today's weather inside the capsule: skin_infobar_nova_weather.xml when OAWeather is installed -->
+	<screen name="NovaWeather" />
+	<screen name="NovaTpText">
+		<widget source="session.CurrentService" render="Label" position="548,1028" size="452,28" backgroundColor="nNavy" transparent="1" foregroundColor="nLav" font="Mono;17" noWrap="1" valign="center" zPosition="1">
+			<convert type="PliExtraInfo">TransponderInfo</convert>
+		</widget>
+	</screen>
+	<screen name="InfoBarTemplate">
+		<widget source="session.RecordState" render="FixedLabel" text="  REC" position="40,40" size="130,44" backgroundColor="aRecBg" borderWidth="1" borderColor="aRec" cornerRadius="6" foregroundColor="aRec" font="MonoBold;24" valign="center" zPosition="5">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- capsule: rounded ends (eLabels) + gradient middle (image) -->
+		<eLabel position="150,812" size="810,250" backgroundColor="nIndigo" borderWidth="2" borderColor="nChipLine" cornerRadius="44" zPosition="-2" />
+		<eLabel position="960,812" size="810,250" backgroundColor="nNavy" borderWidth="2" borderColor="nChipLine" cornerRadius="44" zPosition="-2" />
+		<ePixmap pixmap="nova/capsule.png" position="194,812" size="1532,250" alphatest="off" zPosition="-1" />
+		<!-- picon medallion + channel number tab -->
+		<eLabel position="190,762" size="210,210" backgroundColor="nMedal" borderWidth="4" borderColor="nCoral" cornerRadius="40" zPosition="2" />
+		<widget source="session.CurrentService" render="Picon" position="204,812" size="182,108" alphatest="blend" scale="1" backgroundColor="nMedal" transparent="1" zPosition="3">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<eLabel position="235,980" size="120,36" backgroundColor="nCoral" cornerRadius="18" zPosition="2" />
+		<widget source="session.CurrentService" render="ChannelNumber" position="235,980" size="120,36" backgroundColor="nCoral" transparent="1" foregroundColor="nInk" font="MonoBold;22" valign="center" halign="center" zPosition="3" />
+		<!-- small line: LIVE + channel name -->
+		<eLabel text="&#9679; LIVE" position="440,828" size="90,30" backgroundColor="nIndigo" foregroundColor="nCoral" transparent="1" font="MonoBold;18" valign="center" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="536,828" size="720,30" backgroundColor="nIndigo" transparent="1" foregroundColor="nPeach" font="MonoBold;20" noWrap="1" valign="center" zPosition="1">
+			<convert type="ServiceName">Name</convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
+		<!-- big line: the channel name, covered by the programme title when there is a programme guide -->
+		<widget source="session.CurrentService" render="Label" position="440,860" size="810,66" backgroundColor="nIndigo" transparent="1" foregroundColor="aWhite" font="Bold;50" noWrap="1" valign="center" zPosition="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Pixmap" pixmap="nova/cover_title.png" position="440,860" size="810,66" alphatest="off" zPosition="2">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="440,860" size="810,66" backgroundColor="nIndigo" transparent="1" foregroundColor="aWhite" font="Bold;46" noWrap="1" valign="center" zPosition="3">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<!-- programme time + genre, or the no-guide note -->
+		<widget source="session.Event_Now" render="Label" position="440,926" size="90,34" backgroundColor="nIndigo" transparent="1" foregroundColor="nLav" font="MonoBold;22" valign="center" zPosition="1">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="526,926" size="110,34" backgroundColor="nIndigo" transparent="1" foregroundColor="nLav" font="MonoBold;22" valign="center" zPosition="1">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="660,926" size="600,34" backgroundColor="nIndigo" transparent="1" foregroundColor="nDim" font="Regular;22" noWrap="1" valign="center" zPosition="1">
+			<convert type="EventName">Genre</convert>
+		</widget>
+		<widget source="session.Event_Now" render="FixedLabel" text="No programme guide for this channel" position="440,932" size="820,34" backgroundColor="nIndigo" transparent="1" foregroundColor="nDim" font="Regular;22" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<!-- next -->
+		<widget source="session.Event_Next" render="FixedLabel" position="440,970" size="560,40" backgroundColor="nNext" cornerRadius="20" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.Event_Next" render="FixedLabel" text="NEXT" position="462,970" size="60,40" backgroundColor="nNext" transparent="1" foregroundColor="nLav" font="SemiBold;20" valign="center" zPosition="2">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.Event_Next" render="Label" position="526,970" size="70,40" backgroundColor="nNext" transparent="1" foregroundColor="nLav" font="SemiBold;20" valign="center" zPosition="2">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.Event_Next" render="Label" position="600,970" size="390,40" backgroundColor="nNext" transparent="1" foregroundColor="nLav" font="SemiBold;20" noWrap="1" valign="center" zPosition="2">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<!-- progress ring (renderer ObsidianRing, 24 images) with the remaining minutes, or a LIVE ring without programme guide -->
+		<widget source="session.Event_Now" render="ObsidianRing" position="1272,844" size="156,156" alphatest="blend" zPosition="3">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="1286,898" size="128,48" backgroundColor="nNavy" transparent="1" foregroundColor="aWhite" font="SemiBold;20" valign="center" halign="center" zPosition="4">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Pixmap" pixmap="nova/ring_live.png" position="1272,844" size="156,156" alphatest="blend" zPosition="3">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<widget source="session.Event_Now" render="FixedLabel" text="LIVE" position="1282,898" size="136,48" backgroundColor="nNavy" transparent="1" foregroundColor="nCoral" font="Bold;34" valign="center" halign="center" zPosition="4">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<!-- clock, date, weather -->
+		<widget source="global.CurrentTime" render="Label" position="1470,846" size="260,70" backgroundColor="nNavy" transparent="1" foregroundColor="aWhite" font="SemiBold;64" halign="right" valign="center" zPosition="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="1470,916" size="260,30" backgroundColor="nNavy" transparent="1" foregroundColor="nDim" font="MonoBold;18" halign="right" valign="center" zPosition="1">
+			<convert type="ClockToText">Format:%a %d %b</convert>
+			<convert type="TextCase">ToUpper</convert>
+		</widget>
+		<panel name="NovaWeather" />
+		<!-- telemetry line (tuner channels only; covered by the capsule gradient when no tuner is locked) -->
+		<eLabel position="440,1022" size="1290,1" backgroundColor="nChipLine" zPosition="1" />
+		<widget source="session.CurrentService" render="Label" position="440,1028" size="100,28" backgroundColor="nNavy" transparent="1" foregroundColor="nPeach" font="MonoBold;17" noWrap="1" valign="center" zPosition="1">
+			<convert type="ServiceOrbitalPosition" />
+		</widget>
+		<panel name="NovaTpText" />
+		<widget source="session.CurrentService" render="Label" position="1008,1028" size="236,28" backgroundColor="nNavy" transparent="1" foregroundColor="nDim" font="MonoBold;17" noWrap="1" valign="center" zPosition="1">
+			<convert type="PliExtraInfo">CryptoBar</convert>
+		</widget>
+		<eLabel position="1252,1032" size="1,20" backgroundColor="nChipLine" zPosition="1" />
+		<eLabel text="SNR" position="1264,1028" size="40,28" backgroundColor="nNavy" transparent="1" foregroundColor="nDim" font="MonoBold;15" valign="center" zPosition="1" />
+		<eLabel position="1308,1037" size="100,10" backgroundColor="nChip" cornerRadius="5" zPosition="1" />
+		<widget source="session.FrontendStatus" render="Progress" pixmap="nova/bar_snr.png" position="1308,1037" size="100,10" transparent="1" zPosition="2">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<widget source="session.FrontendStatus" render="Label" position="1412,1028" size="62,28" backgroundColor="nNavy" transparent="1" foregroundColor="aAccent" font="MonoBold;15" valign="center" zPosition="1">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel text="AGC" position="1486,1028" size="40,28" backgroundColor="nNavy" transparent="1" foregroundColor="nDim" font="MonoBold;15" valign="center" zPosition="1" />
+		<eLabel position="1530,1037" size="100,10" backgroundColor="nChip" cornerRadius="5" zPosition="1" />
+		<widget source="session.FrontendStatus" render="Progress" pixmap="nova/bar_agc.png" position="1530,1037" size="100,10" transparent="1" zPosition="2">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<widget source="session.FrontendStatus" render="Label" position="1634,1028" size="66,28" backgroundColor="nNavy" transparent="1" foregroundColor="nPeach" font="MonoBold;15" valign="center" zPosition="1">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<widget source="session.FrontendStatus" render="Pixmap" pixmap="nova/cover_tele.png" position="436,1018" size="1298,42" alphatest="off" zPosition="4">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
+		</widget>
+		<!-- tech chips floating above the capsule: active ones lit, the others faded -->
+		<widget source="session.CurrentService" render="FixedLabel" text="CRYPT" position="952,768" size="76,30" backgroundColor="nCoral" cornerRadius="15" foregroundColor="nInk" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">IsCrypted</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="HD" position="1036,768" size="56,30" backgroundColor="nCoral" cornerRadius="15" foregroundColor="nInk" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">IsHD</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.CurrentService" render="FixedLabel" text="4K" position="1036,768" size="56,30" backgroundColor="nCoral" cornerRadius="15" foregroundColor="nInk" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">Is4K</convert><convert type="ConditionalShowHide" /></widget>
+		<widget source="session.CurrentService" render="Label" position="1100,768" size="124,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" noWrap="1" valign="center" halign="center" zPosition="3"><convert type="PliExtraInfo">ResolutionString</convert></widget>
+		<widget source="session.CurrentService" render="Label" position="1232,768" size="84,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" noWrap="1" valign="center" halign="center" zPosition="3"><convert type="PliExtraInfo">VideoCodec</convert></widget>
+		<eLabel text="HDR" position="1324,768" size="62,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="HDR" position="1324,768" size="62,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">IsHDR</convert><convert type="ConditionalShowHide" /></widget>
+		<eLabel text="16:9" position="1394,768" size="64,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="16:9" position="1394,768" size="64,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">IsWidescreen</convert><convert type="ConditionalShowHide" /></widget>
+		<eLabel text="DOLBY" position="1466,768" size="80,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="DOLBY" position="1466,768" size="80,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">IsMultichannel</convert><convert type="ConditionalShowHide" /></widget>
+		<eLabel text="TXT" position="1554,768" size="58,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="TXT" position="1554,768" size="58,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">HasTelext</convert><convert type="ConditionalShowHide" /></widget>
+		<eLabel text="SUB" position="1620,768" size="62,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="SUB" position="1620,768" size="62,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">SubtitlesAvailable</convert><convert type="ConditionalShowHide" /></widget>
+		<eLabel text="HBBTV" position="1690,768" size="80,30" backgroundColor="nChipOff" cornerRadius="15" foregroundColor="nChipOffText" font="MonoBold;16" valign="center" halign="center" zPosition="2" />
+		<widget source="session.CurrentService" render="FixedLabel" text="HBBTV" position="1690,768" size="80,30" backgroundColor="nChip" borderWidth="1" borderColor="nChipLine" cornerRadius="15" foregroundColor="nLav" font="MonoBold;16" valign="center" halign="center" zPosition="3"><convert type="ServiceInfo">HasHBBTV</convert><convert type="ConditionalShowHide" /></widget>
+	</screen>
+</skin>

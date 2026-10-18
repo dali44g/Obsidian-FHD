@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Floating channel list (optional, Obsidian FHD Settings > Channel list style > Floating, flag
+     /etc/enigma2/obsidian_chlist_floating). Solid cards over live TV, same style as the Floating menu:
+     list card (header with the screen title and clock, rows with the Floating selection), a card for the selected
+     channel's programme (hidden in the bouquet view, where there is no programme) and a card with the colour keys.
+     The row content (programme line, progress bar, picons) follows the image's own channel list settings. -->
+<skin>
+	<!-- Header title and channel name: plain here; skin_sysinfo.xml redefines them with the Obsidian converters when they
+	     are installed (title shortened to the bouquet name, channel name shown above the programme). -->
+	<screen name="ChlistTitle">
+		<widget source="Title" render="Label" position="166,74" size="520,40" font="MonoBold;19" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+	</screen>
+	<screen name="ChlistChannelName" />
+	<!-- stream / transponder line: only with the Obsidian converters (shown only when the programme card is shown) -->
+	<screen name="ChlistTransponder" />
+	<screen name="ChannelSelection" position="fill" title="Channel Selection" backgroundColor="transparent" flags="wfNoBorder">
+		<!-- list card -->
+		<eLabel position="80,60" size="760,900" backgroundColor="aCard" cornerRadius="24" zPosition="-1" />
+		<ePixmap pixmap="icons/menu_header.png" position="112,73" size="40,40" alphatest="blend" zPosition="1" />
+		<panel name="ChlistTitle" />
+		<widget source="global.CurrentTime" render="Label" position="690,74" size="114,40" font="SemiBold;28" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" halign="right" valign="center" zPosition="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<eLabel position="116,126" size="688,1" backgroundColor="aLine" zPosition="1" />
+		<widget name="list" position="81,140" size="758,800" itemHeight="80" serviceItemHeight="80" transparent="1" selectionPixmap="window/sel_chlist_floating.png" foregroundColor="aText" foregroundColorSelected="aWhite" serviceNumberFont="MonoBold;24" serviceNameFont="SemiBold;28" serviceInfoFont="Regular;22" itemsDistances="10" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" progressbarHeight="5" progressBarWidth="110" colorEventProgressbarBorder="aLine" fieldMargins="15" nonplayableMargins="15" colorEventProgressbar="aLine2" colorEventProgressbarSelected="aAccent" colorEventProgressbarBorderSelected="aAccent" colorServiceDescription="aSlate" colorServiceDescriptionSelected="aVariant" progressbarBorderWidth="0" foregroundColorServiceNotAvail="aLine2" backgroundColorMarked="#002a2210" foregroundColorMarked="aAmber" colorServiceDescriptionFallback="aMuted" colorServiceDescriptionSelectedFallback="aVariant" colorFallbackItem="fallback" colorServiceSelectedFallback="aAccent" colorServiceRecorded="aRec" />
+
+		<!-- selected channel: programme card (only when the entry has a programme; hidden for bouquets) -->
+		<widget source="ServiceEvent" render="FixedLabel" position="860,60" size="640,382" backgroundColor="aCard" cornerRadius="24" zPosition="-1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="ServiceEvent" render="FixedLabel" text="NOW" position="896,80" size="80,30" font="MonoBold;17" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<panel name="ChlistChannelName" />
+		<widget source="ServiceEvent" render="Label" position="976,80" size="210,30" font="MonoBold;16" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1">
+			<convert type="EventName">Genre</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="896,116" size="568,48" font="SemiBold;32" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="896,170" size="90,30" font="MonoBold;20" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" zPosition="1">
+			<convert type="EventTime">StartTime</convert>
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="980,170" size="120,30" font="Mono;20" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="1">
+			<convert type="EventTime">EndTime</convert>
+			<convert type="ClockToText">Format:- %H:%M</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="1300,170" size="164,30" font="MonoBold;20" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" halign="right" valign="center" zPosition="1">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">InMinutes</convert>
+		</widget>
+		<widget source="ServiceEvent" render="FixedLabel" position="896,210" size="568,6" backgroundColor="aLine" cornerRadius="3" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="ServiceEvent" render="Progress" pixmap="window/progress.png" position="896,210" size="568,6" backgroundColor="aLine" transparent="1" cornerRadius="3" zPosition="2">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="ServiceEvent" render="Label" position="896,232" size="568,98" font="Regular;22" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="1">
+			<convert type="EventName">FullDescription</convert>
+		</widget>
+		<widget source="ServiceEvent" render="FixedLabel" position="896,362" size="568,1" backgroundColor="aLine" zPosition="1">
+			<convert type="EventName">Name</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<panel name="ChlistTransponder" />
+
+		<!-- colour keys (labels come from the image: All / Satellites / Providers / Bouquets ...) -->
+		<eLabel position="80,976" size="1420,60" backgroundColor="aCard" cornerRadius="30" zPosition="-1" />
+		<eLabel position="112,998" size="36,16" backgroundColor="aRed" cornerRadius="8" zPosition="1" />
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="160,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<widget objectTypes="key_red,Label,Button" name="key_red" position="160,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<eLabel position="462,998" size="36,16" backgroundColor="aGreen" cornerRadius="8" zPosition="1" />
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="510,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<widget objectTypes="key_green,Label,Button" name="key_green" position="510,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<eLabel position="812,998" size="36,16" backgroundColor="aAmber" cornerRadius="8" zPosition="1" />
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="860,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<widget objectTypes="key_yellow,Label,Button" name="key_yellow" position="860,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<eLabel position="1162,998" size="36,16" backgroundColor="aBlue" cornerRadius="8" zPosition="1" />
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1210,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+		<widget objectTypes="key_blue,Label,Button" name="key_blue" position="1210,976" size="290,60" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="1" />
+	</screen>
+	<!-- channel options (MENU in the channel list): titles translated by enigma2 here; uppercase (French / Arabic too) in skin_sysinfo.xml -->
+	<screen name="FloatingContextTitles">
+		<eLabel text="Channel" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<eLabel text="Options" position="656,122" size="568,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+	</screen>
+	<!-- channel options: title card on the left, options card on the right (rows: Choicelist parameters of skin.xml), colour keys from the image -->
+	<screen name="ChannelContextMenu" position="fill" flags="wfNoBorder" backgroundColor="transparent">
+		<eLabel position="80,100" size="520,832" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<ePixmap pixmap="icons/menu_header.png" position="116,122" size="40,40" alphatest="off" zPosition="2" />
+		<widget source="global.CurrentTime" render="Label" position="420,122" size="144,40" font="SemiBold;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" halign="right" valign="center" zPosition="2">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<eLabel position="116,180" size="448,1" backgroundColor="aLine" zPosition="2" />
+		<widget source="Title" render="Label" position="116,196" size="448,136" font="SemiBold;26" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<eLabel text="Options for the selected entry. A number or colour key next to an option opens it directly." position="116,344" size="448,160" font="Regular;24" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="top" zPosition="2" />
+		<eLabel position="620,100" size="640,832" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="24" zPosition="1" />
+		<eLabel position="656,180" size="568,1" backgroundColor="aLine" zPosition="2" />
+		<widget name="menu" position="641,196" size="598,702" selectionPixmap="window/sel_choice_floating.png" foregroundColor="aText" foregroundColorSelected="aWhite" backgroundColor="aCard" backgroundColorSelected="aCard" transparent="1" borderWidth="0" enableWrapAround="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" zPosition="2" />
+		<panel name="FloatingContextTitles" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Pixmap" pixmap="buttons/mark_red.png" position="108,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="164,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_red,Label,Button" name="key_red" position="164,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Pixmap" pixmap="buttons/mark_green.png" position="398,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="454,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_green,Label,Button" name="key_green" position="454,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Pixmap" pixmap="buttons/mark_yellow.png" position="688,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="744,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_yellow,Label,Button" name="key_yellow" position="744,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="buttons/mark_blue.png" position="978,971" size="53,38" alphatest="blend" zPosition="2">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1034,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget objectTypes="key_blue,Label,Button" name="key_blue" position="1034,964" size="230,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" zPosition="2" />
+	</screen>
+</skin>

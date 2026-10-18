@@ -62,6 +62,7 @@
 		<color name="aCard2" value="#00181c23" />
 		<color name="aRaised" value="#001c2027" />
 		<color name="aGlass" value="#140f131b" />
+		<color name="aInfoBg" value="#000c1017" />
 		<color name="aLine" value="#00262a32" />
 		<color name="aLine2" value="#003b494b" />
 		<color name="aAccent" value="#0000f0ff" />
@@ -77,6 +78,7 @@
 		<color name="aRec" value="#00ff5a5f" />
 		<color name="aRecBg" value="#003a0d10" />
 		<color name="aGreen" value="#0022c55e" />
+		<color name="aGreenBg" value="#000c2a18" />
 		<color name="aBlue" value="#003b82f6" />
 		<color name="aAmberBg" value="#00332500" />
 		<!-- Legacy names (mapped onto the palette) -->
@@ -180,6 +182,7 @@
 
 	<!-- Menu entry icons for OpenPLi (OpenATV loads mainmenu/<key>.png by itself) -->
 	<menuicons>
+		<menuicon key="obsidian_apps" image="mainmenu/obsidian_apps.png" />
 		<menuicon key="Inadyn_setup" image="mainmenu/Inadyn_setup.png" />
 		<menuicon key="SDswap" image="mainmenu/SDswap.png" />
 		<menuicon key="advanced_restore" image="mainmenu/advanced_restore.png" />
@@ -364,7 +367,13 @@
 	<include filename="skin_font_fb_dejavu.xml" conditional="not isfile('/usr/share/fonts/DejaVuSans.ttf')" />
 	<include filename="skin_templates.xml" />
 	<include filename="skin_menus.xml" />
+	<include filename="skin_setup.xml" />
+	<!-- Channel list: classic screens; skin_chlist_floating.xml replaces ChannelSelection when the user chooses Floating -->
+	<include filename="skin_chlist.xml" />
+	<include filename="skin_apps.xml" />
+	<include filename="skin_chlist_floating.xml" conditional="isfile('/etc/enigma2/obsidian_chlist_floating')" />
 	<include filename="skin_menu_floating.xml" conditional="isfile('/etc/enigma2/obsidian_menu_floating')" />
+	<include filename="skin_setup_floating.xml" conditional="isfile('/etc/enigma2/obsidian_menu_floating')" />
 	<include filename="skin_sysinfo.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.pyc')) and (isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.pyc'))" />
 	<include filename="skin_bitrate.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.pyc')) and isfile('/usr/lib/enigma2/python/Plugins/Extensions/BitrateViewer/bitratecalc.so') and not isfile('/etc/enigma2/obsidian_nobitrate')" />
 	<include filename="skin_plugins.xml" />
@@ -374,6 +383,10 @@
 	<include filename="skin_weather_ar.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and isfile('/etc/enigma2/settings') and 'language=ar' in open('/etc/enigma2/settings').read() and not isfile('/etc/enigma2/obsidian_noweather')" />
 	<include filename="skin_bitrate_weather.xml" conditional="(isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.pyc')) and isfile('/usr/lib/enigma2/python/Plugins/Extensions/BitrateViewer/bitratecalc.so') and not isfile('/etc/enigma2/obsidian_nobitrate') and (isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and not isfile('/etc/enigma2/obsidian_noweather')" />
 	<include filename="skin_rotor.xml" conditional="isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/RotorPosition.py')" />
+	<include filename="skin_infobar_glass.xml" conditional="isfile('/etc/enigma2/obsidian_infobar_glass')" />
+	<include filename="skin_infobar_nova.xml" conditional="isfile('/etc/enigma2/obsidian_infobar_nova') and (isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.py') or isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.pyc'))" />
+	<include filename="skin_infobar_nova_weather.xml" conditional="isfile('/etc/enigma2/obsidian_infobar_nova') and (isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.py') or isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.pyc')) and (isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.pyc') or isfile('/usr/lib/enigma2/python/Components/Converter/OAWeather.py')) and not isfile('/etc/enigma2/obsidian_noweather')" />
+	<include filename="skin_infobar_nova_sysinfo.xml" conditional="isfile('/etc/enigma2/obsidian_infobar_nova') and (isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.py') or isfile('/usr/lib/enigma2/python/Components/Renderer/ObsidianRing.pyc')) and (isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py') or isfile('/usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.pyc'))" />
 
 	<!-- Volume -->
 
@@ -445,7 +458,7 @@
 		<!-- ECM / stream telemetry card -->
 		<eLabel position="40,540" size="1840,216" backgroundColor="aGlass" borderWidth="1" borderColor="aLine" cornerRadius="10" zPosition="-1" />
 		<eLabel text="ECM / STREAM TELEMETRY" position="64,552" size="500,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;17" valign="center" zPosition="1" />
-		<widget source="session.CurrentService" render="Label" position="64,586" size="1300,32" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="MonoBold;22" noWrap="1" valign="center" zPosition="1">
+		<widget source="session.CurrentService" render="Label" position="64,589" size="1300,26" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="MonoBold;22" noWrap="1" valign="top" zPosition="1">
 			<convert type="CryptoInfo">VerboseInfo</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="64,622" size="1300,32" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="Mono;22" noWrap="1" valign="center" zPosition="1">
@@ -557,16 +570,9 @@
 
 	<!-- Channel,EPG,EventInfo -->
 
-	<screen name="ChannelSelection" position="fill" title="Channel Selection" flags="wfNoBorder">
-		<panel name="ChannelSelectionTemplate" />
-		<panel name="KeyMenuInfoTemplate" />
-	</screen>
 
 	<!-- Simple channelselection -->
 
-	<screen name="SimpleChannelSelection" position="fill" title="Channel Selection" flags="wfNoBorder">
-		<panel name="ChannelSelectionTemplate" />
-	</screen>
 
 	<!-- EPG Stuff -->
 
@@ -780,35 +786,6 @@
 
 	<!--Setup Configs -->
 
-	<screen name="Setup" title="Setup" position="fill" flags="wfNoBorder">
-		<panel name="PigTemplate" />
-		<panel name="SkinBadge" />
-		<panel name="VKeyIconPanel" />
-		<!--widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="75,615" zPosition="1" size="1,1" transparent="1" alphatest="on" /-->
-		<widget name="config" position="780,112" size="1110,888" itemHeight="48" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
-		<widget name="description" position="44,580" size="696,350" font="Regular;28" foregroundColor="aVariant" valign="top" backgroundColor="aCard" transparent="1" />
-		<!-- OpenATV: mandatory footnote ("* = restart required"); skipped on images without it -->
-		<widget name="footnote" conditional="footnote" position="44,944" size="696,56" font="Regular;22" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
-	</screen>
-	<!-- Obsidian FHD Settings (skin package plugin): Setup layout with an About card -->
-	<screen name="ObsidianFHDSettings" title="Obsidian FHD Settings" position="fill" flags="wfNoBorder">
-		<panel name="PigTemplate" />
-		<panel name="SkinBadge" />
-		<panel name="VKeyIconPanel" />
-		<!--widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="75,615" zPosition="1" size="1,1" transparent="1" alphatest="on" /-->
-		<widget name="config" position="780,112" size="1110,888" itemHeight="48" font="Regular;28" secondfont="Regular;26" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
-		<widget name="description" position="44,580" size="696,170" font="Regular;28" foregroundColor="aVariant" valign="top" backgroundColor="aCard" transparent="1" />
-		<!-- OpenATV: mandatory footnote ("* = restart required"); skipped on images without it -->
-		<widget name="footnote" conditional="footnote" position="44,964" size="696,34" font="Regular;20" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" />
-		<eLabel position="44,770" size="696,1" backgroundColor="aLine" zPosition="1" />
-		<eLabel text="ABOUT" position="44,786" size="300,30" font="MonoBold;17" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
-		<widget source="about_update" render="Label" conditional="about_update" position="344,786" size="396,30" font="MonoBold;17" foregroundColor="aAmber" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
-		<widget source="about_title" render="Label" position="44,818" size="696,46" font="SemiBold;34" foregroundColor="aWhite" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
-		<widget source="about_text" render="Label" position="44,866" size="696,32" font="Regular;24" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
-		<widget source="about_image" render="Label" position="44,900" size="696,30" font="MonoBold;18" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
-		<widget source="about_link" render="Label" position="44,930" size="440,30" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" />
-		<widget source="about_licence" render="Label" position="484,930" size="256,30" font="MonoBold;16" foregroundColor="aSlate" backgroundColor="aCard" transparent="1" noWrap="1" valign="center" halign="right" />
-	</screen>
 
 	<!-- Scan setup -->
 
@@ -886,7 +863,8 @@
 
 	<!-- ChoiceBox -->
 
-	<screen name="ChoiceBox" title="" position="fill" flags="wfNoBorder">
+	<!-- classic layout; ChoiceBox itself is in skin_setup.xml so the Floating style can replace it -->
+	<screen name="ChoiceBoxClassic">
 		<panel name="PigTemplate" />
 		<panel name="TextTemplate" />
 		<widget name="list" position="780,100" size="1110,912" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
@@ -906,13 +884,13 @@
 	<!-- SelectImage -->
 
 	<screen name="SelectImage" title="" position="fill" flags="wfNoBorder">
-		<panel name="ChoiceBox" />
+		<panel name="ChoiceBoxClassic" />
 	</screen>
 
 	<!-- SortbyChoiceBox -->
 
 	<screen name="SortbyChoiceBox" title="" position="fill" flags="wfNoBorder">
-		<panel name="ChoiceBox" />
+		<panel name="ChoiceBoxClassic" />
 		<ePixmap pixmap="icons/default.png" position="1838,108" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="icons/newtop.png" position="1838,146" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="icons/az.png" position="1838,184" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
@@ -926,7 +904,7 @@
 	<!-- MovieoffChoiceBox -->
 
 	<screen name="MovieoffChoiceBox" title="Sorting" position="fill" flags="wfNoBorder">
-		<panel name="ChoiceBox" />
+		<panel name="ChoiceBoxClassic" />
 		<ePixmap pixmap="icons/ask.png" position="1838,108" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="icons/movielist.png" position="1838,146" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="icons/quit.png" position="1838,184" zPosition="2" size="52,30" transparent="1" alphatest="blend" />
@@ -1229,10 +1207,6 @@
 
 	<!-- ChannelContextMenu -->
 
-	<screen name="ChannelContextMenu" position="fill" flags="wfNoBorder">
-		<panel name="PigTemplate" />
-		<widget name="menu" position="780,100" size="1110,912" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
-	</screen>
 
 	<!-- Minute input -->
 
@@ -2263,47 +2237,57 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth) // 2, orgpos.y() + 
 
 	<!-- Satfinder -->
 
+	<!-- Signal finder: signal card (SNR / AGC bars) on top, measurements card on the left, settings card on the right.
+	     Same widget names as before; key bar from BasicTemplate. -->
 	<screen name="Satfinder" title="Satfinder" position="fill" flags="wfNoBorder">
-	<panel name="BasicTemplate" />
-
-	<widget source="Frontend" render="Progress" pixmap="infobar/bar_big.png" position="30,150" size="1860,75" borderWidth="1" borderColor="un808888">
-		<convert type="FrontendInfo">SNR</convert>
-	</widget>
-	<eLabel text="SNR:" position="37,150" size="150,75" valign="center" backgroundColor="darkgrey" borderWidth="1" transparent="1" font="Regular;52" />
-	<widget source="Frontend" render="Label" position="1552,150" size="330,75" halign="right" valign="center" borderWidth="1" transparent="1" font="Regular;52">
-		<convert type="FrontendInfo">SNR</convert>
-	</widget>
-
-	<widget source="Frontend" render="Progress" pixmap="infobar/bar_big.png" position="30,240" size="1860,75" borderWidth="1" borderColor="un808888">
-		<convert type="FrontendInfo">AGC</convert>
-	</widget>
-	<eLabel text="AGC:" position="37,240" size="150,75" valign="center" backgroundColor="darkgrey" borderWidth="1" transparent="1" font="Regular;52" />
-	<widget source="Frontend" render="Label" position="1552,240" size="330,75" halign="right" valign="center" borderWidth="1" transparent="1" font="Regular;52">
-		<convert type="FrontendInfo">AGC</convert>
-	</widget>
-
-	<eLabel text="SNR:" position="30,360" size="180,30" backgroundColor="darkgrey" transparent="1" zPosition="5" font="Regular;27" />
-	<widget source="Frontend" render="Label" position="30,390" size="450,112" font="Regular;108" halign="left" backgroundColor="darkgrey" transparent="1">
-		<convert type="FrontendInfo">SNRdB</convert>
-	</widget>
-
-	<eLabel text="AGC:" position="30,540" size="180,30" backgroundColor="darkgrey" transparent="1" zPosition="5" font="Regular;27" />
-	<widget source="Frontend" render="Label" position="30,570" size="450,112" backgroundColor="darkgrey" transparent="1" font="Regular;108" halign="left">
-		<convert type="FrontendInfo">AGC</convert>
-	</widget>
-
-	<eLabel text="BER:" position="30,720" size="180,30" backgroundColor="darkgrey" transparent="1" zPosition="5" font="Regular;27" />
-	<widget source="Frontend" render="Label" position="30,750" size="450,112" font="Regular;108" halign="left" backgroundColor="darkgrey" transparent="1">
-		<convert type="FrontendInfo">BER</convert>
-	</widget>
-
-	<widget text="LOCK" source="Frontend" render="FixedLabel" position="30,900" size="465,135" font="Regular;108" halign="left" foregroundColor="green" backgroundColor="darkgrey" transparent="1">
-		<convert type="FrontendInfo">LOCK</convert>
-		<convert type="ConditionalShowHide" />
-	</widget>
-
-	<widget name="config" position="450,360" size="1440,643" itemHeight="49" font="Regular;40" transparent="1" enableWrapAround="1" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" borderWidth="0" />
-	<widget name="introduction" position="0,0" size="0,0" zPosition="0" />
+		<panel name="BasicTemplate" />
+		<!-- signal card -->
+		<eLabel position="30,104" size="1860,226" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-2" />
+		<eLabel text="SIGNAL" position="54,114" size="400,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;18" valign="center" />
+		<eLabel position="54,150" size="1812,72" backgroundColor="aCard2" cornerRadius="8" zPosition="-1" />
+		<widget source="Frontend" render="Progress" pixmap="infobar/bar_snr_big.png" position="54,150" size="1812,72" transparent="1" cornerRadius="8">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel text="SNR" position="78,150" size="200,72" backgroundColor="aCard2" foregroundColor="aWhite" transparent="1" font="SemiBold;40" valign="center" zPosition="2" />
+		<widget source="Frontend" render="Label" position="1500,150" size="342,72" backgroundColor="aCard2" foregroundColor="aWhite" transparent="1" font="MonoBold;44" halign="right" valign="center" zPosition="2">
+			<convert type="FrontendInfo">SNR</convert>
+		</widget>
+		<eLabel position="54,236" size="1812,72" backgroundColor="aCard2" cornerRadius="8" zPosition="-1" />
+		<widget source="Frontend" render="Progress" pixmap="infobar/bar_agc_big.png" position="54,236" size="1812,72" transparent="1" cornerRadius="8">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<eLabel text="AGC" position="78,236" size="200,72" backgroundColor="aCard2" foregroundColor="aWhite" transparent="1" font="SemiBold;40" valign="center" zPosition="2" />
+		<widget source="Frontend" render="Label" position="1500,236" size="342,72" backgroundColor="aCard2" foregroundColor="aWhite" transparent="1" font="MonoBold;44" halign="right" valign="center" zPosition="2">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<!-- measurements card -->
+		<eLabel position="30,346" size="720,660" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-2" />
+		<eLabel text="MEASUREMENTS" position="54,356" size="400,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;18" valign="center" />
+		<eLabel text="SNR" position="54,400" size="300,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;20" valign="center" />
+		<widget source="Frontend" render="Label" position="54,430" size="660,100" backgroundColor="aCard" foregroundColor="aAccent" transparent="1" font="SemiBold;88" halign="left" valign="center">
+			<convert type="FrontendInfo">SNRdB</convert>
+		</widget>
+		<eLabel position="54,546" size="672,1" backgroundColor="aLine" />
+		<eLabel text="AGC" position="54,560" size="300,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;20" valign="center" />
+		<widget source="Frontend" render="Label" position="54,590" size="660,100" backgroundColor="aCard" foregroundColor="aAmber" transparent="1" font="SemiBold;88" halign="left" valign="center">
+			<convert type="FrontendInfo">AGC</convert>
+		</widget>
+		<eLabel position="54,706" size="672,1" backgroundColor="aLine" />
+		<eLabel text="BER" position="54,720" size="300,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;20" valign="center" />
+		<widget source="Frontend" render="Label" position="54,750" size="660,100" backgroundColor="aCard" foregroundColor="aText" transparent="1" font="SemiBold;88" halign="left" valign="center">
+			<convert type="FrontendInfo">BER</convert>
+		</widget>
+		<!-- lock state: green badge when locked, dim badge otherwise -->
+		<eLabel text="NO LOCK" position="54,890" size="672,92" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="12" foregroundColor="aMuted" font="MonoBold;44" halign="center" valign="center" />
+		<widget text="LOCK" source="Frontend" render="FixedLabel" position="54,890" size="672,92" backgroundColor="aGreenBg" borderWidth="1" borderColor="aGreen" cornerRadius="12" foregroundColor="aGreen" font="MonoBold;44" halign="center" valign="center" zPosition="2">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<!-- settings card -->
+		<eLabel position="770,346" size="1120,660" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-2" />
+		<eLabel text="TUNING" position="794,356" size="400,30" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;18" valign="center" />
+		<widget name="config" position="780,396" size="1100,600" itemHeight="52" font="Regular;28" secondfont="Regular;26" backgroundColor="aCard" transparent="1" enableWrapAround="1" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
+		<widget name="introduction" position="0,0" size="0,0" zPosition="0" />
 	</screen>
 
 	<screen name="SatNimSelection" title="Select Tuner" position="fill" flags="wfNoBorder">

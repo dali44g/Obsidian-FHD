@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <skin>
+	<!-- infobar chips, "Halo" style: active chips raised (lighter than the bar), off chips faded. skin_infobar_glass.xml
+	     redefines both with the earlier values; it is included later, so its definitions win when it is loaded. -->
+	<colors>
+		<color name="aChipOn" value="#001a1f28" />
+		<color name="aChipOff" value="#0010141c" />
+	</colors>
 	<!-- Templates - "Obsidian Telemetry" design system (Stitch prototype) -->
 	<!-- Fonts: Regular/SemiBold/Bold = Inter (human text), Mono/MonoBold = JetBrains Mono (telemetry). -->
 
@@ -97,6 +103,11 @@
 		</widget>
 		<widget source="session.FrontendInfo" render="Label" position="1090,43" size="190,26" backgroundColor="aCard2" foregroundColor="aSlate" transparent="1" zPosition="1" font="MonoBold;22" noWrap="1" valign="center">
 			<convert type="FrontendInfo">STRING</convert>
+		</widget>
+		<!-- no tuner locked (IPTV, no signal): cover the tuner letters so they do not run into a long title -->
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1078,18" size="214,54" backgroundColor="aSurface" zPosition="1">
+			<convert type="FrontendInfo">LOCK</convert>
+			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
 		<widget source="session.FrontendStatus" render="FixedLabel" position="1300,18" size="300,54" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="4" zPosition="0">
 			<convert type="FrontendInfo">LOCK</convert>
@@ -275,51 +286,51 @@
 
 	<!-- 4-colour action strip: pill graphic (dot + RED tag) + key text. -->
 	<screen name="ButtonGraphicRed">
-		<widget objectTypes="key_red,StaticText" source="key_red" render="Pixmap" pixmap="buttons/pill_red.png" position="200,1028" size="400,44" zPosition="1" alphatest="blend">
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Pixmap" pixmap="buttons/pill_red.png" position="230,1028" size="300,44" zPosition="1" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<ePixmap objectTypes="key_red,Button,Label" pixmap="buttons/pill_red.png" position="200,1028" size="400,44" zPosition="1" alphatest="blend" />
+		<ePixmap objectTypes="key_red,Button,Label" pixmap="buttons/pill_red.png" position="230,1028" size="300,44" zPosition="1" alphatest="blend" />
 	</screen>
 
 	<screen name="ButtonGraphicGreen">
-		<widget objectTypes="key_green,StaticText" source="key_green" render="Pixmap" pixmap="buttons/pill_green.png" position="630,1028" size="400,44" zPosition="1" alphatest="blend">
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Pixmap" pixmap="buttons/pill_green.png" position="530,1028" size="300,44" zPosition="1" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<ePixmap objectTypes="key_green,Button,Label" pixmap="buttons/pill_green.png" position="630,1028" size="400,44" zPosition="1" alphatest="blend" />
+		<ePixmap objectTypes="key_green,Button,Label" pixmap="buttons/pill_green.png" position="530,1028" size="300,44" zPosition="1" alphatest="blend" />
 	</screen>
 
 	<screen name="ButtonGraphicYellow">
-		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Pixmap" pixmap="buttons/pill_yellow.png" position="1060,1028" size="400,44" zPosition="1" alphatest="blend">
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Pixmap" pixmap="buttons/pill_yellow.png" position="830,1028" size="300,44" zPosition="1" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<ePixmap objectTypes="key_yellow,Button,Label" pixmap="buttons/pill_yellow.png" position="1060,1028" size="400,44" zPosition="1" alphatest="blend" />
+		<ePixmap objectTypes="key_yellow,Button,Label" pixmap="buttons/pill_yellow.png" position="830,1028" size="300,44" zPosition="1" alphatest="blend" />
 	</screen>
 
 	<screen name="ButtonGraphicBlue">
-		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="buttons/pill_blue.png" position="1490,1028" size="400,44" zPosition="1" alphatest="blend">
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Pixmap" pixmap="buttons/pill_blue.png" position="1130,1028" size="300,44" zPosition="1" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<ePixmap objectTypes="key_blue,Button,Label" pixmap="buttons/pill_blue.png" position="1490,1028" size="400,44" zPosition="1" alphatest="blend" />
+		<ePixmap objectTypes="key_blue,Button,Label" pixmap="buttons/pill_blue.png" position="1130,1028" size="300,44" zPosition="1" alphatest="blend" />
 	</screen>
 
 	<screen name="ButtonTextRed">
-		<widget objectTypes="key_red,Label,Button" name="key_red" position="300,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
-		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="300,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_red,Label,Button" name="key_red" position="280,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_red,StaticText" source="key_red" render="Label" position="280,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
 	</screen>
 
 	<screen name="ButtonTextGreen">
-		<widget objectTypes="key_green,Label,Button" name="key_green" position="730,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
-		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="730,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_green,Label,Button" name="key_green" position="580,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_green,StaticText" source="key_green" render="Label" position="580,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
 	</screen>
 
 	<screen name="ButtonTextYellow">
-		<widget objectTypes="key_yellow,Label,Button" name="key_yellow" position="1180,1030" size="270,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
-		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="1180,1030" size="270,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_yellow,Label,Button" name="key_yellow" position="880,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_yellow,StaticText" source="key_yellow" render="Label" position="880,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
 	</screen>
 
 	<screen name="ButtonTextBlue">
-		<widget objectTypes="key_blue,Label,Button" name="key_blue" position="1590,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
-		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1590,1030" size="290,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;24" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_blue,Label,Button" name="key_blue" position="1180,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
+		<widget objectTypes="key_blue,StaticText" source="key_blue" render="Label" position="1180,1030" size="240,40" backgroundColor="aCard" zPosition="2" transparent="1" font="Regular;26" noWrap="1" valign="center" halign="left" />
 	</screen>
 
 	<!-- Individual Button Templates -->
@@ -424,13 +435,13 @@
 	</screen>
 
 	<screen name="CancelTemplate">
-		<ePixmap pixmap="buttons/pill_red.png" position="200,1028" size="400,44" alphatest="blend" />
-		<widget name="canceltext" position="300,1030" zPosition="2" size="290,40" font="Regular;24" valign="center" halign="left" backgroundColor="aCard" transparent="1" />
+		<ePixmap pixmap="buttons/pill_red.png" position="230,1028" size="300,44" alphatest="blend" />
+		<widget name="canceltext" position="280,1030" zPosition="2" size="240,40" font="Regular;26" valign="center" halign="left" backgroundColor="aCard" transparent="1" />
 	</screen>
 
 	<screen name="OKTemplate">
-		<ePixmap pixmap="buttons/pill_green.png" position="630,1028" size="400,44" alphatest="blend" />
-		<widget name="oktext" position="730,1030" zPosition="2" size="290,40" font="Regular;24" valign="center" halign="left" backgroundColor="aCard" transparent="1" />
+		<ePixmap pixmap="buttons/pill_green.png" position="530,1028" size="300,44" alphatest="blend" />
+		<widget name="oktext" position="580,1030" zPosition="2" size="240,40" font="Regular;26" valign="center" halign="left" backgroundColor="aCard" transparent="1" />
 	</screen>
 
 	<screen name="CancelOKTemplate">
@@ -472,6 +483,18 @@
 
 <!-- Badge helper: conditional technical badge (design component #5) -->
 
+	<!-- Infobar backgrounds, "Halo" style: solid bars with a soft teal light on the top edge. skin_infobar_glass.xml
+	     redefines these panels with the earlier see-through "Glass" panel when /etc/enigma2/obsidian_infobar_glass exists. -->
+	<screen name="InfoBarPanelBg">
+		<eLabel position="40,770" size="1840,280" backgroundColor="aInfoBg" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-2" />
+		<!-- light from above and two faint diagonal slashes: solid image (no transparency over video), inside the rounded corners -->
+		<ePixmap pixmap="icons/infobar_light.png" position="54,771" size="1812,277" alphatest="off" zPosition="-1" />
+	</screen>
+	<!-- covers the signal bars when no tuner is locked (IPTV, no signal): same colour as the panel -->
+	<screen name="InfoBarNoLockCover">
+		<widget source="session.FrontendStatus" render="FixedLabel" position="1480,906" size="210,84" backgroundColor="aInfoBg" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
+	</screen>
+
 	<!-- Infobar: telemetry HUD (top) + glass panel (bottom) -->
 	<screen name="InfoBarTemplate">
 		<!-- top-left: recording state -->
@@ -483,7 +506,8 @@
 		<panel name="ClockCard" />
 
 		<!-- bottom glass panel -->
-		<eLabel position="40,770" size="1840,280" backgroundColor="aGlass" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
+		<!-- bottom panel background: Halo (here) or Glass (skin_infobar_glass.xml, Obsidian Apps > Halo infobar off) -->
+		<panel name="InfoBarPanelBg" />
 		<!-- left column: picon tile on top, channel number below it -->
 		<eLabel position="60,790" size="206,138" backgroundColor="aCard2" borderWidth="1" borderColor="aLine" cornerRadius="8" zPosition="1" />
 		<widget source="session.CurrentService" render="Picon" position="66,802" size="194,114" alphatest="blend" scale="1" backgroundColor="aCard2" transparent="1" zPosition="2">
@@ -549,7 +573,7 @@
 		</widget>
 		<!-- ECM / crypt line -->
 		<eLabel position="290,998" size="1090,1" backgroundColor="aLine" zPosition="1" />
-		<widget source="session.CurrentService" render="Label" position="290,1006" size="1090,32" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAmber" font="Mono;20" noWrap="1" valign="center" halign="left">
+		<widget source="session.CurrentService" render="Label" position="290,1009" size="1090,26" backgroundColor="aCard" transparent="1" zPosition="1" foregroundColor="aAmber" font="Mono;20" noWrap="1" valign="top" halign="left">
 			<convert type="CryptoInfo">VerboseInfo</convert>
 		</widget>
 
@@ -559,44 +583,44 @@
 			<convert type="ServiceInfo">Is4K</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="HD" position="1424,792" size="112,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="FixedLabel" text="HD" position="1424,792" size="112,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="1544,792" size="150,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="Label" position="1544,792" size="150,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="PliExtraInfo">ResolutionString</convert>
 		</widget>
 		<widget source="session.CurrentService" render="FixedLabel" text="HDR" position="1702,792" size="70,30" backgroundColor="aAmberBg" borderWidth="1" borderColor="aAmber" cornerRadius="4" foregroundColor="aAmber" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">IsHDR</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="1780,792" size="76,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aAccent" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="Label" noWrap="1" position="1780,792" size="76,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aAccent" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="PliExtraInfo">VideoCodec</convert>
 		</widget>
 		<!-- dim placeholders, covered by the solid badge when the feature is active -->
-		<eLabel text="DOLBY" position="1424,830" size="100,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<eLabel text="16:9" position="1532,830" size="70,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<eLabel text="TXT" position="1610,830" size="60,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<eLabel text="SUB" position="1678,830" size="60,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<eLabel text="HBBTV" position="1746,830" size="110,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<eLabel text="CRYPT" position="1424,868" size="100,30" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
-		<widget source="session.CurrentService" render="FixedLabel" text="DOLBY" position="1424,830" size="100,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<eLabel text="DOLBY" position="1424,830" size="100,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<eLabel text="16:9" position="1532,830" size="70,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<eLabel text="TXT" position="1610,830" size="60,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<eLabel text="SUB" position="1678,830" size="60,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<eLabel text="HBBTV" position="1746,830" size="110,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<eLabel text="CRYPT" position="1424,868" size="100,30" backgroundColor="aChipOff" borderWidth="1" borderColor="aLine" cornerRadius="4" foregroundColor="aLine2" font="MonoBold;18" valign="center" halign="center" zPosition="0" />
+		<widget source="session.CurrentService" render="FixedLabel" text="DOLBY" position="1424,830" size="100,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="16:9" position="1532,830" size="70,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="FixedLabel" text="16:9" position="1532,830" size="70,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="TXT" position="1610,830" size="60,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="FixedLabel" text="TXT" position="1610,830" size="60,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="SUB" position="1678,830" size="60,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="FixedLabel" text="SUB" position="1678,830" size="60,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">SubtitlesAvailable</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" text="HBBTV" position="1746,830" size="110,30" backgroundColor="aBg" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
+		<widget source="session.CurrentService" render="FixedLabel" text="HBBTV" position="1746,830" size="110,30" backgroundColor="aChipOn" borderWidth="1" borderColor="aLine2" cornerRadius="4" foregroundColor="aText" font="MonoBold;18" valign="center" halign="center" zPosition="1">
 			<convert type="ServiceInfo">HasHBBTV</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -627,7 +651,7 @@
 		<widget source="session.FrontendStatus" render="Progress" pixmap="infobar/seg_agc.png" position="1424,988" size="260,10" transparent="1" zPosition="2">
 			<convert type="FrontendInfo">AGC</convert>
 		</widget>
-		<widget source="session.FrontendStatus" render="FixedLabel" position="1480,906" size="210,84" backgroundColor="aGlass" zPosition="3"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide">Invert</convert></widget>
+		<panel name="InfoBarNoLockCover" />
 		<!-- right block: tuners + video size -->
 		<widget source="session.FrontendStatus" render="FixedLabel" text="TUNERS" position="1700,910" size="156,26" backgroundColor="aCard" foregroundColor="aMuted" transparent="1" font="MonoBold;16" valign="center" halign="right" zPosition="1"><convert type="FrontendInfo">LOCK</convert><convert type="ConditionalShowHide" /></widget>
 		<widget source="session.FrontendInfo" render="Label" position="1700,936" size="156,30" backgroundColor="aCard" foregroundColor="aSlate" transparent="1" font="MonoBold;22" noWrap="1" valign="center" halign="right" zPosition="1">
@@ -836,7 +860,7 @@
 
 	<!-- Skin name + version chip (the only place the version is written) -->
 	<screen name="SkinBadge">
-		<eLabel text="OBSIDIAN FHD  v1.4.1" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
+		<eLabel text="OBSIDIAN FHD  v1.5.0" position="96,12" size="560,22" font="Mono;16" foregroundColor="aSlate" backgroundColor="aSurface" transparent="1" valign="center" halign="right" zPosition="1" />
 	</screen>
 	<!-- Weather chip in the infobar. Empty here; skin_weather.xml (loaded only when OAWeather is installed) fills it. -->
 	<screen name="WeatherBadge" />

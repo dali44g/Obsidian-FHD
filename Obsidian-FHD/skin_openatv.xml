@@ -134,12 +134,12 @@
 		<widget name="description" position="130,740" size="1660,146" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" zPosition="1" />
 		<widget name="footnote" conditional="footnote" position="130,886" size="1660,1" font="Regular;20" backgroundColor="aCard" transparent="1" zPosition="1" />
 		<!-- keys, kept inside the blue frame -->
-		<widget source="key_red" render="Pixmap" pixmap="buttons/pill_red.png" position="100,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
-		<widget source="key_red" render="Label" position="200,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
-		<widget source="key_green" render="Pixmap" pixmap="buttons/pill_green.png" position="520,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
-		<widget source="key_green" render="Label" position="620,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
-		<widget source="key_yellow" render="Pixmap" pixmap="buttons/pill_yellow.png" position="940,930" size="400,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
-		<widget source="key_yellow" render="Label" position="1040,932" size="290,40" font="Regular;24" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_red" render="Pixmap" pixmap="buttons/pill_red.png" position="100,930" size="300,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_red" render="Label" position="150,932" size="240,40" font="Regular;26" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_green" render="Pixmap" pixmap="buttons/pill_green.png" position="420,930" size="300,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_green" render="Label" position="470,932" size="240,40" font="Regular;26" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
+		<widget source="key_yellow" render="Pixmap" pixmap="buttons/pill_yellow.png" position="740,930" size="300,44" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
+		<widget source="key_yellow" render="Label" position="790,932" size="240,40" font="Regular;26" foregroundColor="aText" backgroundColor="aBg" transparent="1" noWrap="1" valign="center" zPosition="2" />
 		<widget source="key_menu" conditional="key_menu" render="Pixmap" pixmap="buttons/key_menu.png" position="1700,933" size="52,38" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
 		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" position="1760,933" size="52,38" alphatest="blend" zPosition="1"><convert type="ConditionalShowHide" /></widget>
 	</screen>
@@ -384,5 +384,47 @@
 		<widget name="quickselect" position="46,118" size="1827,784" font="MonoBold;150" halign="center" transparent="1" valign="center" zPosition="+1" foregroundColor="aAccent" backgroundColor="aCard" />
 		<eLabel position="30,928" size="1860,82" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="14" zPosition="-1" />
 		<widget name="description" position="54,936" size="1812,66" font="Regular;26" valign="center" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" />
+	</screen>
+	<!-- Install extensions from /tmp (Screens/Opkg.py IpkgInstaller): package list on the right, hint card on the left -->
+	<screen name="IpkgInstaller" title="Install extensions" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<widget name="list" position="780,112" size="1110,888" itemCornerRadiusSelected="12" foregroundColorSelected="aAccent" backgroundColor="aCard" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
+		<eLabel text="INSTALL PACKAGES" position="44,580" size="696,30" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget source="introduction" render="Label" position="44,618" size="696,40" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" />
+		<eLabel text="Tick the packages with OK, then press GREEN to install them. BLUE inverts the selection." position="44,668" size="696,100" font="Regular;24" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="top" />
+	</screen>
+	<!-- MultiBoot Manager (OpenATV Screens/MultiBootManager): slot list, and the Chkroot / Kexec first-start screens.
+	     Same widget names as the image's built-in 720p skins. Key bar: colour keys from ButtonTemplate, HELP / INFO / TEXT keycaps on the left. -->
+	<screen name="MultiBootKeycaps">
+		<widget source="key_help" conditional="key_help" render="Pixmap" pixmap="buttons/key_help.png" alphatest="blend" position="30,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_text" conditional="key_text" render="Pixmap" pixmap="buttons/key_text.png" alphatest="blend" position="82,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_info" conditional="key_info" render="Pixmap" pixmap="buttons/key_info.png" alphatest="blend" position="135,1031" size="52,38">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="MultiBootManager" title="MultiBoot Manager" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="MultiBootKeycaps" />
+		<widget name="slotlist" position="780,112" size="1110,888" itemHeight="54" font="Regular;28" itemCornerRadiusSelected="12" foregroundColorSelected="aAccent" backgroundColor="aCard" transparent="1" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" />
+		<eLabel text="MULTIBOOT" position="44,580" size="696,30" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<widget name="description" position="44,620" size="696,380" font="Regular;26" foregroundColor="aVariant" backgroundColor="aCard" transparent="1" valign="top" />
+	</screen>
+	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="MultiBootKeycaps" />
+		<eLabel text="MULTIBOOT SETUP" position="44,580" size="696,30" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<eLabel text="Read the text on the right before you press a colour key: the receiver restarts after the MultiBoot setup." position="44,620" size="696,160" font="Regular;26" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="top" />
+		<widget name="description" position="808,136" size="1054,850" font="Regular;30" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="top" />
+	</screen>
+	<screen name="KexecInit" title="Kexec MultiBoot Manager" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<panel name="MultiBootKeycaps" />
+		<eLabel text="MULTIBOOT SETUP" position="44,580" size="696,30" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" />
+		<eLabel text="Read the text on the right before you press a colour key: the receiver restarts after the MultiBoot setup." position="44,620" size="696,160" font="Regular;26" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="top" />
+		<widget name="description" position="808,136" size="1054,850" font="Regular;30" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="top" />
 	</screen>
 </skin>

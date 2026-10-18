@@ -235,8 +235,11 @@ GlowDot "icons/dot_red.png" 20 $C.rec 10
 # Dark glass pill, 1px accent border, glowing dot, mono "RED" tag. The key text
 # itself is drawn by the skin next to the tag.
 foreach ($k in @("red", "green", "yellow", "blue")) {
-	$cv = New-Canvas 400 44
+	# Key marker: a short coloured pill at the left of a 300 x 44 slot, the key text follows it (no box, no key name).
+	$cv = New-Canvas 300 44
 	$g = $cv[1]
+	$g.FillPath((Brush $C[$k]), (RoundRect 2 14 36 16 8))
+	Save-Canvas $cv "buttons/pill_$k.png"; continue
 	if ($PillStyle -eq "dot") {  # dot style: no box, a coloured dot just before the key text
 		$g.FillEllipse((Brush $C[$k]), 74, 15, 14, 14)
 		Save-Canvas $cv "buttons/pill_$k.png"; continue
@@ -249,12 +252,19 @@ foreach ($k in @("red", "green", "yellow", "blue")) {
 	Save-Canvas $cv "buttons/pill_$k.png"
 }
 
+# Colour key markers the size of a key chip (53 x 38): the footer's short pill, for hint rows that mix keys and colours.
+foreach ($k in @("red", "green", "yellow", "blue")) {
+	$cv = New-Canvas 53 38
+	$cv[1].FillPath((Brush $C[$k]), (RoundRect 2 11 36 16 8))
+	Save-Canvas $cv "buttons/mark_$k.png"
+}
+
 # ---- Remote key chips (MENU, INFO, OK ... ) 53x38 ----
 $keys = [ordered]@{
 	"key_0" = "0"; "key_1" = "1"; "key_2" = "2"; "key_3" = "3"; "key_4" = "4"; "key_5" = "5"; "key_6" = "6"; "key_7" = "7"; "key_8" = "8"; "key_9" = "9"
 	"key_audio" = "AUD"; "key_channel" = "CH"; "key_exit" = "EXIT"; "key_f1" = "F1"; "key_f2" = "F2"; "key_f3" = "F3"; "key_help" = "HELP"
 	"key_info" = "INFO"; "key_left" = "<"; "key_menu" = "MENU"; "key_next" = ">>"; "key_ok" = "OK"; "key_prev" = "<<"; "key_prevnext" = "<>"
-	"key_radio" = "RAD"; "key_right" = ">"; "key_text" = "TXT"; "key_tv" = "TV"; "key_video" = "PVR"
+	"key_radio" = "RAD"; "key_right" = ">"; "key_text" = "TXT"; "key_tv" = "TV"; "key_video" = "PVR"; "key_updown" = "UP/DN"
 }
 foreach ($k in $keys.Keys) {
 	$cv = New-Canvas 53 38

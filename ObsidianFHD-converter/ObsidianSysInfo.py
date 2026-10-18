@@ -225,6 +225,23 @@ def shortNumbers(text):
 	return re.sub(r"(?<!\S)\d{6,}(?!\S)", short, text)
 
 
+def eventServiceName(source):
+	# Name of the channel selected in the channel list (ServiceEvent source), only when it has a programme: bouquets
+	# and channels without EPG give "", so nothing shows in the bouquet view.
+	try:
+		if not getattr(source, "event", None):
+			return ""
+		ref = source.service if hasattr(source, "service") else source.getCurrentService()
+		from enigma import eServiceCenter
+		info = ref and eServiceCenter.getInstance().info(ref)
+		name = info and info.getName(ref) or ""
+		for marker in ("\xc2\x86", "\xc2\x87", "\x86", "\x87"):
+			name = name.replace(marker, "")
+		return name
+	except Exception:
+		return ""
+
+
 def versionTuple(text):
 	try:
 		parts = [int(x) for x in text.lstrip("v").split(".")]
@@ -332,6 +349,10 @@ class Disks(object):
 # Dashboard labels in French and Arabic (English is the key). Escaped so the source stays ASCII.
 TRANSLATIONS = {
 	"MAIN MENU": (u"MENU PRINCIPAL", u"\u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629"),
+	"HELP": (u"AIDE", u"\u0645\u0633\u0627\u0639\u062f\u0629"),
+	"OPTIONS": (u"OPTIONS", u"\u062e\u064a\u0627\u0631\u0627\u062a"),
+	"SELECT": (u"CHOISIR", u"\u0627\u062e\u062a\u064a\u0627\u0631"),
+	"CHANNEL": (u"CHA\u00ceNE", u"\u0627\u0644\u0642\u0646\u0627\u0629"),
 	"TEMP": (u"TEMP", u"\u0627\u0644\u062d\u0631\u0627\u0631\u0629"),
 	"Board sensor": (u"Capteur carte", u"\u0645\u0633\u062a\u0634\u0639\u0631 \u0627\u0644\u0644\u0648\u062d\u0629"),
 	"Load, 1 min": (u"Charge, 1 min", u"\u0627\u0644\u062d\u0645\u0644\u060c \u062f\u0642\u064a\u0642\u0629"),
@@ -356,6 +377,7 @@ TRANSLATIONS = {
 	"HINTS_OK": (u"Ouvrir", u"\u0641\u062a\u062d"),
 	"HINTS_EXIT": (u"Retour", u"\u0631\u062c\u0648\u0639"),
 	"HINTS_MENU": (u"Fermer", u"\u0625\u063a\u0644\u0627\u0642"),
+	"HINTS_SELECT": (u"Choisir", u"\u0627\u062e\u062a\u064a\u0627\u0631"),
 }
 
 
@@ -374,7 +396,7 @@ def tr(key):
 	if lang in ("fr", "ar") and key in TRANSLATIONS:
 		text = TRANSLATIONS[key][0 if lang == "fr" else 1]
 	elif key.startswith("HINTS_"):
-		text = {"HINTS_OK": "Open", "HINTS_EXIT": "Back", "HINTS_MENU": "Close"}.get(key, key)
+		text = {"HINTS_OK": "Open", "HINTS_EXIT": "Back", "HINTS_MENU": "Close", "HINTS_SELECT": "Select"}.get(key, key)
 	try:
 		unicode
 		return text.encode("utf-8") if isinstance(text, unicode) else text
@@ -435,8 +457,8 @@ class ObsidianSysInfo(Poll, Converter):
 		Poll.__init__(self)
 		self.type = type
 		self.poll_interval = 10000
-		# "Short" is chained after another converter and follows its updates, no polling needed.
-		self.poll_enabled = type != "Short"
+		# "Short" and "EventServiceName" follow their source's updates, no polling needed.
+		self.poll_enabled = type not in ("Short", "EventServiceName", "IfEvent")
 
 	def ssdMounted(self):
 		return ismount(SSD)
@@ -447,6 +469,14 @@ class ObsidianSysInfo(Poll, Converter):
 			t = self.type
 			if t == "Short":
 				return shortNumbers(self.source.text or "")
+			if t == "EventServiceName":
+				return eventServiceName(self.source)
+			if t == "IfEvent":
+				# Chained after another converter on ServiceEvent: its text only when the entry has a programme.
+				root = self.source
+				while root is not None and not hasattr(root, "event") and getattr(root, "source", None) is not None:
+					root = root.source
+				return (self.source.text or "") if getattr(root, "event", None) else ""
 			if t.startswith("Label:"):
 				return tr(t[6:])
 			if t == "Hints":

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Classic channel list screens (moved from skin.xml unchanged). skin_chlist_floating.xml overrides ChannelSelection and ChannelContextMenu
+     when /etc/enigma2/obsidian_chlist_floating exists (Obsidian FHD Settings > Channel list style). -->
+<skin>
+	<screen name="ChannelSelection" position="fill" title="Channel Selection" flags="wfNoBorder">
+		<panel name="ChannelSelectionTemplate" />
+		<panel name="KeyMenuInfoTemplate" />
+	</screen>
+
+	<screen name="SimpleChannelSelection" position="fill" title="Channel Selection" flags="wfNoBorder">
+		<panel name="ChannelSelectionTemplate" />
+	</screen>
+	<screen name="ChannelContextMenu" position="fill" flags="wfNoBorder">
+		<panel name="PigTemplate" />
+		<widget name="menu" position="780,100" size="1110,912" itemCornerRadiusSelected="12" scrollbarMode="showOnDemand" scrollbarWidth="4" scrollbarSliderBorderWidth="0" scrollbarSliderForegroundColor="aAccent" backgroundColor="aCard" transparent="1" borderWidth="0" />
+	</screen>
+</skin>

@@ -22,7 +22,7 @@ function WriteLf([string]$path, [string]$text) { [IO.File]::WriteAllText($path, 
 
 # ---- data: the skin folder under /usr/share/enigma2 ----
 Copy-Item -Recurse $skin (Join-Path $work "data\usr\share\enigma2\Obsidian-FHD")
-# ---- data: the small settings plugin (Menu > Setup > Usage & GUI > Obsidian FHD Settings) ----
+# ---- data: the small Obsidian Apps plugin (Menu > Obsidian Apps) ----
 $plugin = Join-Path $root "ObsidianFHD-plugin"
 $pluginDest = Join-Path $work "data\usr\lib\enigma2\python\Plugins\SystemPlugins\ObsidianFHD"
 New-Item -ItemType Directory -Force $pluginDest | Out-Null
@@ -32,7 +32,12 @@ $converter = Join-Path $root "ObsidianFHD-converter"
 $converterDest = Join-Path $work "data\usr\lib\enigma2\python\Components\Converter"
 New-Item -ItemType Directory -Force $converterDest | Out-Null
 Get-ChildItem $converter -File -Filter *.py | ForEach-Object { WriteLf (Join-Path $converterDest $_.Name) (Get-Content $_.FullName -Raw -Encoding UTF8) }
-$sizeKb = [math]::Ceiling(((Get-ChildItem -Recurse -File $skin, $plugin, $converter | Measure-Object Length -Sum).Sum) / 1024)
+# ---- data: the ObsidianRing renderer (Nova infobar progress ring) ----
+$renderer = Join-Path $root "ObsidianFHD-renderer"
+$rendererDest = Join-Path $work "data\usr\lib\enigma2\python\Components\Renderer"
+New-Item -ItemType Directory -Force $rendererDest | Out-Null
+Get-ChildItem $renderer -File -Filter *.py | ForEach-Object { WriteLf (Join-Path $rendererDest $_.Name) (Get-Content $_.FullName -Raw -Encoding UTF8) }
+$sizeKb = [math]::Ceiling(((Get-ChildItem -Recurse -File $skin, $plugin, $converter, $renderer | Measure-Object Length -Sum).Sum) / 1024)
 
 # ---- control files ----
 WriteLf (Join-Path $work "control\control") @"
@@ -56,12 +61,12 @@ WriteLf (Join-Path $work "control\postinst") @"
 echo ""
 # Windows tar cannot store Unix permissions: make the installed files read-only for other users.
 chmod -R go-w /usr/share/enigma2/Obsidian-FHD /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD 2>/dev/null
-chmod go-w /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py 2>/dev/null
+chmod go-w /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py /usr/lib/enigma2/python/Components/Renderer/ObsidianRing.py 2>/dev/null
 echo "Obsidian FHD $version installed."
 echo "Select it in Menu > Setup > System > User interface > Skin setup, then restart the GUI."
 echo ""
-echo "New in 1.4: Floating menu with a live dashboard (temperature, CPU, disks, network)."
-echo "Turn it on in Menu > Setup > Usage & GUI > Obsidian FHD Settings > Menu style."
+echo "New in 1.5: Obsidian Apps (Menu > Obsidian Apps): Floating menu, Floating channel list,"
+echo "weather and bitrate on / off, version and updates."
 echo ""
 exit 0
 
@@ -81,7 +86,7 @@ if grep -q '^config.skin.primary_skin=Obsidian-FHD/' /etc/enigma2/settings 2>/de
 fi
 # Compiled leftovers of the settings plugin and of the converter.
 rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/ObsidianFHD
-rm -f /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py[co]
+rm -f /usr/lib/enigma2/python/Components/Converter/ObsidianSysInfo.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianMenuTitle.py[co] /usr/lib/enigma2/python/Components/Converter/ObsidianBitrate.py[co] /usr/lib/enigma2/python/Components/Renderer/ObsidianRing.py[co]
 exit 0
 
 "@

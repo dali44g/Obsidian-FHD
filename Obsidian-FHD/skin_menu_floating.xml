@@ -68,7 +68,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 	</screen>
 	<screen name="menu_setup" position="fill" flags="wfNoBorder" backgroundColor="transparent">
@@ -103,7 +103,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 	</screen>
 	<screen name="menu_system" position="fill" flags="wfNoBorder" backgroundColor="transparent">
@@ -138,7 +138,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 	</screen>
 	<screen name="menu_information" position="fill" flags="wfNoBorder" backgroundColor="transparent">
@@ -173,7 +173,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 	</screen>
 	<screen name="menu_scan" position="fill" flags="wfNoBorder" backgroundColor="transparent">
@@ -208,7 +208,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 	</screen>
 	<screen name="MenuSort" position="fill" flags="wfNoBorder" backgroundColor="transparent">
@@ -243,7 +243,7 @@
 	}
 			</convert>
 		</widget>
-		<eLabel position="80,964" size="600,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
+		<eLabel position="80,964" size="1180,52" backgroundColor="aCard" borderWidth="1" borderColor="aLine" cornerRadius="16" zPosition="1" />
 		<panel name="FloatingHints964" />
 		<ePixmap pixmap="buttons/key_prev.png" alphatest="blend" position="700,971" size="52,38" />
 		<ePixmap pixmap="buttons/key_next.png" alphatest="blend" position="752,971" size="52,38" />
@@ -257,9 +257,19 @@
 		<eLabel text="MAIN MENU" position="168,122" size="240,40" font="MonoBold;18" foregroundColor="aAccent" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
 	</screen>
 	<screen name="FloatingHints868">
-		<eLabel text="OK  Open     EXIT  Back     MENU  Close" position="108,868" size="480,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_ok.png" position="108,875" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Open" position="171,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_exit.png" position="268,875" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Back" position="331,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_menu.png" position="428,875" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Close" position="491,868" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
 	</screen>
 	<screen name="FloatingHints964">
-		<eLabel text="OK  Open     EXIT  Back     MENU  Close" position="108,964" size="560,52" font="MonoBold;18" foregroundColor="aMuted" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_ok.png" position="108,971" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Open" position="171,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_exit.png" position="268,971" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Back" position="331,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
+		<ePixmap pixmap="buttons/key_menu.png" position="428,971" size="53,38" alphatest="blend" zPosition="2" />
+		<eLabel text="Close" position="491,964" size="92,52" font="Regular;26" foregroundColor="aText" backgroundColor="aCard" transparent="1" valign="center" zPosition="2" />
 	</screen>
 </skin>

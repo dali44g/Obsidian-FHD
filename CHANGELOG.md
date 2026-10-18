@@ -2,6 +2,23 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.5.0
+
+**New**
+- Obsidian Apps: a new main-menu entry replaces "Obsidian FHD Settings". A grid of apps with on / off switches (Weather, Bitrate, Floating menu, Floating channel list, About & update); each app has its own page with a preview, details and a Turn on / off button. In English, French and Arabic.
+- About & update: shows the installed version, checks for a newer release, installs it, and YELLOW opens What's new (this changelog).
+- Floating channel list (optional, off by default): the channel list as floating cards over live TV, with a programme card for the selected channel and colour keys; MENU opens the channel options in the same style.
+- With the Floating menu, settings pages and option lists are floating too: a help card with the description of the selected setting, the settings card, and a key card.
+- New key bar: short coloured pills and the action text instead of boxes, and key chips (OK / EXIT / MENU) on Obsidian's own screens.
+- Install extensions (OpenATV) and MultiBoot Manager (Chkroot / Kexec setup, slot list) in the Obsidian layout.
+- Infobar styles in Obsidian Apps: Halo (new default: solid dark bars with a soft teal light), Glass (the see-through bars of earlier versions) and Nova (one floating indigo capsule with a progress ring, clock and today's weather, no top bar).
+- Install plugin from Obsidian Apps: the Weather and Bitrate pages can install OAWeather / BitrateViewer without leaving the screen.
+- Signal finder in the Obsidian design: coloured SNR / AGC bars, measurements card with a LOCK badge, tuning card.
+
+**Fixes**
+- Header: long screen titles no longer run into the tuner letters on IPTV channels or without signal.
+- Infobar on OpenBH and other images: long codec names (e.g. "MPEG4 H.264") no longer wrap, and multi-line ECM info shows only its first line.
+
 ## 1.4.1
 
 **Fixes**
