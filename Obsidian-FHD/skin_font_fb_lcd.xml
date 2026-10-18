@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- bundled fallback when lcd.ttf is missing on the image -->
-<skin>
-	<fonts>
-		<font name="LCD" filename="Inter-SemiBold.ttf" scale="95" />
-		<font name="FdLcD" filename="Inter-SemiBold.ttf" scale="95" />
-	</fonts>
-</skin>

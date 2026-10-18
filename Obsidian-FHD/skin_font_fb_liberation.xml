@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- bundled fallback when LiberationSans-Regular.ttf is missing on the image -->
-<skin>
-	<fonts>
-		<font name="Liberation" filename="Inter-Regular.ttf" scale="95" />
-	</fonts>
-</skin>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- bundled fallback when tuxtxt.ttf is missing on the image -->
-<skin>
-	<fonts>
-		<font name="Console" filename="JetBrainsMono-Regular.ttf" scale="95" />
-	</fonts>
-</skin>
