@@ -13,19 +13,33 @@ plugin definitions use widget names that the OpenPLi code expects.
 
 ## Screenshots
 
+Captured on a Vu+ Solo2 with OpenATV 7.6 (on-screen layer only, over a neutral background).
+
+| Infobar | Channel list |
+|---|---|
+| ![Infobar](docs/screenshots/infobar.png) | ![Channel list](docs/screenshots/channel-list.png) |
+| **Main menu** | **Setup menu** |
+| ![Main menu](docs/screenshots/main-menu.png) | ![Setup menu](docs/screenshots/setup-menu.png) |
+| **Settings** | **EPG grid** |
+| ![Settings](docs/screenshots/settings.png) | ![EPG grid](docs/screenshots/epg-grid.jpg) |
+| **Event view** | **Message box** |
+| ![Event view](docs/screenshots/event-view.png) | ![Message box](docs/screenshots/message-box.png) |
+| **Install plugins** | **Volume** |
+| ![Install plugins](docs/screenshots/install-plugins.jpg) | ![Volume](docs/screenshots/volume.png) |
+
+### New in 1.5
+
 Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 
 | Infobar (Halo) | Channel list (Floating) |
 |---|---|
-| ![Infobar](docs/screenshots/infobar.png) | ![Channel list](docs/screenshots/channel-list.png) |
-| **Obsidian Apps** | **Floating main menu** |
-| ![Obsidian Apps](docs/screenshots/obsidian-apps.png) | ![Floating main menu](docs/screenshots/floating-menu.png) |
-| **Floating submenu** | **EPG grid** |
-| ![Floating submenu](docs/screenshots/floating-submenu.png) | ![EPG grid](docs/screenshots/epg-grid.png) |
-| **Weather** | **Quick menu** |
-| ![Weather](docs/screenshots/weather.png) | ![Quick menu](docs/screenshots/quick-menu.png) |
-| **Plugin browser** | **Install plugins** |
-| ![Plugin browser](docs/screenshots/plugin-browser.png) | ![Install plugins](docs/screenshots/install-plugins.png) |
+| ![Infobar Halo](docs/screenshots/infobar-halo.jpg) | ![Floating channel list](docs/screenshots/channel-list-floating.jpg) |
+| **Obsidian Apps** | **Main menu with dashboard** |
+| ![Obsidian Apps](docs/screenshots/obsidian-apps.jpg) | ![Main menu](docs/screenshots/menu-dashboard.jpg) |
+| **Floating submenu** | **Weather** |
+| ![Floating submenu](docs/screenshots/menu-submenu.jpg) | ![Weather](docs/screenshots/weather.jpg) |
+| **Quick menu** | **Plugin browser** |
+| ![Quick menu](docs/screenshots/quick-menu.jpg) | ![Plugin browser](docs/screenshots/plugin-browser.jpg) |
 
 ## Floating menu (new in 1.4, optional)
 
