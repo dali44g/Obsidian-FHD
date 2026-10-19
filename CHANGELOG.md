@@ -2,6 +2,23 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.5.1
+
+**New**
+- Permanent Clock in Obsidian Apps: Minimal, Flip and Stacked designs, with white or yellow digits, three sizes, left / centre / right positions and optional seconds. Settings have a live preview, Save and Cancel; saved changes apply without a GUI restart.
+- The clock is time-only, with borderless digits and translucent Flip cards. It hides in standby and with other skins, and pauses when the separate Permanent Clock plugin is enabled. The separate plugin keeps its own appearance.
+- Channel lists show the next three EPG events and the programme airing at prime time. The image's graphical EPG prime-time setting is used when available (otherwise 20:15); after that time, the following evening is shown. Uses only the receiver's local EPG data.
+- Provider information in the channel list and Halo, Glass and Nova infobars, where supplied by the service.
+
+**Improvements and fixes**
+- Receiver identification prefers image hardware metadata over legacy compatibility aliases, avoiding incorrect Vu+ model names on other receivers.
+- Broader temperature and fan RPM detection, including thermal, hwmon and HiSilicon sources. Missing readings show N/A; sensor discovery is cached.
+- Classic channel list: removed the duplicate transponder frequency and signal panel to make room for the guide.
+- Floating channel list: the upcoming-events card hides with the current-programme card when the selected channel has no EPG.
+- PurE2: added compatible skin-selector and remote-button setup screens.
+- Floating skin selection now appears over live TV, with its preview inside the settings card instead of covering the title and help.
+- Halo infobar: the missing-EPG placeholder no longer overlaps programme times.
+
 ## 1.5.0
 
 **New**
