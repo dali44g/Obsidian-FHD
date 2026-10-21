@@ -2,6 +2,24 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.5.2
+
+**Channel list**
+- Redesigned the channel information card with a framed picon, clearer channel name, provider and technical details.
+- Added the current programme description and kept the next three events. Removed the prime-time event.
+- Improved provider visibility and masked sensitive information in displayed IPTV URLs.
+- Fixed cut-off transponder information during channel scanning.
+
+**EPG and playback**
+- Styled the graphical EPG with TV preview to match Obsidian.
+- Improved the movie playback infobar with a clearer background, progress bar, times and remote controls.
+- Replaced an incompatible converter option that could hide the playback progress bar on PurE2.
+
+**Compatibility and reliability**
+- Improved PurE2 compatibility for Skin Setup, infobar style selection and Softcam information.
+- Refreshes the saved infobar style at GUI startup and adapts to changes in optional components.
+- Preserves text when automatic text fitting is unavailable.
+
 ## 1.5.1
 
 **New**
