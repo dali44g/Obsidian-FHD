@@ -47,7 +47,7 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 
 | Edge main menu with dashboard | Edge channel list |
 |---|---|
-| ![Edge main menu](docs/screenshots/edge-menu.png) | ![Edge channel list](docs/screenshots/edge-channel-list.jpg) |
+| ![Edge main menu](docs/screenshots/edge-menu.jpg) | ![Edge channel list](docs/screenshots/edge-channel-list.jpg) |
 
 - **Edge style (free download):** a new look for the main menu, submenus, settings and the channel list, with a
   hardware dashboard (memory, CPU and temperature rings, storage, network chart) and an information card for the
