@@ -2,6 +2,42 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.6.0
+
+**New: Edge style (free download from Obsidian Apps)**
+- A new full look for the main menu, submenus, settings screens and the channel list: dark panels, a hardware panel with CPU and memory rings and a network chart, a path sidebar that shows where you are in the menus, and coloured key chips.
+- Edge channel list: a panel over live TV with an information card for the selected channel (current and next three programmes, picon, delivery, provider), and a plain teal selection that fits every row height.
+- Edge is a separate style pack: it is downloaded only when you choose it, and removed again in one step. Packs always come from the same release as the skin.
+
+**New: Styles app**
+- Obsidian Apps has one Styles app with a card per style (Classic, Floating, Edge), an "IN USE" ribbon and a page per style to use, download or remove it. Menus and the channel list can each use a different style.
+- Settings pages of apps show a scrollbar when there are more settings than fit on the page.
+
+**New: Obsidian Mawaqit (free add-on, installed from Obsidian Apps)**
+- Prayer times of your mosque from mawaqit.net: sign in once with your MAWAQIT account (only a token is kept, never the password) and search your mosque by name or city, also in Arabic.
+- A full-screen prayer screen (Courtyard theme) with the current time, the next prayer and its countdown, Shuruq and Jumu'a, the Hijri date and iqama times, plus a Display mode for a receiver used as a prayer-times screen.
+- Over live TV: the day's prayers beside the picture with the infobar, an optional next-prayer tab at the top right, a reminder card that stays from 5 minutes before the adhan (5 to 20 minutes, or only at the adhan), and adhan and iqama alerts (a flashing card, then a countdown to the iqama). The flashing time can be set.
+- English, French and Arabic. Nothing is shown until you are signed in and have chosen a mosque.
+
+**Infobar**
+- The infobar shows the current audio track: language, codec and track number when there are several (for example FRA · AC3 · 2/3) (idea by mj_84).
+- The second infobar labels the PIDs (SID, VPID, APID, PCR, TSID, ONID) instead of showing bare numbers (idea by mj_84).
+- The menu dashboard shows a memory ring on every image, the CPU load, the temperature, the tuners and the network link speed.
+
+**Channel list**
+- The current programme next to each channel is shown in amber instead of dark grey, readable on the dark list in every channel list style (reported by Adnan1980).
+- The channel information card is hidden on bouquets, providers, satellites and empty lists instead of showing an empty card.
+- The prime-time programme is back in the channel information card, a resolution chip was added, the satellite is shown once, and "-" is shown when a channel has no provider (tester feedback).
+
+**EPG**
+- OpenATV and PurE2: Obsidian designs for the vertical EPG, the infobar EPG and the quick EPG.
+
+**Compatibility and reliability**
+- OpenBH: the Green Panel is now full screen like the plugin browser, with larger text, icons and descriptions (reported by naf2010).
+- Fixed a GUI crash when a short choice message opened on OpenBH and EGAMI, for example Image Manager > Downloads on OpenBH 6 (reported by lordfayez1212 and الفاضل1900).
+- OpenBH and OpenPLi: the skin selection list shows the skin name and its status instead of the preview file path on OpenBH (reported by lordfayez1212).
+- Installing and updating downloads from the latest GitHub Release, with the repository copy as a fallback; every package is downloaded before anything is changed, with network time limits.
+
 ## 1.5.2
 
 **Channel list**

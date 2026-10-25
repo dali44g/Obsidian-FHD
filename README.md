@@ -41,6 +41,26 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 | **Quick menu** | **Plugin browser** |
 | ![Quick menu](docs/screenshots/quick-menu.jpg) | ![Plugin browser](docs/screenshots/plugin-browser.jpg) |
 
+### New in 1.6
+
+Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
+
+| Edge main menu with dashboard | Edge channel list |
+|---|---|
+| ![Edge main menu](docs/screenshots/edge-menu.png) | ![Edge channel list](docs/screenshots/edge-channel-list.jpg) |
+
+- **Edge style (free download):** a new look for the main menu, submenus, settings and the channel list, with a
+  hardware dashboard (memory, CPU and temperature rings, storage, network chart) and an information card for the
+  selected channel. Get it from Menu → **Obsidian Apps** → **Styles** → **Edge** → Download. Menus and the channel
+  list can each use Classic, Floating or Edge; Edge is removed again in one step.
+- **Obsidian Mawaqit (free add-on):** prayer times of your mosque from mawaqit.net, with a full-screen prayer
+  screen, the day's prayers beside the infobar, a next-prayer tab, a reminder before the adhan and adhan and iqama
+  alerts over live TV (English, French, Arabic). Install it from Menu → **Obsidian Apps** → **Mawaqit**.
+  It needs a free mawaqit.net account: the password is used once to get an access token and is never stored; only
+  the timetable of the chosen mosque is downloaded (about once a week).
+- Downloads from Obsidian Apps come from this repository's GitHub Releases; add-ons are installed only when their
+  size and checksum match the published catalogue.
+
 ## Floating menu (new in 1.4, optional)
 
 A second menu style: floating cards over live TV, with a live dashboard next to the main menu
@@ -78,6 +98,8 @@ Run the same command again to update. Then select **Obsidian-FHD** in the skin s
 ### Option B: install the package by hand
 Download `release/enigma2-plugin-skins-obsidian-fhd_all.ipk` from this repository, copy it to
 `/tmp` on the receiver and run `opkg install /tmp/enigma2-plugin-skins-obsidian-fhd_all.ipk`.
+The Edge style (`enigma2-plugin-skins-obsidian-fhd-edge_all.ipk`) and the Mawaqit add-on
+(`enigma2-plugin-extensions-obsidian-mawaqit_all.ipk`) are optional and installed the same way, after the skin.
 
 If something goes wrong, OpenPLi falls back to its default skin automatically.
 

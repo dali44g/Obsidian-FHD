@@ -1,0 +1,17 @@
+{
+    "format":  1,
+    "apps":  [
+                 {
+                     "id":  "mawaqit",
+                     "name":  "Mawaqit",
+                     "package":  "enigma2-plugin-extensions-obsidian-mawaqit",
+                     "version":  "1.0.0",
+                     "minCore":  "1.6.0",
+                     "file":  "enigma2-plugin-extensions-obsidian-mawaqit_all.ipk",
+                     "size":  640438,
+                     "installedKb":  695,
+                     "sha256":  "7af3b282df5b1757d078a73b60598ca0c29547803adaef6e4e222084ebd40556",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianMawaqit"
+                 }
+             ]
+}
