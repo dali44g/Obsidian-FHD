@@ -67,14 +67,17 @@ if [ -n "$FREE_KB" ] && [ "$FREE_KB" -lt 6000 ]; then
 	exit 1
 fi
 
-# the skin first, then its packs (each pack depends on the skin)
+# Upgrade the skin and its installed packs in one solver transaction: an old
+# Edge pack requires the old skin version until both packages are replaced.
+set --
 for P in $LIST; do
-	opkg install --force-reinstall "$WORK/${P}_all.ipk"
-	RC=$?
-	if [ $RC -ne 0 ]; then
-		echo "Installation failed ($P, opkg exit code $RC)."
-		exit $RC
-	fi
+	set -- "$@" "$WORK/${P}_all.ipk"
 done
+opkg install --force-reinstall "$@"
+RC=$?
+if [ $RC -ne 0 ]; then
+	echo "Installation failed (Obsidian FHD and installed style packs, opkg exit code $RC)."
+	exit $RC
+fi
 echo ""
 echo "Done. Select Obsidian-FHD in the skin settings (or restart the GUI if it is already active)."
