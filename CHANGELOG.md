@@ -2,6 +2,21 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.6.1
+
+**Fixes**
+- OpenPLi scarthgap: installing, updating and downloading styles no longer fail with "Download failed" (the image's BusyBox has no `head -c`) (reported by sety).
+- OpenBH and OpenPLi: fixed a GUI crash when opening Setup or other submenus with the Edge style (reported by naf2010 and sety).
+- OpenBH: the Device Manager (Extra Settings) and its mountpoint setup are now designed full screen with device icons, instead of showing an empty screen (reported by fadhel1974).
+- OpenATV zap history: channel names and programme details remain visible when a channel has no picon (reported by [Greenwich](https://www.linuxsat-support.com/cms/user/350286-greenwich/)).
+
+**EPG**
+- Graphical EPG, infobar EPG (OpenATV) and GraphMultiEPG (OpenPLi): the channel being watched is marked by its cyan name only, no longer with the same teal background as the selection, which looked like a channel selector stuck on that row.
+- Graphical EPG (OpenATV) and GraphMultiEPG (OpenPLi): the information panel shows the picon and name of the channel under the cursor, because the image does not highlight the selected channel in the channel column.
+
+**Channel list**
+- Classic channel list: the progress bar of the selected channel keeps a visible track instead of a solid cyan bar.
+
 ## 1.6.0
 
 **New: Edge style (free download from Obsidian Apps)**

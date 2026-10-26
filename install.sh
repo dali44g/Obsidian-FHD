@@ -36,7 +36,7 @@ fetch() {
 		# wget first; curl when wget is missing or fails (e.g. an old BusyBox wget without HTTPS)
 		{ command -v wget >/dev/null 2>&1 && wget -T 30 -t 1 -q -O "$FILE" "$URL"; } ||
 			{ command -v curl >/dev/null 2>&1 && curl -fsSL --connect-timeout 15 --max-time 120 -o "$FILE" "$URL"; }
-		if [ -s "$FILE" ] && [ "$(head -c 7 "$FILE")" = "!<arch>" ]; then
+		if [ -s "$FILE" ] && [ "$(dd if="$FILE" bs=7 count=1 2>/dev/null)" = "!<arch>" ]; then
 			return 0
 		fi
 	done
