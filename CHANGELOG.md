@@ -8,7 +8,9 @@ All notable changes to Obsidian FHD. To update, run the install command from the
 - OpenPLi scarthgap: installing, updating and downloading styles no longer fail with "Download failed" (the image's BusyBox has no `head -c`) (reported by sety).
 - OpenBH and OpenPLi: fixed a GUI crash when opening Setup or other submenus with the Edge style (reported by naf2010 and sety).
 - OpenBH: the Device Manager (Extra Settings) and its mountpoint setup are now designed full screen with device icons, instead of showing an empty screen (reported by fadhel1974).
-- OpenATV zap history: channel names and programme details remain visible when a channel has no picon (reported by [Greenwich](https://www.linuxsat-support.com/cms/user/350286-greenwich/)).
+- OpenATV zap history: channel names and programme details remain visible when a channel has no picon (reported by Greenwich).
+- Channel provider (Classic, Floating and Edge): when stored provider information is missing, the highlighted channel can use live provider information only if its full service reference matches the currently playing channel. Other channels never inherit the playing channel's provider.
+- Infobar (standard and Nova): the next programme now shows its start and end times beside the NEXT label, with its duration displayed separately on the right. Nova now includes the next programme's duration too.
 
 **EPG**
 - Graphical EPG, infobar EPG (OpenATV) and GraphMultiEPG (OpenPLi): the channel being watched is marked by its cyan name only, no longer with the same teal background as the selection, which looked like a channel selector stuck on that row.
