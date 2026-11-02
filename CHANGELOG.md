@@ -2,6 +2,26 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.6.2
+
+**New**
+- Nova style pack: the Nova infobar in purple or Obsidian colours, and a Nova channel list on a starry sky with a mini TV.
+- K7 style pack: silver / olive console menus, channel list and infobar with LCD readouts.
+- Look page (Obsidian Apps > Styles): mix your own style from different packs.
+
+**Changed**
+- Styles cards show which parts each style has (menus, channel list, infobar) and which ones are in use.
+- The Infobar style app moved to the Look page. Your current choices are kept.
+- The new Obsidian logo on the GUI restart screen and as the picon of channels without one.
+- The Nova infobar moved into the Nova style pack. If you used it, you get the Glass infobar after updating; download Nova from Obsidian Apps > Styles to get it back.
+
+**Fixes**
+- Channel list: the provider of the selected satellite channel is shown again instead of "-" (read from the channel list when the image does not report it).
+- Classic channel list: the info card shows the frequency of the channel you browse to (e.g. 16.0°E · 11595 V 30000), not only the one you watch (requested by mj_84).
+- Infobar: the duplicate video size under the tuners is replaced by the BER value (signal errors), next to SNR and AGC.
+- OpenATV Image Backup: the list rows are tall enough for their text (reported by Bella Italia).
+- Updating with a style pack installed: the skin and its packs are now installed together, so the update cannot stop halfway.
+
 ## 1.6.1
 
 **Fixes**
