@@ -2,6 +2,27 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.6.3
+
+**New**
+- Synthwave style pack: neon 80s menus, settings pages with live hardware info, channel list and infobar. Mix it with other styles in Styles > Customise.
+
+**Changed**
+- K7 infobar: shows the temperature in the LCD when OAWeather is set up; the channel number moves next to the name (suggested by damirlja).
+- Floating channel list: the next five programmes, and long descriptions scroll so they can be read in full (suggested by Moost).
+- New option to hide the clock at the top right of the Halo and Glass infobars (Menu > Obsidian Apps > Styles > Customise) (suggested by MakaveliTheDon).
+- Styles: new 4-column layout; the Look page is now called Customise.
+
+**Fixes**
+- K7 infobar: the progress bar shows again on OpenATV 8.0.1 (reported by damirlja).
+- Second infobar: the next programme's title shows again on OpenATV 8 (reported by mj_84).
+- Online update works on OpenPLi when wget fails ("Connection reset by peer") (reported by kamaxx).
+- Settings: slider bars no longer cover the setting names (reported by Bella Italia).
+- Footer keys: long translations such as Greek are no longer cut off (reported by W@Rp).
+- Nova infobar: no more "n/a" when OAWeather isn't set up.
+- OpenPLi: no more crash risk in the Classic and Edge menus when menu numbers are on.
+- Styles: the K7 download size shows 0.4 MB.
+
 ## 1.6.2
 
 **New**

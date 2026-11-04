@@ -53,6 +53,9 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
   hardware dashboard (memory, CPU and temperature rings, storage, network chart) and an information card for the
   selected channel. Get it from Menu → **Obsidian Apps** → **Styles** → **Edge** → Download. Menus and the channel
   list can each use Classic, Floating or Edge; Edge is removed again in one step.
+- **More style packs (free downloads):** Nova, K7 and, new in 1.6.3, Synthwave (neon 80s menus, settings,
+  channel list and infobar). Mix menus, channel list and infobar from different styles in Menu → **Obsidian Apps** →
+  **Styles** → **Customise**.
 - **Obsidian Mawaqit (free add-on):** prayer times of your mosque from mawaqit.net, with a full-screen prayer
   screen, the day's prayers beside the infobar, a next-prayer tab, a reminder before the adhan and adhan and iqama
   alerts over live TV (English, French, Arabic). Install it from Menu → **Obsidian Apps** → **Mawaqit**.
@@ -98,8 +101,9 @@ Run the same command again to update. Then select **Obsidian-FHD** in the skin s
 ### Option B: install the package by hand
 Download `release/enigma2-plugin-skins-obsidian-fhd_all.ipk` from this repository, copy it to
 `/tmp` on the receiver and run `opkg install /tmp/enigma2-plugin-skins-obsidian-fhd_all.ipk`.
-The Edge style (`enigma2-plugin-skins-obsidian-fhd-edge_all.ipk`) and the Mawaqit add-on
-(`enigma2-plugin-extensions-obsidian-mawaqit_all.ipk`) are optional and installed the same way, after the skin.
+The style packs (`enigma2-plugin-skins-obsidian-fhd-edge_all.ipk`, `-nova_all.ipk`, `-k7_all.ipk`,
+`-synthwave_all.ipk`) and the Mawaqit add-on (`enigma2-plugin-extensions-obsidian-mawaqit_all.ipk`) are optional and
+installed the same way, after the skin.
 
 If something goes wrong, OpenPLi falls back to its default skin automatically.
 

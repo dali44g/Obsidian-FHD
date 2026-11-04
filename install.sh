@@ -21,7 +21,7 @@ if [ -f /etc/enigma2/obsidian-test-server ]; then
 fi
 REPO="https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/release"
 SKIN="enigma2-plugin-skins-obsidian-fhd"
-PACKS="enigma2-plugin-skins-obsidian-fhd-edge enigma2-plugin-skins-obsidian-fhd-nova enigma2-plugin-skins-obsidian-fhd-k7"
+PACKS="enigma2-plugin-skins-obsidian-fhd-edge enigma2-plugin-skins-obsidian-fhd-nova enigma2-plugin-skins-obsidian-fhd-k7 enigma2-plugin-skins-obsidian-fhd-synthwave"
 
 WORK=$(mktemp -d /tmp/obsidian-install.XXXXXX) || exit 1
 trap 'rm -rf "$WORK"' EXIT
