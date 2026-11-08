@@ -5,13 +5,37 @@
                      "id":  "mawaqit",
                      "name":  "Mawaqit",
                      "package":  "enigma2-plugin-extensions-obsidian-mawaqit",
-                     "version":  "1.0.0",
+                     "version":  "1.1.0",
                      "minCore":  "1.6.0",
                      "file":  "enigma2-plugin-extensions-obsidian-mawaqit_all.ipk",
-                     "size":  640438,
-                     "installedKb":  695,
-                     "sha256":  "7af3b282df5b1757d078a73b60598ca0c29547803adaef6e4e222084ebd40556",
+                     "size":  648576,
+                     "installedKb":  723,
+                     "sha256":  "94bb77e0b5ba6db1feb66a8bf71939f6ea51057fcd5e566fc209a85b998d899a",
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianMawaqit"
+                 },
+                 {
+                     "id":  "posters",
+                     "name":  "Posters",
+                     "package":  "enigma2-plugin-extensions-obsidian-posters",
+                     "version":  "1.0.0",
+                     "minCore":  "1.7.0",
+                     "file":  "enigma2-plugin-extensions-obsidian-posters_all.ipk",
+                     "size":  35770,
+                     "installedKb":  102,
+                     "sha256":  "4fcbe541d2e2d1b936bec9a95b2a6c3467d252c29cc846231e76abc229391ba1",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianPosters"
+                 },
+                 {
+                     "id":  "cast",
+                     "name":  "Cast",
+                     "package":  "enigma2-plugin-extensions-obsidian-cast",
+                     "version":  "1.0.0",
+                     "minCore":  "1.7.0",
+                     "file":  "enigma2-plugin-extensions-obsidian-cast_all.ipk",
+                     "size":  15094,
+                     "installedKb":  43,
+                     "sha256":  "d10091c9c82c1c788da423bfc4e6a759b17535c9766b294cad868c917327ef0f",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianCast"
                  }
              ]
 }

@@ -21,11 +21,14 @@ if [ -f /etc/enigma2/obsidian-test-server ]; then
 fi
 REPO="https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/release"
 SKIN="enigma2-plugin-skins-obsidian-fhd"
-PACKS="enigma2-plugin-skins-obsidian-fhd-edge enigma2-plugin-skins-obsidian-fhd-nova enigma2-plugin-skins-obsidian-fhd-k7 enigma2-plugin-skins-obsidian-fhd-synthwave"
+PACKS="enigma2-plugin-skins-obsidian-fhd-edge enigma2-plugin-skins-obsidian-fhd-nova enigma2-plugin-skins-obsidian-fhd-k7 enigma2-plugin-skins-obsidian-fhd-synthwave enigma2-plugin-skins-obsidian-fhd-matchday"
 
 WORK=$(mktemp -d /tmp/obsidian-install.XXXXXX) || exit 1
 trap 'rm -rf "$WORK"' EXIT
 trap 'exit 1' HUP INT TERM
+
+# Last download fallback: Python's own HTTPS client
+PY_FETCH='import sys;u=sys.version_info[0]>2 and __import__("urllib.request").request or __import__("urllib2");d=u.urlopen(sys.argv[1],timeout=30).read();open(sys.argv[2],"wb").write(d)'
 
 # fetch <package> -> $WORK/<package>_all.ipk, only a real package ("!<arch>" header; not an error page or empty file).
 # Network time limits so a stuck download cannot hang the receiver.
@@ -35,7 +38,8 @@ fetch() {
 		rm -f "$FILE"
 		# wget first; curl when wget is missing or fails (e.g. an old BusyBox wget without HTTPS)
 		{ command -v wget >/dev/null 2>&1 && wget -T 30 -t 1 -q -O "$FILE" "$URL"; } ||
-			{ command -v curl >/dev/null 2>&1 && curl -fsSL --connect-timeout 15 --max-time 120 -o "$FILE" "$URL"; }
+			{ command -v curl >/dev/null 2>&1 && curl -fsSL --connect-timeout 15 --max-time 120 -o "$FILE" "$URL"; } ||
+			python3 -c "$PY_FETCH" "$URL" "$FILE" 2>/dev/null || python -c "$PY_FETCH" "$URL" "$FILE" 2>/dev/null
 		if [ -s "$FILE" ] && [ "$(dd if="$FILE" bs=7 count=1 2>/dev/null)" = "!<arch>" ]; then
 			return 0
 		fi
@@ -79,5 +83,12 @@ if [ $RC -ne 0 ]; then
 	echo "Installation failed (Obsidian FHD and installed style packs, opkg exit code $RC)."
 	exit $RC
 fi
+# 1.6.3: the Customise previews of the style packs moved into the packs. opkg removes them from an
+# opkg install; a skin copied by hand keeps them, so delete the old names (about 1 MB).
+for F in preview_chlist_edge preview_chlist_nova preview_infobar_novao preview_chlist_k7 preview_infobar_k7 \
+	preview_menu_synthwave preview_chlist_synthwave preview_infobar_synthwave \
+	preview_menu_matchday preview_chlist_matchday preview_infobar_matchday; do
+	rm -f "/usr/share/enigma2/Obsidian-FHD/apps/$F.jpg"
+done
 echo ""
 echo "Done. Select Obsidian-FHD in the skin settings (or restart the GUI if it is already active)."

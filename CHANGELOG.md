@@ -2,6 +2,32 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.7.0
+
+**New**
+- Obsidian Posters app: a film or series poster, rating and short plot with the infobar. Needs your own free TMDB key, entered from your phone with a QR code.
+- Poster modes for the Glass, Halo, Nova, K7, Matchday and Synthwave infobars.
+- Matchday style pack: sports TV look for the menus, settings, channel list and infobar, with live receiver stats.
+- Obsidian Cast app: send a photo from your phone to the TV by scanning a code. OK shows it full screen, Green saves it to USB or HDD. Home network only.
+
+**Changed**
+- Messages now appear in a small centred card; long text scrolls (idea by mahermotawea86).
+- OpenATV: network screens redesigned in the Obsidian style.
+- Classic channel list: five upcoming programmes and scrolling descriptions (idea by mj_84).
+- Classic channel list: channels without guide data show their satellite or stream details, plus SNR and AGC when playing.
+- Second infobar: long descriptions scroll (idea by mj_84).
+- Synthwave infobar: frequency and signal bar, hidden on IPTV (idea by dragonfb).
+- Smaller skin download (about 0.7 MB less): style pack previews now come with each pack.
+- Obsidian Apps: OK opens Mawaqit and Cast directly; Yellow opens their settings.
+- Mawaqit: sign in and choose your mosque from your phone with a QR code.
+
+**Fixes**
+- OpenPLi: GUI crash when opening some menu entries (reported by kamaxx and Dervis).
+- Halo and Glass infobars: no more N/A for BER on IPTV.
+- OpenBH and OpenPLi: selection bar missing in 2-line Floating and Nova channel lists (reported by fadhel1974).
+- Style pack download: clearer error messages.
+- Downloads and updates: Python fallback when wget and curl fail, and the real error is shown (reported by kamaxx and onur1995).
+
 ## 1.6.3
 
 **New**

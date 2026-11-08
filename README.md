@@ -41,6 +41,20 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 | **Quick menu** | **Plugin browser** |
 | ![Quick menu](docs/screenshots/quick-menu.jpg) | ![Plugin browser](docs/screenshots/plugin-browser.jpg) |
 
+### New in 1.7
+
+![Matchday style pack](docs/screenshots/matchday.jpg)
+
+![Scan & Send: Obsidian Cast, Posters and Mawaqit from your phone](docs/screenshots/scan-and-send.jpg)
+
+- **Matchday style pack (free download):** sports TV graphics for the menus, settings, channel list and infobar,
+  with live receiver stats. Get it from Menu → **Obsidian Apps** → **Styles**.
+- **Obsidian Cast (free add-on):** send a photo from your phone to the TV by scanning a code. OK shows it full
+  screen, Green saves it to your USB or HDD drive. Home network only; nothing is kept on the flash.
+- **Obsidian Posters (free add-on):** a film or series poster, rating and short plot with the infobar. It needs your
+  own free TMDB key, entered from your phone with a QR code.
+- **Mawaqit:** sign in and choose your mosque from your phone with a QR code.
+
 ### New in 1.6
 
 Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
@@ -102,8 +116,8 @@ Run the same command again to update. Then select **Obsidian-FHD** in the skin s
 Download `release/enigma2-plugin-skins-obsidian-fhd_all.ipk` from this repository, copy it to
 `/tmp` on the receiver and run `opkg install /tmp/enigma2-plugin-skins-obsidian-fhd_all.ipk`.
 The style packs (`enigma2-plugin-skins-obsidian-fhd-edge_all.ipk`, `-nova_all.ipk`, `-k7_all.ipk`,
-`-synthwave_all.ipk`) and the Mawaqit add-on (`enigma2-plugin-extensions-obsidian-mawaqit_all.ipk`) are optional and
-installed the same way, after the skin.
+`-synthwave_all.ipk`, `-matchday_all.ipk`) and the add-ons (`enigma2-plugin-extensions-obsidian-mawaqit_all.ipk`,
+`-posters_all.ipk`, `-cast_all.ipk`) are optional and installed the same way, after the skin.
 
 If something goes wrong, OpenPLi falls back to its default skin automatically.
 
