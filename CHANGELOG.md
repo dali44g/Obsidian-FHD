@@ -2,6 +2,14 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.7.1
+
+- Performance improvements: lighter on CPU and memory, as fast as early versions again.
+- Faster zapping and smoother scrolling.
+- Faster channel list and menus.
+- K7 style pack: same performance improvements.
+- Obsidian Posters 1.0.1: no more short freezes when zapping, lighter poster cache.
+
 ## 1.7.0
 
 **New**

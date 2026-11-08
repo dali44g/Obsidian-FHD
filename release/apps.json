@@ -14,18 +14,6 @@
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianMawaqit"
                  },
                  {
-                     "id":  "posters",
-                     "name":  "Posters",
-                     "package":  "enigma2-plugin-extensions-obsidian-posters",
-                     "version":  "1.0.0",
-                     "minCore":  "1.7.0",
-                     "file":  "enigma2-plugin-extensions-obsidian-posters_all.ipk",
-                     "size":  35770,
-                     "installedKb":  102,
-                     "sha256":  "4fcbe541d2e2d1b936bec9a95b2a6c3467d252c29cc846231e76abc229391ba1",
-                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianPosters"
-                 },
-                 {
                      "id":  "cast",
                      "name":  "Cast",
                      "package":  "enigma2-plugin-extensions-obsidian-cast",
@@ -36,6 +24,18 @@
                      "installedKb":  43,
                      "sha256":  "d10091c9c82c1c788da423bfc4e6a759b17535c9766b294cad868c917327ef0f",
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianCast"
+                 },
+                 {
+                     "id":  "posters",
+                     "name":  "Posters",
+                     "package":  "enigma2-plugin-extensions-obsidian-posters",
+                     "version":  "1.0.1",
+                     "minCore":  "1.7.0",
+                     "file":  "enigma2-plugin-extensions-obsidian-posters_all.ipk",
+                     "size":  36562,
+                     "installedKb":  104,
+                     "sha256":  "dbfd0b9ea3242a075bad3fb6b6abc3f4d0faf02b1c06013af5a6c904836ff81d",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianPosters"
                  }
              ]
 }
