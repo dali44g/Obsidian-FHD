@@ -2,6 +2,32 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.7.2
+
+**New**
+- Obsidian Dock app: a shortcut strip over live TV, with Apps, Plugins, Audio and Subtitles cards; follows your style, or pick the Glass or Depth look
+- Cinema infobar: a new style with the film poster and rating (Obsidian Posters), or the picon when there is none; weather and bitrate
+- Synthwave infobar: today's weather (temperature and icon) under the date, with OAWeather
+- Matchday infobar: a weather tab on the clock panel (icon, city, temperature), with OAWeather
+
+**Changed**
+- Messages: rounded card and lighter icons
+- Obsidian Apps: 12 apps per page (4 × 3 grid), more pages when needed; the page number is in the footer
+- Obsidian Apps: performance optimized (faster cards, smoother navigation), with updated Posters 1.0.3, Mawaqit 1.1.1 and Cast 1.0.1
+- Style packs: updated with their Dock look
+- Wi-Fi Scan (OpenATV 8): new Obsidian layout with the band and a clearer signal
+- Halo infobar: the day next to the time, the date as 12.11.2026 and larger, a larger resolution badge (reported by mj_84)
+- Nova infobar: larger signal bars and SNR / AGC values (reported by ozgurc67)
+
+**Fixes**
+- Style packs: the download no longer asks for 10 MB of free space, 2 MB is enough (the packs are under 1 MB) (reported by hamid735)
+- Nova infobar: the temperature no longer hides under the weather icon (reported by waelb)
+- Nova infobar: long translations of NEXT (Turkish SONRAKİ) no longer break onto two lines (reported by ozgurc67)
+- Date and Time Settings (OpenATV): the date and time format options are now shown (reported by Genaro75)
+- Style packs: when a pack needs a newer skin, the message now says to update the skin first, instead of blaming the internet connection
+- Posters: drives linked into /media are found, and when no drive can be used the message says why for each one (read-only, full...) (reported by mahermotawea86)
+- Plugins, apps and style packs install with Flash Expander: the free space is checked where they go (/usr), not on the flash
+
 ## 1.7.1
 
 - Performance improvements: lighter on CPU and memory, as fast as early versions again.
