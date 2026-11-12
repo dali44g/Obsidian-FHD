@@ -2,7 +2,7 @@
 # Obsidian FHD installer / updater for enigma2 (OpenATV, OpenPLi and others).
 # Usage on the receiver (SSH or telnet):
 #   wget -qO- https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/install.sh | sh
-# Installs or updates the skin, and updates the style packs that are already installed (e.g. Edge).
+# Installs or updates the skin, updates the style packs that are already installed (e.g. Edge), then the installed Obsidian apps.
 # All or nothing: every package is downloaded first; if one download fails, nothing on the receiver is changed.
 # Each package comes from the latest GitHub Release (GitHub counts these downloads), with the copy in the repository
 # as a fallback (no release yet, or an old wget that cannot follow GitHub's redirect).
@@ -90,5 +90,65 @@ for F in preview_chlist_edge preview_chlist_nova preview_infobar_novao preview_c
 	preview_menu_matchday preview_chlist_matchday preview_infobar_matchday; do
 	rm -f "/usr/share/enigma2/Obsidian-FHD/apps/$F.jpg"
 done
+# Obsidian apps that are already installed (Posters, Mawaqit, Cast, Dock...): update them to the version of the
+# same release, so the apps always match the skin. An app that is not installed is never added. Each app is checked
+# against the checksum in apps.json and installed on its own: if one fails, it stays as it was and the rest goes on.
+update_apps() {
+	PY=$(command -v python3 || command -v python) || return 0
+	CAT="$WORK/apps.json"
+	for URL in "$RELEASE/apps.json" "$REPO/apps.json"; do
+		rm -f "$CAT"
+		{ command -v wget >/dev/null 2>&1 && wget -T 30 -t 1 -q -O "$CAT" "$URL"; } ||
+			{ command -v curl >/dev/null 2>&1 && curl -fsSL --connect-timeout 15 --max-time 60 -o "$CAT" "$URL"; } ||
+			"$PY" -c "$PY_FETCH" "$URL" "$CAT" 2>/dev/null
+		[ -s "$CAT" ] && "$PY" -c 'import json,sys;json.load(open(sys.argv[1]))' "$CAT" 2>/dev/null && break
+		rm -f "$CAT"
+	done
+	[ -s "$CAT" ] || { echo "Obsidian apps: the app list could not be downloaded; update them from Obsidian Apps."; return 0; }
+	# installed apps as "package=version" (opkg), then the ones the release has newer: "package file sha256 version"
+	ARGS=""
+	for P in $("$PY" -c 'import json,sys;print(" ".join(a["package"] for a in json.load(open(sys.argv[1])).get("apps",[]) if a.get("package")))' "$CAT"); do
+		V=$(opkg status "$P" 2>/dev/null | grep -q "^Status:.* installed" && opkg status "$P" | sed -n 's/^Version: *//p' | head -n 1)
+		[ -n "$V" ] && ARGS="$ARGS $P=$V"
+	done
+	[ -n "$ARGS" ] || return 0
+	TODO=$("$PY" - "$CAT" $ARGS <<'PYEOF'
+import json, re, sys
+def key(v):
+	return [int(x) for x in re.findall(r"\d+", v or "")]
+have = dict(a.split("=", 1) for a in sys.argv[2:])
+for a in json.load(open(sys.argv[1])).get("apps", []):
+	p = a.get("package")
+	if p in have and key(a.get("version")) > key(have[p]) and a.get("file") and a.get("sha256"):
+		print("%s %s %s %s" % (p, a["file"], a["sha256"], a["version"]))
+PYEOF
+)
+	[ -n "$TODO" ] || { echo "Obsidian apps: up to date."; return 0; }
+	echo "$TODO" | while read -r P F SUM VER; do
+		[ -n "$P" ] || continue
+		FILE="$WORK/app_$F"
+		OK=""
+		for URL in "$RELEASE/$F" "$REPO/$F"; do
+			rm -f "$FILE"
+			{ command -v wget >/dev/null 2>&1 && wget -T 30 -t 1 -q -O "$FILE" "$URL"; } ||
+				{ command -v curl >/dev/null 2>&1 && curl -fsSL --connect-timeout 15 --max-time 120 -o "$FILE" "$URL"; } ||
+				"$PY" -c "$PY_FETCH" "$URL" "$FILE" 2>/dev/null
+			if [ -s "$FILE" ] && [ "$(dd if="$FILE" bs=7 count=1 2>/dev/null)" = "!<arch>" ]; then
+				GOT=$( { sha256sum "$FILE" 2>/dev/null || "$PY" -c 'import hashlib,sys;print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())' "$FILE"; } | cut -d' ' -f1)
+				[ "$GOT" = "$SUM" ] && OK=1 && break
+			fi
+		done
+		if [ -z "$OK" ]; then
+			echo "Obsidian apps: $P $VER could not be downloaded or failed the check; it stays as it was."
+		elif opkg install --force-reinstall "$FILE"; then
+			echo "Obsidian apps: $P updated to $VER."
+		else
+			echo "Obsidian apps: $P $VER failed to install; it stays as it was."
+		fi
+		rm -f "$FILE"
+	done
+}
+update_apps
+
 echo ""
 echo "Done. Select Obsidian-FHD in the skin settings (or restart the GUI if it is already active)."
