@@ -41,12 +41,12 @@
                      "id":  "dock",
                      "name":  "Dock",
                      "package":  "enigma2-plugin-extensions-obsidian-dock",
-                     "version":  "1.0.0",
+                     "version":  "1.0.1",
                      "minCore":  "1.7.2",
                      "file":  "enigma2-plugin-extensions-obsidian-dock_all.ipk",
-                     "size":  106646,
+                     "size":  106638,
                      "installedKb":  149,
-                     "sha256":  "d936273446328c1100d1372c91bf360f62753ff3d07ff3f72c79871cd5be26d4",
+                     "sha256":  "b51a1b71414bae9d2a973a718593d8893e6d8b264ef8ff08dc2f8d9c90720206",
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianDock"
                  }
              ]
