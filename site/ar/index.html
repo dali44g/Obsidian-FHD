@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obsidian FHD</title>
+<meta name="description" content="Obsidian FHD: واجهة Full HD داكنة ومجانية لأجهزة enigma2 (OpenATV وOpenPLi وPurE2)، مع حزم أنماط وتطبيقات مجانية.">
+<meta name="theme-color" content="#07090c">
+<meta property="og:title" content="Obsidian FHD">
+<meta property="og:description" content="Obsidian FHD: واجهة Full HD داكنة ومجانية لأجهزة enigma2 (OpenATV وOpenPLi وPurE2)، مع حزم أنماط وتطبيقات مجانية.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../img/og.jpg">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="alternate" hreflang="en" href=".././">
+<link rel="alternate" hreflang="fr" href="../fr/">
+<link rel="alternate" hreflang="ar" href="../ar/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Kufi+Arabic:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one dark broadcast "screen" site with three views (home, app page, help); screenshots sit in a TV bezel,
+   remote-key chips mark actions. Deliberately dark-only, like the skin itself. */
+:root {
+  --bg: #07090c;
+  --panel: #0e1217;
+  --panel2: #151b22;
+  --line: #222a33;
+  --text: #e8edf2;
+  --muted: #8c98a5;
+  --cyan: #2fd3e6;
+  --amber: #ffb547;
+  --ink: #04181b;
+  --display: "Inter", system-ui, sans-serif;
+  --body: "Inter", system-ui, sans-serif;
+  --arabic: "Noto Kufi Arabic", "Segoe UI", Tahoma, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--text); font: 16px/1.6 var(--body); }
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); font-weight: 800; }
+.eyebrow { font: 600 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--amber); }
+.lead { color: var(--muted); max-width: 62ch; }
+code { font-family: var(--mono); font-size: .9em; color: var(--text); background: var(--panel2); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; }
+
+
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(7,9,12,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+header .wrap { display: flex; align-items: center; gap: 24px; padding-block: 14px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--text); }
+.logo svg { width: 28px; height: 28px; display: block; flex: none; }
+footer .mark { width: 20px; height: 20px; vertical-align: -4px; margin-inline-end: 8px; }
+nav { display: flex; gap: 20px; margin-inline-start: auto; flex-wrap: wrap; align-items: center; }
+nav a { color: var(--muted); font-weight: 500; font-size: 15px; padding-block: 10px; }
+nav a:hover, nav a[aria-current="page"] { color: var(--text); text-decoration: none; }
+nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 var(--cyan); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+
+section { padding-block: 72px; border-bottom: 1px solid var(--line); }
+.hero { padding-block: 64px 72px; background: radial-gradient(900px 400px at 75% 20%, rgba(47,211,230,.10), transparent 70%); }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
+.hero .wrap > div { min-width: 0; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 60px); font-weight: 800; line-height: 1.04; margin-block: 14px 18px; }
+.hero h1 em { font-style: normal; color: var(--cyan); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.facts span { font: 500 13px/1 var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; }
+
+.tv { background: #000; border: 10px solid #15191e; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.6), 0 0 0 1px #262d35; overflow: hidden; max-width: 100%; }
+.tv img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.tvfoot { height: 14px; width: 38%; margin: 0 auto; background: #15191e; border-radius: 0 0 10px 10px; }
+
+.cmd { margin-top: 26px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; }
+.cmd .bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--line); font: 600 12px/1.3 var(--mono); color: var(--muted); }
+.cmd pre { margin: 0; padding: 14px; font: 13.5px/1.5 var(--mono); color: var(--text); overflow-x: auto; white-space: pre; }
+.cmd pre b { color: var(--cyan); font-weight: 400; }
+button.copy { font: 600 12px/1 var(--mono); color: var(--ink); background: var(--cyan); border: 0; border-radius: 6px; padding: 7px 11px; cursor: pointer; flex: none; }
+
+.styles { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; margin-top: 32px; align-items: start; }
+.styles > div { min-width: 0; }
+.tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tabs button { text-align: start; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; color: var(--text); padding: 12px 14px; cursor: pointer; font: inherit; }
+.tabs button small { display: block; color: var(--muted); font-size: 13px; line-height: 1.35; margin-top: 2px; }
+.tabs button b { font-weight: 700; }
+.tag { font: 600 10px/1 var(--mono); letter-spacing: .08em; color: var(--amber); margin-inline-start: 6px; }
+.tabs button[aria-pressed="true"] { border-color: var(--cyan); background: var(--panel2); box-shadow: inset 0 0 0 1px var(--cyan); }
+.caption { margin-top: 14px; color: var(--muted); font-size: 14px; }
+.note { margin-top: 18px; font-size: 14px; color: var(--muted); }
+
+.apps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }
+.app { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; color: var(--text); }
+a.app:hover { text-decoration: none; border-color: #33404d; }
+a.app:hover h3 { color: var(--cyan); }
+.app img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--line); }
+.app .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.app h3 { font-size: 18px; }
+.app p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+.app .meta { margin-top: auto; padding-top: 10px; display: flex; justify-content: space-between; gap: 10px; font: 500 12.5px/1 var(--mono); color: var(--muted); }
+.app .meta .more { color: var(--cyan); }
+.app .meta .soon { color: var(--muted); }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 32px; }
+.step { border-top: 2px solid var(--cyan); padding-top: 16px; }
+.step .n { font: 600 13px/1 var(--mono); color: var(--cyan); }
+.step h3 { font-size: 18px; margin-top: 8px; }
+.step p { color: var(--muted); font-size: 15px; margin: 6px 0 0; }
+.key { display: inline-block; font: 600 11.5px/1 var(--mono); color: var(--text); background: #1c232b; border: 1px solid #2c3540; border-bottom-width: 3px; border-radius: 6px; padding: 4px 7px; white-space: nowrap; }
+
+.news { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; margin-top: 28px; }
+.news > * { min-width: 0; }
+.news ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.news li { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 15px; }
+.news li span { font: 600 11px/1 var(--mono); letter-spacing: .08em; margin-inline-end: 8px; }
+.new { color: var(--cyan); }
+.fix { color: var(--amber); }
+.news li em { color: var(--muted); font-style: normal; font-size: 13.5px; }
+.compat { display: grid; gap: 10px; font-size: 15px; }
+.compat div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); padding-bottom: 8px; }
+.compat div span:last-child { font-family: var(--mono); color: var(--muted); font-size: 13.5px; text-align: end; }
+
+/* ---------- app page ---------- */
+.crumbs { font: 500 13px/1.4 var(--mono); color: var(--muted); }
+.apphead { padding-block: 40px 56px; background: radial-gradient(800px 360px at 80% 10%, rgba(255,181,71,.08), transparent 70%); }
+.apphead .wrap { display: grid; grid-template-columns: 1fr 1.15fr; gap: 44px; align-items: start; }
+.apphead .wrap > div { min-width: 0; }
+.apphead h1 { font-size: clamp(34px, 4.6vw, 52px); font-weight: 800; line-height: 1.05; margin-block: 14px 12px; }
+.release { margin-top: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.release div { padding: 14px 16px; border-inline-end: 1px solid var(--line); min-width: 0; }
+.release div:last-child { border-inline-end: 0; }
+.release small { display: block; font: 600 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.release b { font: 600 16px/1.3 var(--mono); font-variant-numeric: tabular-nums; }
+.release .counter { color: var(--muted); font-weight: 500; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; align-items: center; }
+.btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; border-radius: 10px; padding: 11px 18px; }
+.btn.primary { background: var(--cyan); color: var(--ink); }
+.btn.ghost { border: 1px solid var(--line); color: var(--text); }
+.btn:hover { text-decoration: none; filter: brightness(1.08); }
+.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.shots button { padding: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #000; cursor: pointer; }
+.shots button[aria-pressed="true"] { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan); }
+.shots img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+
+.doc { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 80px); align-self: start; display: grid; gap: 4px; font-size: 14.5px; }
+.toc b { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--amber); margin-bottom: 8px; }
+.toc a { color: var(--muted); padding: 4px 0; }
+.toc a:hover { color: var(--text); text-decoration: none; }
+.article { min-width: 0; display: grid; gap: 52px; }
+.article h2 { font-size: clamp(22px, 2.6vw, 28px); }
+.article p, .article li { color: #c3ccd5; max-width: 68ch; }
+.article ol, .article ul { padding-inline-start: 22px; margin: 12px 0 0; display: grid; gap: 8px; }
+.settings { margin-top: 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.settings div { display: grid; grid-template-columns: 210px 1fr; gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.settings div:last-child { border-bottom: 0; }
+.settings div:nth-child(odd) { background: var(--panel); }
+.settings dt { font-weight: 600; }
+.settings dd { margin: 0; color: var(--muted); font-size: 15px; min-width: 0; }
+.qa { margin-top: 16px; display: grid; gap: 10px; }
+.qa details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.qa summary { cursor: pointer; font-weight: 600; }
+.qa details p { margin: 8px 0 0; color: var(--muted); }
+.changes { margin-top: 16px; display: grid; gap: 14px; }
+.changes article { border-inline-start: 2px solid var(--line); padding-inline-start: 16px; }
+.changes h3 { font: 600 15px/1.3 var(--mono); }
+.changes h3 span { color: var(--muted); font-weight: 400; margin-inline-start: 8px; }
+.changes ul { margin-top: 6px; }
+
+/* ---------- help ---------- */
+.helphead { padding-block: 48px 40px; }
+.helphead h1 { font-size: clamp(32px, 4.4vw, 48px); font-weight: 800; margin-block: 12px 10px; }
+.guides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 8px; }
+.guide { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; display: grid; gap: 8px; align-content: start; }
+.guide h3 { font-size: 18px; }
+.guide p { margin: 0; color: var(--muted); font-size: 15px; }
+.guide ul { margin: 6px 0 0; padding-inline-start: 20px; color: #c3ccd5; font-size: 15px; display: grid; gap: 4px; }
+.guide .soon { font: 600 11px/1 var(--mono); letter-spacing: .08em; color: var(--muted); }
+.applist { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.applist a { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--text); font-size: 14.5px; }
+.applist a:hover { border-color: var(--cyan); text-decoration: none; }
+.applist span { border: 1px dashed var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); font-size: 14.5px; }
+
+footer { padding-block: 40px 56px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 18px 32px; justify-content: space-between; }
+footer .links { display: flex; gap: 20px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero .wrap, .styles, .news, .apphead .wrap, .doc { grid-template-columns: 1fr; }
+  .apps, .steps, .guides { grid-template-columns: 1fr 1fr; }
+  .toc { position: static; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .toc b { grid-column: 1 / -1; }
+  nav { gap: 14px; }
+}
+@media (max-width: 560px) {
+  header .wrap { gap: 12px; padding-block: 6px; }
+  .logo { font-size: 15px; }
+  nav { gap: 16px; }
+  .hero { padding-block: 40px 52px; }
+  .apphead { padding-block: 28px 44px; }
+  .apps, .steps, .tabs, .guides { grid-template-columns: 1fr; }
+  .release { grid-template-columns: 1fr; }
+  .release div { border-inline-end: 0; border-bottom: 1px solid var(--line); }
+  .release div:last-child { border-bottom: 0; }
+  .settings div { grid-template-columns: 1fr; gap: 4px; }
+  nav a.gh { display: none; }
+  section { padding-block: 52px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #styleShot, #appShot { transition: opacity .25s; }
+}
+
+/* language switch, Arabic */
+.langs { display: flex; gap: 2px; border: 1px solid var(--line); border-radius: 999px; padding: 2px; flex: none; }
+.langs a { color: var(--muted); font: 600 12.5px/1 var(--mono); padding: 8px 10px; border-radius: 999px; }
+.langs a:hover { color: var(--text); text-decoration: none; }
+.langs a[aria-current="true"] { background: var(--panel2); color: var(--text); box-shadow: inset 0 0 0 1px var(--cyan); }
+.langs a[lang="ar"] { font-family: var(--arabic); font-size: 13.5px; }
+footer .langs { border: 0; padding: 0; }
+.ltr { direction: ltr; unicode-bidi: isolate; }
+[dir="rtl"] body { font-family: var(--arabic); }
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { font-family: var(--arabic); letter-spacing: 0; }
+[dir="rtl"] .eyebrow, [dir="rtl"] .toc b, [dir="rtl"] .release small { letter-spacing: 0; }
+[dir="rtl"] .cmd pre, [dir="rtl"] code { direction: ltr; text-align: left; }
+@media (max-width: 560px) { .langs a { padding: 8px 7px; } }
+
+/* "Works with" logos in the hero: grey until hovered */
+.works { margin-top: 22px; display: grid; gap: 10px; justify-items: center; }
+.works ul { justify-content: center; }
+.works-label { font: 600 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.works ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.works li { display: flex; align-items: center; gap: 8px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px 12px 6px 6px; padding-inline: 6px 12px; font-size: 13.5px; color: var(--muted); }
+.works li img { width: 32px; height: 32px; border-radius: 7px; object-fit: contain; background: #fff; filter: grayscale(1) opacity(.75); transition: filter .2s; }
+.works li:hover img, .works li:focus-within img { filter: none; }
+.works li span { color: var(--text); }
+.works li.word { padding-inline: 12px; }
+.works li.word b { font-weight: 800; color: var(--text); letter-spacing: -.01em; }
+.works li.word span { color: var(--muted); font-size: 12px; }
+.works small { color: var(--muted); font-size: 12px; }
+[dir="rtl"] .works-label { letter-spacing: 0; }
+@media (prefers-reduced-motion: reduce) { .works li img { transition: none; } }
+.qa details ol, .qa details ul { margin: 10px 0 0; color: var(--muted); }
+.tablewrap { overflow-x: auto; margin: 14px 0; }
+.cmp { width: 100%; border-collapse: collapse; font-size: .95em; }
+.cmp th, .cmp td { border: 1px solid var(--line); padding: 8px 12px; text-align: start; vertical-align: top; }
+.cmp th { background: var(--panel); }
+.cmp td:first-child { font-weight: 600; }
+.beta { display: inline-block; margin-inline-start: 6px; padding: 1px 8px; border: 1px solid #ffb020; border-radius: 10px; color: #ffb020; font-size: .78em; font-weight: 600; letter-spacing: .3px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="obs-mark" viewBox="0 0 256 256">
+    <mask id="obs-ring" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><rect width="256" height="256" fill="white"/><polygon points="75,101 128,65 181,101 181,167 128,203 75,167" fill="black"/></mask>
+    <g mask="url(#obs-ring)">
+      <polygon points="75,8 177,8 248,79 248,181 177,248 75,248 8,181 8,79" fill="#353d49"/>
+      <polygon points="8,79 75,8 75,101 8,146" fill="#4b535f"/>
+      <polygon points="75,8 128,65 75,101" fill="#3b4350"/>
+      <polygon points="8,146 75,101 75,167 128,203 75,248 8,181" fill="#303743"/>
+      <polygon points="75,248 128,203 181,167 177,248" fill="#454d59"/>
+      <polygon points="181,101 248,137 248,181 177,248 181,167" fill="#3c4551"/>
+      <polygon points="75,8 177,8 248,79 248,137 128,65" fill="#00d8e8"/>
+    </g>
+  </symbol>
+</svg>
+<header><div class="wrap">
+<a class="logo" href="#top"><svg aria-hidden="true"><use href="#obs-mark"/></svg>Obsidian FHD</a>
+<nav><a href="#top" data-nav="home">الرئيسية</a><a href="#apps-list" data-nav="apps">التطبيقات</a><a href="#help" data-nav="help">المساعدة</a><a class="gh" href="https://github.com/dali44g/Obsidian-FHD">GitHub</a><span class="langs" aria-label="اللغة"><a href="../" hreflang="en" lang="en" data-lang="en">EN</a><a href="../fr/" hreflang="fr" lang="fr" data-lang="fr">FR</a><a href="../ar/" hreflang="ar" lang="ar" data-lang="ar" aria-current="true">عربي</a></span></nav>
+</div></header>
+<main class="view" id="home">
+<section class="hero" id="top"><div class="wrap"><div>
+<div class="eyebrow">واجهة مجانية لـ enigma2 · الإصدار 1.8.0</div><h1>جهاز الاستقبال، <em>بحُلّة جديدة</em> بدقة Full HD.</h1><p class="lead">واجهة داكنة وعصرية بدقة 1080p لـ OpenATV وOpenPLi وصور enigma2 الأخرى. اختر نمطاً، وأضف تطبيقات Obsidian المجانية، وغيّر المظهر من جهاز التحكم. لا حاجة إلى حاسوب.</p>
+<div class="cmd"><div class="bar"><span>شغّله على الجهاز (SSH أو Telnet)</span><button class="copy" id="copy1" type="button" data-pre="copy1-pre">نسخ</button></div><pre id="copy1-pre" dir="ltr"><b>wget</b> -qO- https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/install.sh | sh</pre></div>
+<div class="facts"><span>1920 × 1080</span><span>OpenATV · OpenPLi · PurE2</span><span>العربية والفرنسية</span><span>~540 شاشة</span></div>
+</div><div><div class="tv"><img src="../img/preview_menu.jpg" alt="القائمة الرئيسية لـ Obsidian FHD فوق البث المباشر"></div><div class="tvfoot"></div>
+<div class="works"><span class="works-label">يعمل مع</span><ul><li class="word"><b>OpenATV</b></li><li class="word"><b>OpenPLi</b></li><li class="word"><b>PurE2</b></li><li class="word"><b>OE-Alliance</b></li><li class="word"><b>OpenBH</b></li></ul></div></div></div></section>
+<section id="styles"><div class="wrap"><div class="eyebrow">الأنماط</div><h2>واجهة واحدة، أشكال متعددة</h2><p class="lead">غيّره من <span class="key">MENU</span> › Obsidian Apps › Styles. ‏Classic وFloating مضمّنان في الواجهة؛ أما البقية فحزم أنماط صغيرة تنزّلها من الشاشة نفسها.</p><div class="styles"><div>
+<div class="tv"><img id="styleShot" src="../img/preview_menu_classic.jpg" alt="Classic"></div><div class="tvfoot"></div><p class="caption" id="styleCap">Classic: مظهر Obsidian الأصلي، أسود مع لمسات سماوية.</p></div><div><div class="tabs" id="tabs">
+<button type="button" aria-pressed="true" data-img="preview_menu_classic.jpg" data-cap="Classic: مظهر Obsidian الأصلي، أسود مع لمسات سماوية."><b>Classic</b><small>مضمّن</small></button>
+<button type="button" aria-pressed="false" data-img="preview_chlist.jpg" data-cap="Floating: بطاقات فوق البث المباشر، مع بطاقة وصف للعنصر المحدد."><b>Floating</b><small>مضمّن</small></button>
+<button type="button" aria-pressed="false" data-img="preview_menu_edge.jpg" data-cap="Edge: قائمة سريعة مع حلقات ولوحة جانبية نحيفة."><b>Edge</b><span class="tag">حزمة</span><small>حلقات ولوحة جانبية</small></button>
+<button type="button" aria-pressed="false" data-img="preview_infobar_nova.jpg" data-cap="Nova: كبسولات دائرية وعدّادات حلقية للإشارة والنظام."><b>Nova</b><span class="tag">حزمة</span><small>كبسولات وحلقات</small></button>
+<button type="button" aria-pressed="false" data-img="preview_menu_k7.jpg" data-cap="K7: رمادي داكن وزيتوني مع لمسات برتقالية."><b>K7</b><span class="tag">حزمة</span><small>رمادي وبرتقالي</small></button>
+<button type="button" aria-pressed="false" data-img="preview_style_synthwave.jpg" data-cap="Synthwave: شبكة نيون وألوان الغروب."><b>Synthwave</b><span class="tag">حزمة</span><small>نيون الثمانينات</small></button>
+<button type="button" aria-pressed="false" data-img="preview_style_matchday.jpg" data-cap="Matchday: مظهر البث الرياضي مع إحصاءات الجهاز المباشرة."><b>Matchday</b><span class="tag">حزمة</span><small>بث رياضي</small></button>
+<button type="button" aria-pressed="false" data-img="preview_infobar_cinema.jpg" data-cap="شريط Cinema: ملصق الفيلم وتقييمه، أو شعار القناة عند عدم توفره."><b>Cinema</b><small>نمط شريط المعلومات</small></button>
+</div><p class="note">يمكن لكلٍّ من القوائم وقائمة القنوات وشريط المعلومات استخدام نمط مختلف. <a href="#help">كيف تغيّر النمط ›</a></p></div></div></div></section>
+<section id="apps-list"><div class="wrap"><div class="eyebrow">تطبيقات Obsidian</div><h2>تطبيقات مجانية مصمَّمة للواجهة</h2><p class="lead">ثبّتها من <span class="key">MENU</span> › Obsidian Apps. كلٌّ منها اختياري وله تحديثاته الخاصة ويُزال بشكل نظيف. انقر على تطبيق لعرض دليله.</p><div class="apps">
+<a class="app" href="#app-posters"><img src="../img/preview_posters.jpg" alt="Posters" loading="lazy"><div class="body"><h3>Posters</h3><p>ملصقات الأفلام والمسلسلات مع التقييمات في أشرطة المعلومات، مع صور منفصلة للحالي والتالي.</p><div class="meta"><span><span class="ltr">v1.0.5</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-stream"><img src="../img/preview_stream.jpg" alt="Stream" loading="lazy"><div class="body"><h3>Stream</h3><p>شاهد قنوات هذا الجهاز على هاتفك أو جهازك اللوحي أو تلفاز آخر في المنزل، عبر تطبيق IPTV.</p><div class="meta"><span><span class="ltr">v1.0.0</span> <span class="beta">تجريبي</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-dock"><img src="../img/preview_dock.jpg" alt="Dock" loading="lazy"><div class="body"><h3>Dock</h3><p>شريط اختصارات فوق البث المباشر: الدليل، المؤقتات، التسجيلات، بطاقات الصوت والترجمة، وتطبيقاتك.</p><div class="meta"><span><span class="ltr">v1.0.2</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-mawaqit"><img src="../img/preview_mawaqit.jpg" alt="Mawaqit" loading="lazy"><div class="body"><h3>Mawaqit</h3><p>مواقيت الصلاة لمسجدك على التلفاز، مع العد التنازلي للصلاة القادمة.</p><div class="meta"><span><span class="ltr">v1.1.2</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-cast"><img src="../img/preview_cast.jpg" alt="Cast" loading="lazy"><div class="body"><h3>Cast</h3><p>اعرض صور هاتفك على التلفاز. امسح رمز QR، دون تثبيت أي تطبيق.</p><div class="meta"><span><span class="ltr">v1.0.2</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-subtitles"><img src="../img/preview_subtitles.jpg" alt="Live Subtitles" loading="lazy"><div class="body"><h3>Live Subtitles</h3><p>ترجمة للقنوات التي لا ترجمة لها، من كلام القناة، بالعربية أو الفرنسية أو الإنجليزية.</p><div class="meta"><span><span class="ltr">v1.0.0</span> <span class="beta">تجريبي</span></span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-weather"><img src="../img/preview_weather.svg" alt="الطقس" loading="lazy"><div class="body"><h3>الطقس</h3><p>طقس اليوم وتوقعات 5 أيام في شريط المعلومات، مع OAWeather ‏(OAWeather-Pli على OpenPLi).</p><div class="meta"><span>جزء من الواجهة</span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-clock"><img src="../img/preview_clock.svg" alt="ساعة دائمة" loading="lazy"><div class="body"><h3>ساعة دائمة</h3><p>أبقِ الوقت ظاهراً على الشاشة أثناء المشاهدة. اختر التصميم والموضع والحجم واللون.</p><div class="meta"><span>جزء من الواجهة</span><span class="more">الدليل ›</span></div></div></a>
+<a class="app" href="#app-bitrate"><img src="../img/preview_bitrate.svg" alt="معدل البت" loading="lazy"><div class="body"><h3>معدل البت</h3><p>معدل بت الفيديو والصوت للقناة مباشرة، تحت الساعة أو داخل شريط المعلومات.</p><div class="meta"><span>جزء من الواجهة</span><span class="more">الدليل ›</span></div></div></a>
+</div></div></section>
+<section id="install"><div class="wrap"><div class="eyebrow">التثبيت</div><h2>ثلاث خطوات، حوالي دقيقتين</h2><div class="steps">
+<div class="step"><div class="n">الخطوة 1</div><h3>افتح طرفية على الجهاز</h3><p>استخدم SSH أو Telnet (برنامج PuTTY على ويندوز) إلى عنوان IP الخاص بالجهاز، المستخدم <code>root</code>.</p></div>
+<div class="step"><div class="n">الخطوة 2</div><h3>الصق الأمر</h3><p>يختار المثبّت أحدث إصدار ويتحقق من المساحة الحرة أولاً. أعد تشغيله لاحقاً للتحديث.</p></div>
+<div class="step"><div class="n">الخطوة 3</div><h3>اختر الواجهة</h3><p><span class="key">MENU</span> › Setup › System › User interface › Skin، اختر <b>Obsidian-FHD</b> ثم <span class="key">OK</span>.</p></div>
+</div><div style="max-width:760px"><div class="cmd"><div class="bar"><span>تثبيت أو تحديث</span><button class="copy" id="copy2" type="button" data-pre="copy2-pre">نسخ</button></div><pre id="copy2-pre" dir="ltr"><b>wget</b> -qO- https://raw.githubusercontent.com/dali44g/Obsidian-FHD/main/install.sh | sh</pre></div></div><p class="note">تفضّل الملفات؟ نزّل ملف ‎.ipk من <a href="https://github.com/dali44g/Obsidian-FHD/releases/latest">أحدث إصدار</a>، وانسخه إلى <code>/tmp</code> ثم شغّل <code>opkg install</code>.</p></div></section>
+<section id="news"><div class="wrap"><div class="eyebrow">الجديد</div><h2>الإصدار 1.8.0</h2><div class="news"><ul>
+<li><span class="new">جديد</span>Obsidian Stream: قنواتك على الهواتف والأجهزة اللوحية في المنزل</li>
+<li><span class="new">جديد</span>Posters 1.0.5: صور منفصلة للبرنامج الحالي والتالي في شريط المعلومات الثاني <em>(mohamedothman)</em></li>
+<li><span class="new">جديد</span>قائمة Floating: بطاقة بوصف العنصر المحدد <em>(mj_84)</em></li>
+<li><span class="new">جديد</span>OpenPLi: إضافة Bitrate الخاصة به واسم مدينة بديل للطقس <em>(sety)</em></li>
+<li><span class="fix">إصلاح</span>Posters وCast على صور الإقلاع المتعدد (NeoBoot وEgamiBoot) <em>(sety)</em></li>
+<li><a href="https://github.com/dali44g/Obsidian-FHD/blob/main/CHANGELOG.md">سجل التغييرات الكامل ›</a></li></ul><div><h3 style="font-size:18px;margin-bottom:14px">تم الاختبار مع</h3><div class="compat">
+<div><span>OpenATV</span><span><span class="ltr">7.6 · 8</span></span></div>
+<div><span>OpenPLi</span><span>الإصدارات الحديثة</span></div>
+<div><span>PurE2</span><span>فُحص بدون جهاز</span></div>
+<div><span>الأجهزة</span><span>أي جهاز Full HD</span></div>
+<div><span>Flash Expander</span><span>مدعوم</span></div>
+</div><p class="note">هل هناك مشكلة؟ راجع <a href="#help">المساعدة</a>، أو افتح بلاغاً على GitHub، أو اكتب في موضوع المنتدى. يُذكر أصحاب البلاغات في سجل التغييرات.</p></div></div></div></section></main>
+<main class="view" id="app-posters" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Posters</div><h1>Posters</h1><p class="lead">ملصق الفيلم أو المسلسل وتقييمه وملخص قصير، يظهر مع شريط المعلومات. يتبع الملصق البرنامج: للحالي والتالي صورة خاصة بكلٍّ منهما في شريط المعلومات الثاني.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.0.5</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#posters-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب اتصالاً بالإنترنت ومفتاح TMDB مجانياً وذاكرة USB أو قرصاً صلباً بمساحة حرة 100 ميغابايت: لا تُحفظ الملصقات أبداً على ذاكرة الجهاز الداخلية. غير معتمد من TMDB.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-posters" src="../img/preview_posters_infobar.jpg" alt="Posters"></div><div class="tvfoot"></div>
+<div class="shots" data-target="shot-posters">
+<button type="button" aria-pressed="true" data-img="preview_posters_infobar.jpg" aria-label="Posters 1"><img src="../img/preview_posters_infobar.jpg" alt=""></button>
+<button type="button" aria-pressed="false" data-img="preview_posters_film.jpg" aria-label="Posters 2"><img src="../img/preview_posters_film.jpg" alt=""></button>
+<button type="button" aria-pressed="false" data-img="preview_posters_off.jpg" aria-label="Posters 3"><img src="../img/preview_posters_off.jpg" alt=""></button>
+</div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#posters-install">التثبيت</a>
+<a href="#posters-settings">الإعدادات</a>
+<a href="#posters-trouble">حل المشكلات</a>
+<a href="#posters-changes">الجديد</a>
+</nav><div class="article">
+<div id="posters-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، ثم اختر <b>Posters</b> وثبّته.</li><li>أنشئ حساباً مجانياً على themoviedb.org، ثم Settings › API: انسخ مفتاح API.</li><li>في Posters، افتح <b>TMDB key</b> وامسح رمز QR بهاتفك للصق المفتاح (أو استخدم ملف tmdb.txt أو جهاز التحكم).</li><li>اختر <b>Poster folder</b> على ذاكرة USB أو القرص الصلب. تظهر الملصقات عند تغيير القناة التالي.</li></ol></div>
+<div id="posters-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Poster display</dt><dd>داخل شريط المعلومات، أو بطاقة منزلقة، أو بطاقة الفيلم، أو إيقاف. شريط Cinema يعرضه دائماً داخل الشريط.</dd></div><div><dt dir="ltr">TMDB key</dt><dd>أدخل مفتاح TMDB المجاني بالهاتف (رمز QR) أو بملف tmdb.txt أو بجهاز التحكم.</dd></div><div><dt dir="ltr">Poster folder</dt><dd>ذاكرة USB أو القرص الصلب المستخدم للملصقات. ليس ذاكرة الجهاز الداخلية أبداً.</dd></div><div><dt dir="ltr">Posters for</dt><dd>الأفلام والمسلسلات والوثائقيات، أو الأفلام فقط، أو الأفلام والمسلسلات. لا تحصل الأخبار والرياضة والبرامج على ملصق أبداً.</dd></div><div><dt dir="ltr">Cache size</dt><dd>50 أو 100 أو 200 ميغابايت. تُحذف أقدم الملصقات عند تجاوز هذا الحجم.</dd></div><div><dt dir="ltr">Poster time</dt><dd>5 أو 8 أو 10 أو 15 ثانية بعد تغيير القناة. في شريط Glass يبقى الشريط مفتوحاً المدة نفسها.</dd></div><div><dt dir="ltr">Slide in</dt><dd>تشغيل: ينزلق الملصق من حافة الشاشة. إيقاف: يظهر فوراً.</dd></div><div><dt dir="ltr">Position</dt><dd>أعلى اليمين أو أعلى اليسار. يُطبَّق بعد إعادة تشغيل الواجهة.</dd></div><div><dt dir="ltr">Cache</dt><dd>يعرض عدد الملصقات المحفوظة؛ ‏OK يحذفها جميعاً.</dd></div></dl></div>
+<div id="posters-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>«التخزين على ذاكرة الجهاز» مع أنني اخترت القرص الصلب</summary><p>أُصلح في 1.0.4 للصور التي تعمل من القرص الصلب (OpenMultiboot وEgamiBoot وNeoBoot). حدّث Posters من Obsidian Apps.</p></details><details><summary>لا يظهر ملصق لبرنامج ما</summary><p>تحتاج الملصقات إلى دليل برامج بعنوان تعرفه قاعدة بيانات الأفلام. لا تحصل الأخبار والرياضة والبث المباشر على ملصق؛ ويعرض الشريط حينها شعار القناة.</p></details><details><summary>«TMDB refused this key»</summary><p>انسخ مفتاح API (وليس رمز الوصول) من themoviedb.org › Settings › API وأدخله مجدداً.</p></details></div></div>
+<div id="posters-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.0.5</span></h3><ul><li>صور منفصلة للحالي والتالي في شريط المعلومات الثاني بكل الأنماط <em>(mohamedothman)</em></li><li>تبقى البطاقات النصية بالعرض الكامل عند عدم وجود صورة</li></ul></article><article><h3><span class="ltr">1.0.4</span></h3><ul><li>قبول أقراص الإقلاع المتعدد وإدراجها مرة واحدة <em>(mahermotawea86, sat_abdel, 1995Gh3ssan, sety)</em></li><li>يعمل رمز QR للهاتف مع الاتصال السلكي <em>(Kamelrasul)</em></li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-stream" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Stream</div><h1>Stream</h1><p class="lead">يصبح جهازك خادم IPTV لمنزلك: أضفه في TiviMate أو IPTV Smarters (بيانات Xtream Codes) أو الصق رابط M3U في VLC، مع دليل البرامج والشعارات.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.0.0</span> <span class="beta">تجريبي</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#stream-install">التثبيت من الجهاز</a></div>
+<p class="note">الشبكة المنزلية فقط، وجهاز واحد في كل مرة: يتوقف البث المباشر مؤقتاً على الجهاز أثناء المشاهدة. اختُبر مع قنوات IPTV؛ لم تُختبر قنوات الأقمار الصناعية والكابل والأرضية بعد.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-stream" src="../img/preview_stream.jpg" alt="Stream"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#stream-install">التثبيت</a>
+<a href="#stream-settings">الإعدادات</a>
+<a href="#stream-trouble">حل المشكلات</a>
+<a href="#stream-changes">الجديد</a>
+</nav><div class="article">
+<div id="stream-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، واختر <b>Stream</b> وثبّته.</li><li>افتح Stream واضغط <span class="key">GREEN</span> لتشغيل البث (يكون متوقفاً حتى تفعل ذلك).</li><li>في تطبيق IPTV، أضف قائمة Xtream Codes باستخدام الخادم واسم المستخدم وكلمة المرور الظاهرة على التلفاز، أو الصق رابط M3U في VLC.</li><li>لاستعادة التلفاز أثناء مشاهدة جهاز آخر، اضغط <span class="key">OK</span> على جهاز التحكم.</li></ol></div>
+<div id="stream-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Streaming</dt><dd>تشغيل أو إيقاف. إيقاف: يتوقف الجهاز عن الرد على تطبيقات IPTV.</dd></div><div><dt dir="ltr">Channels to share</dt><dd>الأقمار الصناعية وIPTV، أو الأقمار فقط، أو IPTV فقط.</dd></div><div><dt dir="ltr">While a device watches</dt><dd>إيقاف التلفاز مؤقتاً مع رسالة، أو وضع الجهاز في وضع الاستعداد.</dd></div><div><dt dir="ltr">When the device stops</dt><dd>العودة إلى التلفاز، أو البقاء متوقفاً (OK للعودة).</dd></div><div><dt dir="ltr">Show the channel name / device address</dt><dd>ما تعرضه رسالة الإيقاف المؤقت.</dd></div><div><dt dir="ltr">After OK, refuse that device for</dt><dd>1 أو 2 أو 5 أو 10 دقائق.</dd></div><div><dt dir="ltr">Port</dt><dd>من 8095 إلى 8098. غيّره فقط إذا كان تطبيق آخر يستخدم هذا المنفذ، ثم حدّث عنوان الخادم في تطبيقاتك.</dd></div><div><dt dir="ltr">Request log</dt><dd>سجل في ‎/tmp مع إخفاء كلمات المرور، بحد أقصى 400 كيلوبايت؛ يتوقف تلقائياً بعد 24 ساعة.</dd></div></dl></div>
+<div id="stream-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>لا يستطيع التطبيق تسجيل الدخول</summary><p>استخدم الشبكة المنزلية نفسها (وليس شبكة ضيوف). بعد 5 كلمات مرور خاطئة ينتظر الجهاز دقيقة واحدة. على iPhone، اسمح بالشبكة المحلية للتطبيق في الإعدادات › الخصوصية والأمان.</p></details><details><summary>يظهر التطبيق «مشغول»</summary><p>جهاز آخر يشاهد، أو ضُغط OK قبل لحظات (يُرفض الجهاز للمدة التي حددتها).</p></details><details><summary>الباقات الجديدة لا تظهر في التطبيق</summary><p>حدّث القائمة في تطبيق IPTV بعد إضافة الباقات أو إعادة تسميتها.</p></details></div></div>
+<div id="stream-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.0.0</span></h3><ul><li>الإصدار الأول: ‏Xtream Codes وM3U، دليل البرامج والشعارات، جهاز واحد في كل مرة</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-dock" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Dock</div><h1>Dock</h1><p class="lead">افتح Dock بضغطة مطوّلة على OK أثناء البث المباشر وانتقل إلى ما تستخدمه أكثر. يتبع نمطك، أو اختر مظهر Glass أو Depth.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.0.2</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#dock-install">التثبيت من الجهاز</a></div>
+<p class="note">لا يحتاج إلى أي شيء آخر: لا إنترنت ولا قرص.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-dock" src="../img/preview_dock.jpg" alt="Dock"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#dock-install">التثبيت</a>
+<a href="#dock-settings">الإعدادات</a>
+<a href="#dock-trouble">حل المشكلات</a>
+<a href="#dock-changes">الجديد</a>
+</nav><div class="article">
+<div id="dock-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، واختر <b>Dock</b> وثبّته.</li><li>أثناء البث المباشر، اضغط مطوّلاً على <span class="key">OK</span>. في الشريط: يسار / يمين للتنقل، أعلى / أسفل للاختيار، OK للفتح، EXIT للإغلاق.</li><li>اختر اختصاراتك من صفحة Dock في Obsidian Apps.</li></ol></div>
+<div id="dock-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Open with</dt><dd>OK مطوّل، أزرق، أزرق مطوّل، Text، Help أو إيقاف. تحتفظ الأزرار المطوّلة بوظيفة الضغطة القصيرة.</dd></div><div><dt dir="ltr">Strip style</dt><dd>تلقائي (مطابق للقوائم)، Obsidian، Glass، Depth، أو نمط تضيفه حزمة مثبّتة.</dd></div><div><dt dir="ltr">Shortcut 1 to Shortcut 8</dt><dd>الدليل، المعلومات، المؤقتات، التسجيلات، الصوت، الترجمة، المؤقت، النص المرئي، القنوات، الإضافات، التطبيقات، Live Subtitles (عند تثبيت هذا التطبيق) أو فارغ. تُحذف الأماكن الفارغة.</dd></div><div><dt dir="ltr">Plugins card</dt><dd>‏OK يفتح القائمة؛ ‏OK يحدد إضافة، وGREEN يحفظ.</dd></div><div><dt dir="ltr">Close automatically</dt><dd>8 أو 15 أو 30 ثانية أو أبداً.</dd></div></dl></div>
+<div id="dock-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>«This shortcut is not available on this receiver»</summary><p>لا تحتوي الصورة على شاشة لهذا الاختصار (مثل النص المرئي). اختر اختصاراً آخر لهذا المكان.</p></details><details><summary>الضغط المطوّل على OK يفعل شيئاً آخر</summary><p>قد تستخدمه إضافة أخرى. اضبط <b>Open with</b> على الأزرق أو الأزرق المطوّل.</p></details></div></div>
+<div id="dock-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.0.2</span></h3><ul><li>بطاقة التطبيقات: تعرض الإضافات أيقونتها الخاصة (Live Subtitles)</li><li>اختصار Live Subtitles: بطاقة تبيّن إن كانت تعمل؛ OK يشغّلها أو يوقفها</li><li>الفرنسية والعربية</li></ul></article><article><h3><span class="ltr">1.0</span></h3><ul><li>الإصدار الأول: شريط اختصارات فوق البث، بطاقات الصوت والترجمة، مظهرا Glass وDepth</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-mawaqit" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Mawaqit</div><h1>Mawaqit</h1><p class="lead">مواقيت الصلاة لمسجدك من mawaqit.net، مع تذكير قبل الأذان وتنبيهات الإقامة ووضع عرض بملء الشاشة اختياري.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.1.2</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#mawaqit-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب اتصالاً بالإنترنت وحساباً مجانياً على mawaqit.net. ليس من إنتاج MAWAQIT.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-mawaqit" src="../img/preview_mawaqit.jpg" alt="Mawaqit"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#mawaqit-install">التثبيت</a>
+<a href="#mawaqit-settings">الإعدادات</a>
+<a href="#mawaqit-trouble">حل المشكلات</a>
+<a href="#mawaqit-changes">الجديد</a>
+</nav><div class="article">
+<div id="mawaqit-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، واختر <b>Mawaqit</b> وثبّته.</li><li>افتح <b>Account</b> وامسح رمز QR بهاتف على الشبكة نفسها لتسجيل الدخول (يُحفظ رمز فقط، وليس كلمة المرور أبداً).</li><li>افتح <b>Mosque</b> وابحث عن مسجدك بالاسم أو المدينة.</li></ol></div>
+<div id="mawaqit-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Account</dt><dd>تسجيل الدخول بحساب mawaqit.net أو تسجيل الخروج.</dd></div><div><dt dir="ltr">Mosque</dt><dd>ابحث عن مسجدك بالاسم أو المدينة.</dd></div><div><dt dir="ltr">Prayer panel with infobar</dt><dd>تشغيل أو إيقاف: مواقيت الصلاة بجانب شريط المعلومات.</dd></div><div><dt dir="ltr">Reminder</dt><dd>عند الأذان فقط، أو قبل 5 أو 10 أو 15 أو 20 دقيقة: بطاقة مع عد تنازلي.</dd></div><div><dt dir="ltr">Adhan and iqama alerts</dt><dd>بطاقة وامضة عند الأذان، وعد تنازلي حتى الإقامة، ثم بطاقة عند الإقامة.</dd></div><div><dt dir="ltr">Alert flashing time</dt><dd>5 أو 8 أو 15 أو 30 ثانية.</dd></div><div><dt dir="ltr">Next prayer on screen</dt><dd>أداة صغيرة أعلى اليمين، تختفي عند ظهور شريط المعلومات.</dd></div><div><dt dir="ltr">Display mode at start</dt><dd>لجهاز يُستخدم كشاشة لمواقيت الصلاة. يعود إلى التلفاز عند أي خطأ.</dd></div><div><dt dir="ltr">24-hour clock</dt><dd>الأوقات بصيغة 16:44 أو 4:44.</dd></div></dl></div>
+<div id="mawaqit-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>يظهر رمز QR «No network»</summary><p>أُصلح في 1.1.2 للأجهزة المتصلة بالكابل. حدّث Mawaqit من Obsidian Apps.</p></details><details><summary>المواقيت لا تطابق مسجدي</summary><p>تأكد من اختيار المسجد الصحيح في <b>Mosque</b>، ثم اضغط OK في الشاشة الرئيسية للتحديث.</p></details></div></div>
+<div id="mawaqit-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.1.2</span></h3><ul><li>يعمل رمز QR مع الاتصال السلكي؛ ويُستخدم منفذ آخر عند انشغال المعتاد <em>(Kamelrasul)</em></li></ul></article><article><h3><span class="ltr">1.1.1</span></h3><ul><li>أسرع</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-cast" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Cast</div><h1>Cast</h1><p class="lead">أرسل صورة من هاتفك إلى التلفاز: امسح الرمز، واختر صورة، ثم اضغط Send to TV. تبقى الصور داخل منزلك.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.0.2</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#cast-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب هاتفاً على الشبكة المنزلية نفسها. تبقى الصورة المعروضة في الذاكرة فقط؛ ‏GREEN يحفظها على ذاكرة USB أو قرص صلب.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-cast" src="../img/preview_cast.jpg" alt="Cast"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#cast-install">التثبيت</a>
+<a href="#cast-settings">الإعدادات</a>
+<a href="#cast-trouble">حل المشكلات</a>
+<a href="#cast-changes">الجديد</a>
+</nav><div class="article">
+<div id="cast-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، واختر <b>Cast</b> وثبّته.</li><li>افتح Cast وامسح الرمز بهاتفك (أو افتح العنوان الظاهر).</li><li>اختر صورة واضغط <b>Send to TV</b>. على التلفاز: ‏OK للعرض، وEXIT للتجاهل؛ و‏OK مرة أخرى لملء الشاشة.</li></ol></div>
+<div id="cast-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Receive photos</dt><dd>تشغيل أو إيقاف. إيقاف: يتوقف الجهاز عن استقبال الهواتف.</dd></div><div><dt dir="ltr">When a photo arrives</dt><dd>السؤال أولاً، أو العرض فوراً.</dd></div><div><dt dir="ltr">Close photo automatically</dt><dd>أبداً، أو 15 أو 30 ثانية، أو دقيقة واحدة.</dd></div></dl></div>
+<div id="cast-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>لا تُفتح الصفحة على الهاتف</summary><p>يجب أن يكون الهاتف على الشبكة المنزلية نفسها للجهاز (وليس شبكة ضيوف أو بيانات الجوال).</p></details><details><summary>الحفظ يرفض القرص الصلب</summary><p>أُصلح في 1.0.2 للصور التي تعمل من القرص الصلب (الإقلاع المتعدد). حدّث Cast من Obsidian Apps.</p></details></div></div>
+<div id="cast-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.0.2</span></h3><ul><li>قبول أقراص الإقلاع المتعدد لحفظ الصور <em>(mahermotawea86, sat_abdel, 1995Gh3ssan, sety)</em></li></ul></article><article><h3><span class="ltr">1.0.1</span></h3><ul><li>أسرع</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-subtitles" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › Live Subtitles</div><h1>Live Subtitles</h1><p class="lead">ترجمة للقنوات التي لا ترجمة لها. يستمع الجهاز إلى القناة، ويحوّل خادم التعرف على الكلام الصوت إلى نص، مترجماً إلى العربية أو الفرنسية أو الإنجليزية إن أردت. وعندما ترسل القناة ترجمتها الخاصة، تُستخدم بدلاً منه.</p>
+<div class="release"><div><small>أحدث إصدار</small><b><span class="ltr">1.0.0</span> <span class="beta">تجريبي</span></b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn primary" href="https://github.com/dali44g/Obsidian-FHD/releases/latest">تنزيل ‎.ipk</a>
+<a class="btn ghost" href="#subtitles-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب ffmpeg (يُثبَّت مع التطبيق) وخادم كلام: مفتاح Groq مجاني (سحابي) أو Docker على حاسوب في المنزل.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-subtitles" src="../img/preview_subtitles.jpg" alt="Live Subtitles"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#subtitles-install">التثبيت</a>
+<a href="#subtitles-pc">خادم الحاسوب</a>
+<a href="#subtitles-settings">الإعدادات</a>
+<a href="#subtitles-trouble">حل المشكلات</a>
+<a href="#subtitles-changes">الجديد</a>
+</nav><div class="article">
+<div id="subtitles-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps، اختر <b>Live Subtitles</b> وثبّته.</li><li>‏<span class="key">YELLOW</span> يفتح الإعدادات: اختر <b>Speech server</b>. لـ Groq، اختر <b>Groq key</b> وامسح رمز QR بهاتفك والصق المفتاح. لحاسوبك، أدخل عنوانه، مثلاً <code>192.168.1.20:8000</code>. لا يوجد لديك خادم الحاسوب بعد؟ <a href="#subtitles-pc">جهّزه ›</a></li><li>‏<span class="key">OK</span> يختبر بضع ثوانٍ من الصوت. <span class="key">GREEN</span> يشغّل الترجمة، وGREEN مرة أخرى في التطبيق يوقفها. مع Obsidian Dock، تبيّن بطاقة Live Subtitles إن كانت تعمل وتشغّلها أو توقفها أثناء البث.</li></ol><p class="note">الخصوصية: مع Groq تُرسل مقاطع قصيرة من صوت القناة إلى Groq. مع حاسوبك يبقى الصوت والنص في المنزل. يُحفظ مفتاح Groq في ملف لا يقرؤه إلا النظام ولا يظهر أبداً في السجل.</p></div>
+<div id="subtitles-pc"><h2>خادم الحاسوب</h2><p>مطلوب فقط إذا اخترت <b>حاسوبك</b>. مع مفتاح Groq مجاني يمكنك تخطي هذا القسم.</p><div class="tablewrap"><table class="cmp"><thead><tr><th></th><th>Groq (سحابي)</th><th>حاسوبك</th></tr></thead><tbody><tr><td>الإعداد</td><td>مفتاح مجاني، دقيقتان</td><td>Docker على حاسوب، نحو 20 دقيقة</td></tr><tr><td>الخصوصية</td><td>صوت القناة يُرسل إلى Groq</td><td>يبقى كل شيء في المنزل</td></tr><tr><td>الحدود</td><td>حدود في الساعة واليوم</td><td>لا حدود، لكن يجب أن يبقى الحاسوب مشغّلاً</td></tr></tbody></table></div><p>تحتاج حاسوباً على نفس شبكة المنزل مع الجهاز، وفيه نحو 3 غيغابايت فارغة. حاسوب رباعي النوى من آخر 8 سنوات يكفي.</p><ol><li>ثبّت <a href="https://www.docker.com/products/docker-desktop/">Docker Desktop</a> ‏(Windows أو Mac) أو Docker Engine ‏(Linux)، ثم شغّله. على Windows أعد تشغيل الحاسوب بعد التثبيت.</li><li>افتح طرفية: <b>PowerShell</b> على Windows (نقر يمين على ابدأ › Terminal)، و<b>Terminal</b> على Mac أو Linux.</li><li>الصق هذا الأمر لتشغيل خادم الكلام:<div class="cmd"><div class="bar"><span>خادم الكلام (المنفذ 8000)</span><button class="copy" type="button" data-pre="subs-sp">نسخ</button></div><pre id="subs-sp" dir="ltr">docker run -d --name speaches --restart unless-stopped -p 8000:8000 -e WHISPER__COMPUTE_TYPE=int8 -v hf-hub-cache:/home/ubuntu/.cache/huggingface/hub ghcr.io/speaches-ai/speaches:latest-cpu@sha256:21e3df06d842fb7802ab470dd77c25f0e8c0d22950e8d8c6ae886e851af53ef8</pre></div></li><li>اختياري، لترجمة بالفرنسية أو العربية على حاسوبك (يمكن لـ Groq الترجمة بدلاً منه):<div class="cmd"><div class="bar"><span>المترجم (المنفذ 5000)</span><button class="copy" type="button" data-pre="subs-tr">نسخ</button></div><pre id="subs-tr" dir="ltr">docker run -d --name libretranslate --restart unless-stopped -p 5000:5000 -e LT_LOAD_ONLY=en,fr,ar libretranslate/libretranslate</pre></div></li><li>اعرف عنوان الحاسوب: في PowerShell اكتب <code>ipconfig</code> وسجّل <b>IPv4 Address</b>؛ على Mac: إعدادات النظام › الشبكة؛ على Linux: <code>hostname -I</code>. مثال: <code dir="ltr">192.168.1.20</code>. إذا سأل Windows عن الجدار الناري، اسمح بالوصول على <b>الشبكات الخاصة</b>.</li></ol><p>على الجهاز: Live Subtitles › <span class="key">YELLOW</span> › <b>Speech server</b> = حاسوبك، <b>PC address</b> = العنوان متبوعاً بـ <code>:8000</code>، مثلاً <code dir="ltr">192.168.1.20:8000</code>. اضغط <span class="key">OK</span> للاختبار: الاختبار الأول ينزّل نموذج الكلام (نحو 480 ميغابايت)، فامنحه بضع دقائق.</p><p class="note">بعد إعادة تشغيل الحاسوب، افتح Docker Desktop: تعود الخوادم للعمل وحدها. أبقِ هذه المنافذ على شبكة المنزل فقط، ولا تفتحها أبداً على الإنترنت.</p></div>
+<div id="subtitles-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Speech server</dt><dd>Groq (سحابي، نحو ثانية، حدود الخطة المجانية) أو حاسوبك (Docker، يبقى كل شيء في المنزل، بلا حدود).</dd></div><div><dt dir="ltr">Spoken language</dt><dd>تلقائي، يُحفظ لكل قناة، أو لغة ثابتة.</dd></div><div><dt dir="ltr">Subtitle language</dt><dd>مثل لغة الكلام، أو العربية أو الفرنسية أو الإنجليزية عبر المترجم (الحاسوب أو Groq).</dd></div><div><dt dir="ltr">Mode</dt><dd>‏Synced يؤخّر الصورة بضع ثوانٍ لتطابق الكلمات حركة الشفاه. Live يعرض الصورة فوراً والنص متأخراً قليلاً.</dd></div><div><dt dir="ltr">Sync offset</dt><dd>النص أبكر أو أبطأ. يسار / يمين في صفحة التطبيق تضبطه للقناة الحالية.</dd></div><div><dt dir="ltr">Same language</dt><dd>عندما تتكلم القناة بلغة الترجمة نفسها: إيقاف الترجمة مؤقتاً (افتراضي)، أو عرضها كما تُنطق. يظهر عند اختيار لغة ترجمة.</dd></div><div><dt dir="ltr">Channel subtitles</dt><dd>يستخدم ترجمة القناة نفسها عند توفرها.</dd></div><div><dt dir="ltr">Look</dt><dd>الحجم واللون والخلفية والموضع والخط العربي. Show a sample يعرض معاينة.</dd></div></dl></div>
+<div id="subtitles-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>“Groq limit reached on every key: waiting”</summary><p>للخطة المجانية في Groq حدود في الساعة واليوم. تعود الترجمة وحدها، ومفتاح مجاني ثانٍ يتولى فوراً. خادم الحاسوب بلا حدود.</p></details><details><summary>انقطاع الشبكة</summary><p>الانقطاعات القصيرة لا تُلاحظ. بعد انقطاع أطول تعمل القناة بلا ترجمة ثم تعود وحدها.</p></details><details><summary>شيء ما ناقص</summary><p>السطر تحت المربعات يذكر الناقص: عنوان الحاسوب أو مفتاح Groq أو ffmpeg. BLUE يفتح السجل، وBLUE مرة أخرى يعرض رمز QR لإرساله.</p></details><details><summary>Docker Desktop لا يعمل (Windows)</summary><ul><li><b>رسالة “WSL needs updating” أو “WSL 2 is not installed”:</b> افتح PowerShell كمسؤول، شغّل <code>wsl --install</code> (أو <code>wsl --update</code>)، ثم أعد تشغيل الحاسوب.</li><li><b>خطأ المحاكاة الافتراضية:</b> في إدارة المهام › الأداء › المعالج، تأكد أن <b>Virtualization</b> مفعّلة. وإلا فعّلها من BIOS الحاسوب (غالباً باسم VT-x أو AMD-V أو SVM).</li><li><b>Windows 10 قديم:</b> يتطلب WSL 2 الإصدار 2004 أو أحدث. شغّل Windows Update أولاً.</li></ul></details></div></div>
+<div id="subtitles-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.0.0</span></h3><ul><li>أول إصدار عام: تحويل الكلام إلى نص، ترجمة القناة، العربية / الفرنسية / الإنجليزية، وضعا Synced وLive</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-weather" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › الطقس</div><h1>الطقس</h1><p class="lead">طقس اليوم وتوقعات 5 أيام أعلى شريط المعلومات، بنمط الواجهة. جزء من الواجهة ولا يحتاج إلا إضافة OAWeather.</p>
+<div class="release"><div><small>أحدث إصدار</small><b>جزء من الواجهة</b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn ghost" href="#weather-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب إضافة OAWeather والإنترنت.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-weather" src="../img/preview_weather.svg" alt="الطقس"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#weather-install">التثبيت</a>
+<a href="#weather-settings">الإعدادات</a>
+<a href="#weather-trouble">حل المشكلات</a>
+<a href="#weather-changes">الجديد</a>
+</nav><div class="article">
+<div id="weather-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps › <b>Weather</b>. إذا كانت OAWeather غير موجودة، يثبّتها <span class="key">YELLOW</span>.</li><li>على OpenPLi، ثبّت <a href="https://github.com/OwnerPlugins/OAWeather-Pli">نسخة OAWeather-Pli</a> إذا لم تكن OAWeather في المستودعات.</li><li>اضبط مدينتك والوحدات في إضافة OAWeather، ثم أعد تشغيل الواجهة.</li></ol></div>
+<div id="weather-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Weather</dt><dd>‏GREEN يشغّل شريط الطقس أو يوقفه. تستمر OAWeather في العمل في الحالتين.</dd></div></dl></div>
+<div id="weather-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>اسم المدينة فارغ</summary><p>منذ 1.8.0 تستخدم الواجهة المدينة أو الموقع المضبوط عندما لا يوفّر المزوّد نقطة رصد. اختر موقعك واحفظه في OAWeather.</p></details></div></div>
+<div id="weather-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.8.0</span></h3><ul><li>اسم مدينة بديل للطقس عندما لا يوفّر المزوّد نقطة رصد <em>(sety)</em></li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-clock" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › ساعة دائمة</div><h1>ساعة دائمة</h1><p class="lead">أبقِ الوقت ظاهراً على الشاشة أثناء المشاهدة، بتصميم Minimal أو Flip أو Stacked. جزء من الواجهة، لا شيء آخر للتثبيت.</p>
+<div class="release"><div><small>أحدث إصدار</small><b>جزء من الواجهة</b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn ghost" href="#clock-install">التثبيت من الجهاز</a></div>
+<p class="note">لا يحتاج إلى أي شيء آخر: لا إنترنت ولا إضافة.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-clock" src="../img/preview_clock.svg" alt="ساعة دائمة"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#clock-install">التثبيت</a>
+<a href="#clock-settings">الإعدادات</a>
+<a href="#clock-trouble">حل المشكلات</a>
+<a href="#clock-changes">الجديد</a>
+</nav><div class="article">
+<div id="clock-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps › <b>Permanent clock</b>.</li><li>فعّل الساعة واختر مظهرها، ثم اضغط <span class="key">GREEN</span> للحفظ. <span class="key">RED</span> أو <span class="key">EXIT</span> يلغي التغييرات.</li></ol></div>
+<div id="clock-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Design</dt><dd>Minimal أو Flip أو Stacked.</dd></div><div><dt dir="ltr">Colour</dt><dd>أبيض أو أصفر.</dd></div><div><dt dir="ltr">Position</dt><dd>يسار أو وسط أو يمين.</dd></div><div><dt dir="ltr">Size</dt><dd>صغير أو متوسط أو كبير.</dd></div><div><dt dir="ltr">Seconds</dt><dd>إظهار الثواني أو إخفاؤها.</dd></div></dl></div>
+<div id="clock-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>الساعة لا تظهر</summary><p>إذا كانت إضافة Permanent Clock المنفصلة مفعّلة، أوقفها. يجب أن تكون واجهة Obsidian هي الواجهة النشطة.</p></details></div></div>
+<div id="clock-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.8.0</span></h3><ul><li>ساعة دائمة بتصاميم Minimal وFlip وStacked مع معاينة مباشرة</li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="app-bitrate" hidden>
+<section class="apphead"><div class="wrap"><div>
+<div class="crumbs"><a href="#apps-list">التطبيقات</a> › معدل البت</div><h1>معدل البت</h1><p class="lead">معدل بت الفيديو والصوت للقناة، تحت الساعة أو داخل شريط المعلومات. جزء من الواجهة ولا يحتاج إلا إضافة لمعدل البت.</p>
+<div class="release"><div><small>أحدث إصدار</small><b>جزء من الواجهة</b></div><div><small>يتطلب</small><b><span class="ltr">Obsidian FHD 1.8.0+</span></b></div><div><small>التثبيتات</small><b class="counter">قريباً</b></div></div>
+<div class="actions">
+<a class="btn ghost" href="#bitrate-install">التثبيت من الجهاز</a></div>
+<p class="note">يتطلب BitrateViewer أو إضافة Bitrate في OpenPLi. يعمل على قنوات الأقمار الصناعية والكابل والأرضية.</p></div><div>
+<div class="tv"><img class="appShot" id="shot-bitrate" src="../img/preview_bitrate.svg" alt="معدل البت"></div><div class="tvfoot"></div>
+</div></div></section>
+<section><div class="wrap doc"><nav class="toc" aria-label="في هذه الصفحة"><b>في هذه الصفحة</b>
+<a href="#bitrate-install">التثبيت</a>
+<a href="#bitrate-settings">الإعدادات</a>
+<a href="#bitrate-trouble">حل المشكلات</a>
+<a href="#bitrate-changes">الجديد</a>
+</nav><div class="article">
+<div id="bitrate-install"><h2>التثبيت</h2><ol><li>اضغط <span class="key">MENU</span> › Obsidian Apps › <b>Weather</b>، قسم Bitrate.</li><li>ثبّت BitrateViewer من مستودعات صورتك (في OpenPLi: إضافة Bitrate)، ثم أعد تشغيل الواجهة.</li></ol></div>
+<div id="bitrate-settings"><h2>الإعدادات</h2><p class="note">تظهر التسميات على الجهاز بلغة القوائم لديك.</p><dl class="settings"><div><dt dir="ltr">Bitrate › Position</dt><dd>تحت الساعة، أو داخل شريط المعلومات (Classic). يغيّره YELLOW أو يسار / يمين.</dd></div></dl></div>
+<div id="bitrate-trouble"><h2>حل المشكلات</h2><div class="qa"><details open><summary>لا يظهر معدل البت على قنوات IPTV</summary><p>يُقاس معدل البت من الموالف، لذا يعمل فقط على قنوات الأقمار الصناعية والكابل والأرضية.</p></details></div></div>
+<div id="bitrate-changes"><h2>الجديد</h2><div class="changes"><article><h3><span class="ltr">1.8.0</span></h3><ul><li>دعم إضافة Bitrate في OpenPLi <em>(sety)</em></li><li>الموضع: تحت الساعة أو داخل الشريط <em>(raboha)</em></li></ul></article></div></div>
+</div></div></section></main>
+<main class="view" id="help" hidden><section class="helphead"><div class="wrap">
+<div class="eyebrow">المساعدة</div><h1>أدلة وإجابات</h1><p class="lead">أدلة قصيرة للواجهة نفسها. لكل تطبيق صفحته الخاصة بالتثبيت والإعدادات وحل المشكلات.</p><div class="applist">
+<a href="#app-posters">Posters</a>
+<a href="#app-stream">Stream</a>
+<a href="#app-dock">Dock</a>
+<a href="#app-mawaqit">Mawaqit</a>
+<a href="#app-cast">Cast</a>
+<a href="#app-subtitles">Live Subtitles</a>
+<a href="#app-weather">الطقس</a>
+<a href="#app-clock">ساعة دائمة</a>
+<a href="#app-bitrate">معدل البت</a>
+</div></div></section><section><div class="wrap"><div class="guides">
+<article class="guide"><h3>التثبيت والتحديث</h3><p>المثبّت بسطر واحد، وتثبيت ملف ‎.ipk يدوياً، والتحديث دون فقدان إعداداتك.</p><ul><li>التثبيت بالأمر</li><li>تثبيت ‎.ipk من USB</li><li>التحديث والرجوع</li></ul></article>
+<article class="guide"><h3>الأنماط والحزم</h3><p>غيّر القوائم وقائمة القنوات وشريط المعلومات، ونزّل الحزم، وعُد إلى Classic.</p><ul><li>اختيار نمط</li><li>تخصيص كل شاشة</li><li>إزالة حزمة</li></ul></article>
+<article class="guide"><h3>الصور والأجهزة المدعومة</h3><p>ما تم اختباره، وما يعمل دون جهاز اختبار، وملاحظات خاصة بكل صورة.</p><ul><li>OpenATV وOpenPLi وPurE2</li><li>الطقس ومعدل البت حسب الصورة</li><li>Flash Expander والإقلاع المتعدد</li></ul></article>
+<article class="guide"><h3>الأسئلة الشائعة وحل المشكلات</h3><p>الأسئلة الأكثر تكراراً في المنتدى.</p><ul><li>الشعارات (Picons) مفقودة</li><li>الواجهة لا تعمل</li><li>الإبلاغ عن مشكلة</li></ul></article>
+</div><p class="note">الأدلة قيد الكتابة. في الأثناء، تجيب صفحات التطبيقات وموضوع المنتدى عن معظم الأسئلة.</p></div></section></main>
+<footer><div class="wrap">
+<span><svg class="mark" aria-hidden="true"><use href="#obs-mark"/></svg>Obsidian FHD · واجهة مجانية، مبنية على PLi-FullNightHD من littlesat / OpenPLi</span>
+<span class="links"><a href="https://github.com/dali44g/Obsidian-FHD">GitHub</a><a href="https://github.com/dali44g/Obsidian-FHD/releases">الإصدارات</a><a href="https://github.com/dali44g/Obsidian-FHD/issues">الإبلاغ عن مشكلة</a><span class="langs" aria-label="اللغة"><a href="../" hreflang="en" lang="en" data-lang="en">EN</a><a href="../fr/" hreflang="fr" lang="fr" data-lang="fr">FR</a><a href="../ar/" hreflang="ar" lang="ar" data-lang="ar" aria-current="true">عربي</a></span></span>
+</div></footer>
+<script>
+var LANG = "ar", WORDS = {copied: "تم النسخ", selected: "محدَّد", copy: "نسخ"};
+// one view at a time: the hash names a view (home, help, app-<id>) or an anchor inside one
+function route() {
+  var h = decodeURIComponent(location.hash.replace("#", "")), el = h ? document.getElementById(h) : null;
+  var view = el ? (el.classList.contains("view") ? el : el.closest(".view")) : null;
+  if (!view) view = document.getElementById("home");
+  var changed = view.hidden;
+  document.querySelectorAll(".view").forEach(function (v) { v.hidden = v !== view; });
+  document.querySelectorAll("nav a[data-nav]").forEach(function (a) {
+    var on = a.dataset.nav === "help" ? view.id === "help" : a.dataset.nav === "apps" ? (view.id.indexOf("app-") === 0 || h === "apps-list") : (view.id === "home" && h !== "apps-list");
+    if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+  document.querySelectorAll(".langs a").forEach(function (a) { a.href = a.getAttribute("href").split("#")[0] + location.hash; });
+  if (el && el !== view) el.scrollIntoView(); else if (changed || !h) window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+document.querySelectorAll(".langs a").forEach(function (a) {
+  a.addEventListener("click", function () { try { localStorage.setItem("obsidian-lang", a.dataset.lang); } catch (e) {} });
+});
+// first visit of the English page: French or Arabic browsers go to their page (a saved choice wins)
+if (LANG === "en") {
+  var saved = null; try { saved = localStorage.getItem("obsidian-lang"); } catch (e) {}
+  var want = saved || ((navigator.language || "").slice(0, 2));
+  if (want === "fr" || want === "ar") { location.replace(want + "/" + location.hash); }
+}
+route();
+document.querySelectorAll("#tabs button").forEach(function (b) {
+  b.addEventListener("click", function () {
+    document.querySelectorAll("#tabs button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+    var img = document.getElementById("styleShot"); img.src = img.src.replace(/[^\/]+$/, b.dataset.img);
+    img.alt = b.querySelector("b").textContent; document.getElementById("styleCap").textContent = b.dataset.cap;
+  });
+});
+document.querySelectorAll(".shots").forEach(function (g) {
+  g.querySelectorAll("button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      g.querySelectorAll("button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+      var img = document.getElementById(g.dataset.target); img.src = img.src.replace(/[^\/]+$/, b.dataset.img);
+    });
+  });
+});
+document.querySelectorAll("button.copy").forEach(function (b) {
+  b.addEventListener("click", function () {
+    var p = document.getElementById(b.dataset.pre), t = p.textContent;
+    var done = function () { b.textContent = WORDS.copied; setTimeout(function () { b.textContent = WORDS.copy; }, 1600); };
+    var sel = function () { var r = document.createRange(); r.selectNodeContents(p); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = WORDS.selected; };
+    try { navigator.clipboard.writeText(t).then(done, sel); } catch (e) { sel(); }
+  });
+});
+</script>
+</body>
+</html>

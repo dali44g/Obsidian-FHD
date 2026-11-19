@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="896" height="504" viewBox="0 0 896 504">
+  <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#7dd3fc" stop-opacity=".22"/><stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/></linearGradient></defs>
+  <rect width="896" height="504" fill="#101c2b"/>
+  <g font-family="Arial,sans-serif">
+    <text x="144" y="131" fill="#9bafc5" font-size="18" letter-spacing="3">VIDEO BITRATE</text>
+    <text x="138" y="242" fill="#fff" font-size="112" font-weight="bold" letter-spacing="-4">8.42</text>
+    <text x="386" y="239" fill="#9bafc5" font-size="30">Mb/s</text>
+    <text x="610" y="174" fill="#9bafc5" font-size="16" letter-spacing="2">AUDIO</text>
+    <text x="608" y="224" fill="#e0eaf4" font-size="42" font-weight="bold">192</text>
+    <text x="696" y="224" fill="#9bafc5" font-size="22">kb/s</text>
+  </g>
+  <path d="M144 339 166 332 188 338 210 319 232 324 254 303 276 311 298 306 320 320 342 301 364 310 386 282 408 296 430 290 452 306 474 281 496 294 518 280 540 287 562 272 584 289 606 277 628 293 650 274 672 283 694 269 716 280 752 275V376H144Z" fill="url(#area)"/>
+  <path d="M144 339 166 332 188 338 210 319 232 324 254 303 276 311 298 306 320 320 342 301 364 310 386 282 408 296 430 290 452 306 474 281 496 294 518 280 540 287 562 272 584 289 606 277 628 293 650 274 672 283 694 269 716 280 752 275" fill="none" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#9bafc5" font-family="Arial,sans-serif" font-size="16" letter-spacing="1"><text x="144" y="409">60 SECONDS</text><text x="752" y="409" text-anchor="end">NOW</text></g>
+</svg>

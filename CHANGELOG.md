@@ -2,6 +2,59 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.8.0
+
+**New**
+- Obsidian Live Subtitles app (beta): subtitles for channels that have none, made from the channel's speech, in its language or translated into yours
+  - speech recognition on your own PC (Docker, everything stays at home) or with a free Groq key (cloud)
+  - uses the channel's own subtitles when it sends them (WebVTT and CEA-608 captions on IPTV)
+  - Synced mode: the picture is held a few seconds so the words match the lips (IPTV through the receiver's relay)
+  - several Groq keys: when one reaches the free limit, the next takes over at once
+  - can pause by itself when the channel already speaks the subtitle language: your choice with the Same language setting (Pause subtitles / Show subtitles)
+  - comes back by itself after a network drop
+  - Groq key entered from your phone with a QR code; log shared to a phone with secrets removed
+- Obsidian Stream app (beta): watch this receiver's channels on your phone, tablet or another TV at home, in an IPTV app such as TiviMate, IPTV Smarters or VLC (Xtream Codes login or M3U link, with the TV guide and picons)
+  - one device at a time: live TV pauses on the receiver while a device watches and comes back by itself when it stops; OK on the remote takes the TV back
+  - home network only, off until you turn it on, with its own password; it passes your own subscription to one device at a time and adds no viewers
+  - tested with IPTV channels; satellite channels have not been tested yet
+  - French and Arabic
+- Dock 1.0.2: new Live Subtitles shortcut (when that app is installed): a card shows whether the subtitles are on, OK starts or stops them, without leaving live TV
+- Obsidian Apps: a "Need help?" button (HELP key) on each app page and About: it shows a QR code that opens that app's guide on the new website on your phone, in the language of your menus
+- OpenPLi: support its Bitrate plugin in infobar measurements and compact/full windows; weather city falls back when the provider omits the observation point, with OAWeather-Pli setup guidance (reported by sety)
+- Posters 1.0.5: independent Now/Next artwork in the second infobar across all styles; text cards stay full width when artwork is unavailable (suggested by mohamedothman)
+- Bitrate: new Position setting (Obsidian Apps > Bitrate, YELLOW): keep the card under the clock, or show one short line in the Classic infobar under SNR / AGC (suggested by raboha)
+- Nova infobar: decryption info line (CI module, card or softcam, e.g. "CI0") above the capsule, left of the chips; shown only on channels where the receiver reports it, so free and IPTV channels stay as before (suggested by وليد شنب)
+- Floating menu: a card with the description of the selected entry (main menu and submenus), hidden when the entry has none (idea by mj_84)
+- Halo and Glass infobars: SD and 4K badges (4K also on HDR / HLG channels), and a 4:3 badge next to 16:9 (reported by mj_84)
+
+**Changed**
+- Top bar of the channel list, event view and menus: the date in the infobar's style (TUE  17.11.2026), a little larger (idea by mj_84)
+- Menu icons (Classic, Floating, Edge): about 1.5x larger symbols, same row sizes (suggested by brahimi Miloud)
+- Window title bar: taller (52 px), with a larger title and accent line
+- Obsidian Apps: apps can bring their own tile, page art and preview
+- Dock 1.0.2: the Apps card shows an add-on's own icon (Live Subtitles showed the generic one); French and Arabic
+
+**Fixed**
+- Halo and Glass infobars: include SDR / HDR / HDR10 / HLG from service metadata on OpenPLi as well as OpenATV; separate and widen the SNR percentage and dB fields, including when the image swaps their order (reported by Dervis)
+- Second infobar: the lower infobar uses its no-poster layout in every style, keeping raised artwork and poster panels out of the telemetry card (reported by mohamedothman)
+- Glass/Halo: TMDB metadata and satellite details use separate rows; decryption and audio information keep their own space (reported by mohamedothman)
+- Edge channel list: reserve progress space in single-line and two-line rows without widening the sidebar or changing image settings (reported by mohamedothman)
+- Dashboard fan: unavailable RPM readings are explained instead of displaying N/A; zero RPM remains a valid reading (reported by mohamedothman)
+- Timeshift: hide the live TV infobar while the timeshift controls are shown, preventing overlapping channel details and clocks (reported by Mohamedzalata)
+- Posters 1.0.4 and Cast 1.0.2: the hard disk was refused as "on the receiver flash" when the image runs from that disk (OpenMultiboot, EgamiBoot, NeoBoot), and each disk is listed once (reported by mahermotawea86, sat_abdel, 1995Gh3ssan and sety)
+- Cinema infobar: a few words of Arabic programme descriptions (or a long channel name) no longer show in the top-left corner of the screen (reported by naf2010)
+- Cinema infobar: the second infobar no longer overlaps its ECM / telemetry card; it shows the compact channel layout (the programme is in the cards above) (reported by saragusa)
+- Halo and Glass infobars: the REC badge shows again during a recording when the weather bar is on (it was hidden behind the bar); it now sits just under the bar (reported by mj_84)
+- Halo and Glass infobars: the resolution badge is wider, so SDR / HLG / HDR10 after the resolution are no longer cut off (reported by mj_84 and Dervis)
+- Floating menu dashboard (and K7): the network card shows the connection in use (the default route), not a switched-off Wi-Fi stick, and its download / upload rates again
+- Posters 1.0.4 and Mawaqit 1.1.2: the phone QR code showed "No network" on some receivers connected by cable; the receiver's address is now also read from the network card, and another port is used when the usual one is taken (reported by Kamelrasul)
+- OpenATV 7.6 / 8: Parental control, OpenWebif, File Commander and Nameserver setup screens use the Obsidian design again (the image refused them for two missing fields), and pictures some plugin screens asked for but the skin did not ship are no longer requested
+
+**Website**
+- New website with a guide for each app, in English, French and Arabic; the "Need help?" QR on the receiver opens it
+- Weather and Bitrate have their own guide pages; new Permanent clock page
+- Live Subtitles guide: install, settings, privacy and troubleshooting, plus a step-by-step PC server setup (Docker Desktop, two copy-paste commands, Groq vs PC comparison) and help when Docker Desktop does not start on Windows (WSL, virtualisation)
+
 ## 1.7.2
 
 **New**

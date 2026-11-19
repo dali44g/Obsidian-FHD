@@ -41,6 +41,25 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 | **Quick menu** | **Plugin browser** |
 | ![Quick menu](docs/screenshots/quick-menu.jpg) | ![Plugin browser](docs/screenshots/plugin-browser.jpg) |
 
+### New in 1.8
+
+![Live Subtitles](docs/screenshots/live-subtitles.jpg)
+
+![Stream](docs/screenshots/stream-banner.jpg)
+
+- **Live Subtitles (free app, beta):** subtitles for channels that have none, made from the channel's speech, in its
+  own language or translated into yours. Runs on your own PC (Docker, everything stays at home) or with a free Groq
+  key (cloud). Synced mode holds the picture a few seconds so the words match the lips.
+  [Guide and PC setup](https://dali44g.github.io/Obsidian-FHD/#app-subtitles).
+- **Stream (free app, beta):** turns the receiver into an Xtream Codes server for your home: watch its channels on a
+  phone, tablet or another TV in an IPTV app (TiviMate, IPTV Smarters, VLC...), with an Xtream Codes login or an M3U
+  link. One device at a time, home network only, off until you turn it on.
+  [Guide](https://dali44g.github.io/Obsidian-FHD/#app-stream).
+- **New website** with a guide for each app in English, French and Arabic:
+  [dali44g.github.io/Obsidian-FHD](https://dali44g.github.io/Obsidian-FHD/). On the receiver, the HELP key on an app
+  page shows a QR code that opens its guide on your phone.
+- Install the apps from Menu → **Obsidian Apps**. Full list of changes: [CHANGELOG.md](CHANGELOG.md).
+
 ### New in 1.7
 
 ![Matchday style pack](docs/screenshots/matchday.jpg)
