@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Obsidian Faceted O">
+<title>Obsidian — Faceted O</title>
+<defs><mask id="ring" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256"><rect width="256" height="256" fill="white"/>
+<polygon points="75,101 128,65 181,101 181,167 128,203 75,167" fill="black"/></mask></defs><g mask="url(#ring)">
+<polygon points="75,8 177,8 248,79 248,181 177,248 75,248 8,181 8,79" fill="#353d49"/>
+<polygon points="8,79 75,8 75,101 8,146" fill="#4b535f"/>
+<polygon points="75,8 128,65 75,101" fill="#3b4350"/>
+<polygon points="8,146 75,101 75,167 128,203 75,248 8,181" fill="#303743"/>
+<polygon points="75,248 128,203 181,167 177,248" fill="#454d59"/>
+<polygon points="181,101 248,137 248,181 177,248 181,167" fill="#3c4551"/>
+<polygon points="75,8 177,8 248,79 248,137 128,65" fill="#00d8e8"/>
+</g></svg>

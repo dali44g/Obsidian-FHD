@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="896" height="504" viewBox="0 0 896 504">
+  <defs>
+    <symbol id="sun" viewBox="0 0 64 64"><g stroke="#ffcc66" stroke-width="3" stroke-linecap="round"><path d="M32 5v6m0 42v6M5 32h6m42 0h6M13 13l4 4m30 30 4 4m-38 0 4-4m30-30 4-4"/><circle cx="32" cy="32" r="13" fill="#ffcc66" stroke="none"/></g></symbol>
+    <symbol id="cloud" viewBox="0 0 64 64"><path d="M17 49h31a12 12 0 0 0 1-24 18 18 0 0 0-34-3 14 14 0 0 0 2 27" fill="#c7d7e7"/></symbol>
+    <symbol id="partly" viewBox="0 0 64 64"><use href="#sun" width="48" height="48"/><use href="#cloud" x="11" y="13" width="50" height="50"/></symbol>
+    <symbol id="rain" viewBox="0 0 64 64"><use href="#cloud" y="-7" width="64" height="64"/><path d="m22 47-3 8m15-8-3 8m15-8-3 8" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/></symbol>
+  </defs>
+  <rect width="896" height="504" fill="#101c2b"/>
+  <g font-family="Arial,sans-serif">
+    <text x="144" y="106" fill="#9bafc5" font-size="18" letter-spacing="3">WEATHER TODAY</text>
+    <use href="#partly" x="128" y="127" width="128" height="128"/>
+    <text x="282" y="235" fill="#fff" font-size="112" font-weight="bold" letter-spacing="-4">22?</text>
+    <text x="586" y="171" fill="#e0eaf4" font-size="22">Partly cloudy</text>
+    <text x="586" y="209" fill="#9bafc5" font-size="18">23? / 16?</text>
+  </g>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <g transform="translate(168 0)"><text y="304" fill="#9bafc5" font-size="16" letter-spacing="2">MON</text><use href="#sun" x="-24" y="323" width="48" height="48"/><text y="407" fill="#e0eaf4" font-size="27" font-weight="bold">23?</text><text y="437" fill="#9bafc5" font-size="18">16?</text></g>
+    <g transform="translate(308 0)"><text y="304" fill="#9bafc5" font-size="16" letter-spacing="2">TUE</text><use href="#partly" x="-24" y="323" width="48" height="48"/><text y="407" fill="#e0eaf4" font-size="27" font-weight="bold">21?</text><text y="437" fill="#9bafc5" font-size="18">15?</text></g>
+    <g transform="translate(448 0)"><text y="304" fill="#9bafc5" font-size="16" letter-spacing="2">WED</text><use href="#rain" x="-24" y="323" width="48" height="48"/><text y="407" fill="#e0eaf4" font-size="27" font-weight="bold">19?</text><text y="437" fill="#9bafc5" font-size="18">14?</text></g>
+    <g transform="translate(588 0)"><text y="304" fill="#9bafc5" font-size="16" letter-spacing="2">THU</text><use href="#cloud" x="-24" y="323" width="48" height="48"/><text y="407" fill="#e0eaf4" font-size="27" font-weight="bold">20?</text><text y="437" fill="#9bafc5" font-size="18">15?</text></g>
+    <g transform="translate(728 0)"><text y="304" fill="#9bafc5" font-size="16" letter-spacing="2">FRI</text><use href="#sun" x="-24" y="323" width="48" height="48"/><text y="407" fill="#e0eaf4" font-size="27" font-weight="bold">22?</text><text y="437" fill="#9bafc5" font-size="18">16?</text></g>
+  </g>
+</svg>
