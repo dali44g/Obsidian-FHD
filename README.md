@@ -43,7 +43,15 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 
 ### New in 1.8.1
 
-![Slate style](docs/screenshots/slate.jpg)
+![Slate style](docs/screenshots/slate-banner.jpg)
+
+Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
+
+| Main menu (Slate) | Channel list (Slate) |
+|---|---|
+| ![Slate main menu](docs/screenshots/slate-menu.jpg) | ![Slate channel list](docs/screenshots/slate-channel-list.jpg) |
+| **Infobar (Slate)** | **Dock with the Live Subtitles card** |
+| ![Slate infobar](docs/screenshots/slate-infobar.jpg) | ![Dock](docs/screenshots/dock-slate.jpg) |
 
 - **Slate style pack:** a calm dark look with big cards for the menus, settings, channel list and infobar, in 4
   colours (Terracotta, Ice, Amber, Jade). Main menu as a card row or a sidebar over live TV; channel list as Mini TV,
