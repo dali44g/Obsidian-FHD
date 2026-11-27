@@ -2,30 +2,6 @@
     "format":  1,
     "apps":  [
                  {
-                     "id":  "posters",
-                     "name":  "Posters",
-                     "package":  "enigma2-plugin-extensions-obsidian-posters",
-                     "version":  "1.0.5",
-                     "minCore":  "1.8.0",
-                     "file":  "enigma2-plugin-extensions-obsidian-posters_all.ipk",
-                     "size":  41296,
-                     "installedKb":  120,
-                     "sha256":  "f3ca35a094de631ac3b7f07bd29b69cea12e2248ec4c68ad2154ed98dbcfd24e",
-                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianPosters"
-                 },
-                 {
-                     "id":  "dock",
-                     "name":  "Dock",
-                     "package":  "enigma2-plugin-extensions-obsidian-dock",
-                     "version":  "1.0.2",
-                     "minCore":  "1.7.2",
-                     "file":  "enigma2-plugin-extensions-obsidian-dock_all.ipk",
-                     "size":  115210,
-                     "installedKb":  175,
-                     "sha256":  "85b5f927ca83ecf53792fd5703f6c43b1ab94536cca57e023e61144776025454",
-                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianDock"
-                 },
-                 {
                      "id":  "cast",
                      "name":  "Cast",
                      "package":  "enigma2-plugin-extensions-obsidian-cast",
@@ -62,15 +38,39 @@
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianStream"
                  },
                  {
+                     "id":  "posters",
+                     "name":  "Posters",
+                     "package":  "enigma2-plugin-extensions-obsidian-posters",
+                     "version":  "1.1.0",
+                     "minCore":  "1.8.1",
+                     "file":  "enigma2-plugin-extensions-obsidian-posters_all.ipk",
+                     "size":  560774,
+                     "installedKb":  649,
+                     "sha256":  "7f6b3c425f1fd353791d67f68e3385c873431a20d043cc3e1811a9371c3405bf",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianPosters"
+                 },
+                 {
+                     "id":  "dock",
+                     "name":  "Dock",
+                     "package":  "enigma2-plugin-extensions-obsidian-dock",
+                     "version":  "1.1.0",
+                     "minCore":  "1.7.2",
+                     "file":  "enigma2-plugin-extensions-obsidian-dock_all.ipk",
+                     "size":  117552,
+                     "installedKb":  185,
+                     "sha256":  "86461a252aa3b5686cc01870f2e62aa6cfd0a2ef379a6ff02da12d1833b340cb",
+                     "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianDock"
+                 },
+                 {
                      "id":  "subtitles",
                      "name":  "Live Subtitles",
                      "package":  "enigma2-plugin-extensions-obsidian-subtitles",
-                     "version":  "1.0.0",
+                     "version":  "1.1.0",
                      "minCore":  "1.8.0",
                      "file":  "enigma2-plugin-extensions-obsidian-subtitles_all.ipk",
-                     "size":  133938,
-                     "installedKb":  341,
-                     "sha256":  "59441a521b4e8291c0b43a065aa57da75834fa944dee2ec9900da4629c7ee182",
+                     "size":  150488,
+                     "installedKb":  396,
+                     "sha256":  "205cb946135b4b8ea929f7145e4e6a6100e18783e3f0d3f9a9df077c2af966eb",
                      "plugin":  "/usr/lib/enigma2/python/Plugins/Extensions/ObsidianSubtitles"
                  }
              ]

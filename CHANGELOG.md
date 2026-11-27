@@ -2,6 +2,38 @@
 
 All notable changes to Obsidian FHD. To update, run the install command from the README again.
 
+## 1.8.1
+
+**New**
+- Slate style pack: dark look with big cards for menus, settings, channel list and infobar
+  - 4 colours: Terracotta, Ice, Amber, Jade (Obsidian Apps > Styles)
+  - main menu as a card row or a sidebar over live TV, with receiver stats
+  - channel list layouts: Mini TV, Open and Cards
+- Posters 1.1.0: film backdrops in the Floating and Slate channel lists (off by default)
+- Live Subtitles 1.1.0
+  - 25 languages, spoken and subtitles (before: 7 spoken, translated to English, French or Arabic)
+  - new: Persian, Portuguese, Dutch, Bulgarian, Croatian, Serbian, Bosnian, Slovenian, Macedonian, Albanian, Romanian, Greek, Polish, Czech, Slovak, Hungarian, Ukrainian, Russian
+  - new PC translator (version 3): all languages on your PC, models download on demand
+  - one-line PC setup for Windows, Mac and Linux; guides in English, French and Arabic
+  - speech models: Recommended (adapts to your PC), Base, Small, Medium or Custom
+  - DASH channels say so and play directly; the setup page shows the PC's progress
+  - cloud fallback is now off by default
+- Dock 1.1.0: Slate theme, and a subtitle Offset row for the current channel
+
+**Changed**
+- Obsidian Apps and Styles open faster
+- Customise page: the selection moves at once, the preview follows
+
+**Fixed**
+- Posters: better matching of Arabic and other non-Latin titles (reported by Enigma Architect)
+- Quad PiP editor: cut or overlapping text (reported by mohamedothman)
+- Halo, Glass, Cinema and Edge: long programme titles now scroll (suggested by saragusa)
+- Edge main menu: the selected item's right edge is no longer cut (reported by saragusa)
+- Cinema infobar: channel name stays beside the picon on all images; shorter no-guide view (reported by saragusa)
+- OpenATV: the dish movement popup no longer stays on screen (reported by mj_84)
+- PIN screen: digits are no longer cut
+- Live Subtitles: untranslated, hidden or blank subtitles in some cases
+
 ## 1.8.0
 
 **New**

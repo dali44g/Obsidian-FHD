@@ -41,6 +41,19 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 | **Quick menu** | **Plugin browser** |
 | ![Quick menu](docs/screenshots/quick-menu.jpg) | ![Plugin browser](docs/screenshots/plugin-browser.jpg) |
 
+### New in 1.8.1
+
+![Slate style](docs/screenshots/slate.jpg)
+
+- **Slate style pack:** a calm dark look with big cards for the menus, settings, channel list and infobar, in 4
+  colours (Terracotta, Ice, Amber, Jade). Main menu as a card row or a sidebar over live TV; channel list as Mini TV,
+  Open or Cards. Install it from Menu > Obsidian Apps > Styles.
+- **Live Subtitles 1.1.0 (beta):** 25 languages, spoken and as subtitles; a new PC translator (version 3) runs them all
+  at home, with a one-line setup for Windows, Mac and Linux.
+  [Guide and PC setup](https://dali44g.github.io/Obsidian-FHD/#app-subtitles).
+- **Posters 1.1.0:** film backdrops in the Floating and Slate channel lists (off by default). **Dock 1.1.0:** Slate
+  theme and a subtitle Offset row.
+
 ### New in 1.8
 
 ![Live Subtitles](docs/screenshots/live-subtitles.jpg)
