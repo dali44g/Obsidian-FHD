@@ -12,6 +12,7 @@ All notable changes to Obsidian FHD. To update, run the install command from the
 - Posters 1.1.0: film backdrops in the Floating and Slate channel lists (off by default)
 - Live Subtitles 1.1.0
   - 25 languages, spoken and subtitles (before: 7 spoken, translated to English, French or Arabic)
+  - works on satellite and terrestrial (DVB) channels, in Live and Synced mode (Synced needs a timeshift folder on USB or hard disk)
   - new: Persian, Portuguese, Dutch, Bulgarian, Croatian, Serbian, Bosnian, Slovenian, Macedonian, Albanian, Romanian, Greek, Polish, Czech, Slovak, Hungarian, Ukrainian, Russian
   - new PC translator (version 3): all languages on your PC, models download on demand
   - one-line PC setup for Windows, Mac and Linux; guides in English, French and Arabic
