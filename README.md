@@ -53,6 +53,10 @@ Captured on a Vu+ Solo2 with OpenATV 8.0.1, over live TV.
 | **Infobar (Slate)** | **Dock with the Live Subtitles card** |
 | ![Slate infobar](docs/screenshots/slate-infobar.jpg) | ![Dock](docs/screenshots/dock-slate.jpg) |
 
+**Posters 1.1.0:** film backdrop in the Floating channel list.
+
+![Floating channel list with a film backdrop](docs/screenshots/floating-backdrop.jpg)
+
 - **Slate style pack:** a calm dark look with big cards for the menus, settings, channel list and infobar, in 4
   colours (Terracotta, Ice, Amber, Jade). Main menu as a card row or a sidebar over live TV; channel list as Mini TV,
   Open or Cards. Install it from Menu > Obsidian Apps > Styles.
